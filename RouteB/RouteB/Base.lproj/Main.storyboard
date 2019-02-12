@@ -83,10 +83,10 @@
             </objects>
             <point key="canvasLocation" x="1076" y="133.5832083958021"/>
         </scene>
-        <!--View Controller-->
+        <!--Create Route View Controller-->
         <scene sceneID="Mnj-RV-mbb">
             <objects>
-                <viewController id="3S3-Ed-BLO" sceneMemberID="viewController">
+                <viewController id="3S3-Ed-BLO" customClass="CreateRouteViewController" customModule="RouteB" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Mve-on-Luw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -94,7 +94,18 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LAy-v9-dmK">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
-                                    <navigationItem title="Create Route" id="w4c-rv-Xd0"/>
+                                    <navigationItem title="Create Route" id="w4c-rv-Xd0">
+                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="ll1-IH-7CS">
+                                            <connections>
+                                                <action selector="cancelPressed:" destination="3S3-Ed-BLO" id="QAS-Yc-n6N"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Create" id="gCc-lX-UPM">
+                                            <connections>
+                                                <action selector="createPressed:" destination="3S3-Ed-BLO" id="A2Q-Pu-JuC"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Starting Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qn4-Y1-dWQ">
@@ -128,7 +139,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8XF-uu-0MB">
-                                <rect key="frame" x="187.5" y="149" width="187.5" height="30"/>
+                                <rect key="frame" x="187.5" y="149" width="150" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -137,22 +148,49 @@
                                 <rect key="frame" x="0.0" y="189" width="375" height="478"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="TVm-Ot-aah">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MyCreateTableViewCell" id="TVm-Ot-aah" customClass="MyCreateTableViewCell" customModule="RouteB" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TVm-Ot-aah" id="T95-Kt-3WX">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qPf-bV-OY0">
+                                                    <rect key="frame" x="15" y="11.5" width="345" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="qPf-bV-OY0" firstAttribute="leading" secondItem="T95-Kt-3WX" secondAttribute="leadingMargin" id="2Cs-oV-kzb"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="qPf-bV-OY0" secondAttribute="trailing" id="WHn-ZW-P11"/>
+                                                <constraint firstItem="qPf-bV-OY0" firstAttribute="centerY" secondItem="T95-Kt-3WX" secondAttribute="centerY" id="stn-58-roc"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="createdLabel" destination="qPf-bV-OY0" id="pvB-rC-3zu"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O3Q-Xf-y7w">
+                                <rect key="frame" x="345" y="149" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Zhz-Fj-b2b"/>
+                                    <constraint firstAttribute="width" constant="30" id="ial-TW-cl5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                <state key="normal" title="+"/>
+                                <connections>
+                                    <action selector="addTransportButtonPressed:" destination="3S3-Ed-BLO" eventType="touchUpInside" id="89o-h5-kal"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Fw4-5P-caS" firstAttribute="trailing" secondItem="SwY-6w-2O9" secondAttribute="trailing" id="19r-9g-R7B"/>
-                            <constraint firstItem="Fw4-5P-caS" firstAttribute="trailing" secondItem="8XF-uu-0MB" secondAttribute="trailing" id="1XS-5o-yAx"/>
-                            <constraint firstItem="8XF-uu-0MB" firstAttribute="width" secondItem="Mve-on-Luw" secondAttribute="width" multiplier="0.5" id="3I9-c4-oVr"/>
+                            <constraint firstItem="8XF-uu-0MB" firstAttribute="width" secondItem="Mve-on-Luw" secondAttribute="width" multiplier="0.4" id="3I9-c4-oVr"/>
                             <constraint firstItem="gt5-YI-241" firstAttribute="centerY" secondItem="8XF-uu-0MB" secondAttribute="centerY" id="FX4-pM-pJ4"/>
                             <constraint firstItem="Qn4-Y1-dWQ" firstAttribute="top" secondItem="LAy-v9-dmK" secondAttribute="bottom" constant="5" id="G4e-Tr-gfV"/>
                             <constraint firstItem="Fw4-5P-caS" firstAttribute="trailing" secondItem="UhR-eF-cZx" secondAttribute="trailing" id="Hev-Qc-xfM"/>
@@ -162,6 +200,8 @@
                             <constraint firstItem="SwY-6w-2O9" firstAttribute="width" secondItem="Mve-on-Luw" secondAttribute="width" multiplier="0.5" id="MWk-q4-I8I"/>
                             <constraint firstItem="UhR-eF-cZx" firstAttribute="top" secondItem="LAy-v9-dmK" secondAttribute="bottom" constant="5" id="MuO-Ha-hfu"/>
                             <constraint firstItem="Fw4-5P-caS" firstAttribute="trailing" secondItem="16i-FI-w7M" secondAttribute="trailing" id="Qwa-LG-75L"/>
+                            <constraint firstItem="O3Q-Xf-y7w" firstAttribute="top" secondItem="SwY-6w-2O9" secondAttribute="bottom" constant="10" id="SGx-kB-l22"/>
+                            <constraint firstAttribute="trailing" secondItem="O3Q-Xf-y7w" secondAttribute="trailing" id="TkD-1g-4z6"/>
                             <constraint firstItem="16i-FI-w7M" firstAttribute="leading" secondItem="Fw4-5P-caS" secondAttribute="leading" id="Xh6-C3-qCT"/>
                             <constraint firstItem="16i-FI-w7M" firstAttribute="top" secondItem="8XF-uu-0MB" secondAttribute="bottom" constant="10" id="e4F-Fn-g6v"/>
                             <constraint firstItem="LAy-v9-dmK" firstAttribute="trailing" secondItem="Fw4-5P-caS" secondAttribute="trailing" id="el1-0m-qvc"/>
@@ -172,12 +212,22 @@
                             <constraint firstItem="wQN-8f-ms0" firstAttribute="leading" secondItem="Fw4-5P-caS" secondAttribute="leading" id="jA0-5J-5tg"/>
                             <constraint firstItem="8XF-uu-0MB" firstAttribute="top" secondItem="SwY-6w-2O9" secondAttribute="bottom" constant="10" id="jAq-vl-HvX"/>
                             <constraint firstItem="Fw4-5P-caS" firstAttribute="bottom" secondItem="16i-FI-w7M" secondAttribute="bottom" id="n4g-2B-Gjt"/>
+                            <constraint firstItem="8XF-uu-0MB" firstAttribute="leading" secondItem="gt5-YI-241" secondAttribute="trailing" id="pOh-Ag-mhD"/>
                             <constraint firstItem="SwY-6w-2O9" firstAttribute="top" secondItem="UhR-eF-cZx" secondAttribute="bottom" constant="10" id="qaa-JL-igc"/>
                             <constraint firstItem="wQN-8f-ms0" firstAttribute="centerY" secondItem="SwY-6w-2O9" secondAttribute="centerY" id="rXk-JE-RBU"/>
                             <constraint firstItem="wQN-8f-ms0" firstAttribute="width" secondItem="Mve-on-Luw" secondAttribute="width" multiplier="0.5" id="tt5-FG-paN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Fw4-5P-caS"/>
                     </view>
+                    <connections>
+                        <outlet property="addTransportButton" destination="O3Q-Xf-y7w" id="Gck-gr-QoI"/>
+                        <outlet property="cancelButton" destination="ll1-IH-7CS" id="95r-2j-7lD"/>
+                        <outlet property="createButton" destination="gCc-lX-UPM" id="ppm-Od-mHn"/>
+                        <outlet property="createTableView" destination="16i-FI-w7M" id="iVg-Pv-960"/>
+                        <outlet property="endingAddressField" destination="SwY-6w-2O9" id="MKt-i5-q4w"/>
+                        <outlet property="startingAddressField" destination="UhR-eF-cZx" id="DrH-Nl-P8u"/>
+                        <outlet property="transportationField" destination="8XF-uu-0MB" id="6l5-Wd-kjX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ODH-zT-h9E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
