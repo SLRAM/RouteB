@@ -34,14 +34,28 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="4bL-55-HLy">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MyTableViewCell" rowHeight="80" id="4bL-55-HLy" customClass="MyTableViewCell" customModule="RouteB" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4bL-55-HLy" id="MQa-XB-1AV">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NKf-DP-Vba">
+                                                    <rect key="frame" x="15" y="16" width="345" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="NKf-DP-Vba" firstAttribute="top" secondItem="MQa-XB-1AV" secondAttribute="topMargin" constant="5" id="Gqf-sq-xGQ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="NKf-DP-Vba" secondAttribute="trailing" id="fFy-rQ-NbE"/>
+                                                <constraint firstItem="NKf-DP-Vba" firstAttribute="leading" secondItem="MQa-XB-1AV" secondAttribute="leadingMargin" id="zDg-7M-Ly6"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="tableLabel" destination="NKf-DP-Vba" id="bX4-4q-rO5"/>
                                             <segue destination="JAC-eZ-NHw" kind="show" id="g1a-AB-jm9"/>
                                         </connections>
                                     </tableViewCell>
@@ -61,6 +75,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="Qos-br-Sna"/>
+                    <connections>
+                        <outlet property="tableView" destination="9pY-yL-ywh" id="FyL-vk-TbI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -197,7 +214,7 @@
         <!--Title-->
         <scene sceneID="wn0-n7-aOK">
             <objects>
-                <viewController id="JAC-eZ-NHw" sceneMemberID="viewController">
+                <viewController id="JAC-eZ-NHw" customClass="MapViewController" customModule="RouteB" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LaW-XU-Lao">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -205,13 +222,48 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="LPG-gN-t2w">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                             </mapView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pin" translatesAutoresizingMaskIntoConstraints="NO" id="Myf-hw-Ktn">
+                                <rect key="frame" x="167.5" y="323.5" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="lfe-tM-qrw"/>
+                                    <constraint firstAttribute="height" constant="40" id="tI2-eK-tRs"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pUJ-2O-gu7">
+                                <rect key="frame" x="0.0" y="646" width="375" height="21"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zd2-Os-Oaf">
+                                <rect key="frame" x="320" y="591" width="50" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="HcY-eC-K10"/>
+                                    <constraint firstAttribute="width" constant="50" id="w7L-TK-eL1"/>
+                                </constraints>
+                                <state key="normal" title="GO">
+                                    <color key="titleColor" red="0.1862777219" green="0.74500080960000004" blue="0.010519317929999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="goButtonTappedWith_sender:" destination="JAC-eZ-NHw" eventType="touchUpInside" id="dlP-2W-YZe"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Myf-hw-Ktn" firstAttribute="centerX" secondItem="LaW-XU-Lao" secondAttribute="centerX" id="2u7-CH-BCL"/>
                             <constraint firstItem="rug-db-K9R" firstAttribute="trailing" secondItem="LPG-gN-t2w" secondAttribute="trailing" id="AEk-41-oF0"/>
                             <constraint firstItem="LPG-gN-t2w" firstAttribute="leading" secondItem="rug-db-K9R" secondAttribute="leading" id="EhS-DL-iAP"/>
+                            <constraint firstItem="rug-db-K9R" firstAttribute="trailing" secondItem="pUJ-2O-gu7" secondAttribute="trailing" id="ITl-tS-7td"/>
+                            <constraint firstItem="Myf-hw-Ktn" firstAttribute="centerY" secondItem="LaW-XU-Lao" secondAttribute="centerY" constant="10" id="Lxc-TP-Nja"/>
+                            <constraint firstItem="pUJ-2O-gu7" firstAttribute="top" secondItem="zd2-Os-Oaf" secondAttribute="bottom" constant="5" id="RrF-fn-uLo"/>
+                            <constraint firstItem="rug-db-K9R" firstAttribute="trailing" secondItem="zd2-Os-Oaf" secondAttribute="trailing" constant="5" id="cCv-19-vYD"/>
                             <constraint firstItem="LPG-gN-t2w" firstAttribute="top" secondItem="rug-db-K9R" secondAttribute="top" id="fDl-hf-axE"/>
                             <constraint firstItem="rug-db-K9R" firstAttribute="bottom" secondItem="LPG-gN-t2w" secondAttribute="bottom" id="isQ-EU-SYY"/>
+                            <constraint firstItem="rug-db-K9R" firstAttribute="bottom" secondItem="pUJ-2O-gu7" secondAttribute="bottom" id="qhE-rs-sd3"/>
+                            <constraint firstItem="pUJ-2O-gu7" firstAttribute="leading" secondItem="rug-db-K9R" secondAttribute="leading" id="ur4-ws-aj2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rug-db-K9R"/>
                     </view>
@@ -229,6 +281,10 @@
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="addressLabel" destination="pUJ-2O-gu7" id="Iiy-2w-mWn"/>
+                        <outlet property="mapView" destination="LPG-gN-t2w" id="ear-dM-bUp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YUQ-Iz-Rsr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -281,4 +337,7 @@
             <point key="canvasLocation" x="311" y="134"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="pin" width="800.15997314453125" height="800.15997314453125"/>
+    </resources>
 </document>

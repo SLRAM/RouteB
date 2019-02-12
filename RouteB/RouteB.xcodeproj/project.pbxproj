@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		974FA06F221213E8006381DD /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA06E221213E8006381DD /* MapViewController.swift */; };
+		974FA07122121578006381DD /* MyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA07022121578006381DD /* MyTableViewCell.swift */; };
 		97EA4B1A220CD32A00AB7612 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EA4B19220CD32A00AB7612 /* AppDelegate.swift */; };
 		97EA4B1C220CD32A00AB7612 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EA4B1B220CD32A00AB7612 /* ViewController.swift */; };
 		97EA4B1F220CD32A00AB7612 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97EA4B1D220CD32A00AB7612 /* Main.storyboard */; };
@@ -15,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		974FA06E221213E8006381DD /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		974FA07022121578006381DD /* MyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTableViewCell.swift; sourceTree = "<group>"; };
 		97EA4B16220CD32A00AB7612 /* RouteB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RouteB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97EA4B19220CD32A00AB7612 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97EA4B1B220CD32A00AB7612 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +61,8 @@
 				97EA4B19220CD32A00AB7612 /* AppDelegate.swift */,
 				97EA4B1B220CD32A00AB7612 /* ViewController.swift */,
 				97EA4B1D220CD32A00AB7612 /* Main.storyboard */,
+				974FA07022121578006381DD /* MyTableViewCell.swift */,
+				974FA06E221213E8006381DD /* MapViewController.swift */,
 				97EA4B20220CD32B00AB7612 /* Assets.xcassets */,
 				97EA4B22220CD32B00AB7612 /* LaunchScreen.storyboard */,
 				97EA4B25220CD32C00AB7612 /* Info.plist */,
@@ -136,6 +142,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				97EA4B1C220CD32A00AB7612 /* ViewController.swift in Sources */,
+				974FA07122121578006381DD /* MyTableViewCell.swift in Sources */,
+				974FA06F221213E8006381DD /* MapViewController.swift in Sources */,
 				97EA4B1A220CD32A00AB7612 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
