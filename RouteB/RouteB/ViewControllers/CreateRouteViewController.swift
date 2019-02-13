@@ -12,23 +12,45 @@ import MapKit
 class CreateRouteViewController: UIViewController {
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var createButton: UIBarButtonItem!
-    let address = "89 Metropolitan Oval Bronx NY"
     @IBOutlet weak var startingAddressField: UITextField!
+    @IBOutlet weak var startingAddressSearchBar: UISearchBar!
+    @IBOutlet weak var startingAddressTableView: UITableView!
     @IBOutlet weak var endingAddressField: UITextField!
+    @IBOutlet weak var endingAddressSearchBar: UISearchBar!
+    @IBOutlet weak var endingAddressTableView: UITableView!
     @IBOutlet weak var transportationField: UITextField!
     @IBOutlet weak var createTableView: UITableView!
     @IBOutlet weak var addTransportButton: UIButton!
+    
     var transportationArray = [String]()
     var startingAddressLat = Double()
     var startingAddressLong = Double()
     var endingAddressLat = Double()
     var endingAddressLong = Double()
     
+    var searchCompleter = MKLocalSearchCompleter()
+    var searchResults = [MKLocalSearchCompletion]()
+    
+    let address = "89 Metropolitan Oval Bronx NY"
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        startingAddressSearchBar.delegate = self
+        startingAddressTableView.delegate = self
+        startingAddressTableView.dataSource = self
+        
+        endingAddressSearchBar.delegate = self
+        endingAddressTableView.delegate = self
+        endingAddressTableView.dataSource = self
+        
+        searchCompleter.delegate = self
         createTableView.dataSource = self
         createTableView.delegate = self
+        
+        startingAddressTableView.isHidden = true
+        endingAddressTableView.isHidden = true
+        
 
         
 //        getCoordinate(addressString: address) { (foundAddress, error) in
@@ -101,12 +123,10 @@ class CreateRouteViewController: UIViewController {
     }
     
     @IBAction func createPressed(_ sender: UIBarButtonItem) {
-        
         guard let route = saveRoute() else {return}
         RouteModel.appendRoute(route: route)
         dismiss(animated: true, completion: nil)
     }
-    
     @IBAction func addTransportButtonPressed(_ sender: UIButton) {
         print("added")
         if let transportation = transportationField.text {
@@ -115,9 +135,7 @@ class CreateRouteViewController: UIViewController {
             createTableView.reloadData()
             print(transportationArray.count)
             print(transportationArray[transportationArray.count-1].description)
-
         }
-        
     }
 }
 extension CreateRouteViewController: UITextFieldDelegate {
@@ -125,25 +143,100 @@ extension CreateRouteViewController: UITextFieldDelegate {
         
     }
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        let controller = SearchTableViewController()
-        controller.modalPresentationStyle = .popover
         return true
     }
     
 }
 
 extension CreateRouteViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return transportationArray.count
+        if (tableView == startingAddressTableView) || (tableView == endingAddressTableView){
+            return searchResults.count
+        } else {
+            return transportationArray.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = createTableView.dequeueReusableCell(withIdentifier: "MyCreateTableViewCell", for: indexPath) as? MyCreateTableViewCell else {return UITableViewCell()}
-        print(transportationArray[indexPath.row].description)
-        let route = transportationArray[indexPath.row]
-        cell.createdLabel.text = route
-        return cell
+        if (tableView == startingAddressTableView) || (tableView == endingAddressTableView){
+            let searchResult = searchResults[indexPath.row]
+            let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
+            cell.textLabel?.text = searchResult.title
+            cell.detailTextLabel?.text = searchResult.subtitle
+            return cell
+        } else {
+            guard let cell = createTableView.dequeueReusableCell(withIdentifier: "MyCreateTableViewCell", for: indexPath) as? MyCreateTableViewCell else {return UITableViewCell()}
+            print(transportationArray[indexPath.row].description)
+            let route = transportationArray[indexPath.row]
+            cell.createdLabel.text = route
+            return cell
+        }
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (tableView == startingAddressTableView){
+            tableView.deselectRow(at: indexPath, animated: true)
+            
+            let completion = searchResults[indexPath.row]
+            print(searchResults[indexPath.row])
+            startingAddressSearchBar.text = "\(completion.title) \(completion.subtitle)"
+            
+            let searchRequest = MKLocalSearch.Request(completion: completion)
+            let search = MKLocalSearch(request: searchRequest)
+            search.start { (response, error) in
+                let coordinate = response?.mapItems[0].placemark.coordinate
+                print(String(describing: coordinate))
+                self.startingAddressTableView.isHidden = true
+            }
+        } else if (tableView == endingAddressTableView) {
+            tableView.deselectRow(at: indexPath, animated: true)
+            
+            let completion = searchResults[indexPath.row]
+            print(searchResults[indexPath.row])
+            endingAddressSearchBar.text = "\(completion.title) \(completion.subtitle)"
+            
+            let searchRequest = MKLocalSearch.Request(completion: completion)
+            let search = MKLocalSearch(request: searchRequest)
+            search.start { (response, error) in
+                let coordinate = response?.mapItems[0].placemark.coordinate
+                print(String(describing: coordinate))
+                self.endingAddressTableView.isHidden = true
+            }
+        } else {
+            
+        }
+    }
 }
+extension CreateRouteViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar == startingAddressSearchBar {
+            searchCompleter.queryFragment = searchText
+            startingAddressTableView.isHidden = false
+        }
+        if searchBar == endingAddressSearchBar {
+            searchCompleter.queryFragment = searchText
+            endingAddressTableView.isHidden = false
+        }
+
+    }
+}
+
+extension CreateRouteViewController: MKLocalSearchCompleterDelegate {
+    
+    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
+        searchResults = completer.results
+        startingAddressTableView.reloadData()
+        endingAddressTableView.reloadData()
+    }
+    
+    func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
+        // handle error
+    }
+}
+

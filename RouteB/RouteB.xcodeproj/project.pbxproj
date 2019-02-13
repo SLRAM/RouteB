@@ -14,7 +14,6 @@
 		974FA07922128BC9006381DD /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA07822128BC9006381DD /* Route.swift */; };
 		974FA07B22128C46006381DD /* RouteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA07A22128C46006381DD /* RouteModel.swift */; };
 		974FA07F22128CF0006381DD /* DataPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA07E22128CF0006381DD /* DataPersistenceManager.swift */; };
-		974FA09B22136964006381DD /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA09A22136964006381DD /* SearchTableViewController.swift */; };
 		974FA0A522149B69006381DD /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA0A422149B69006381DD /* SearchViewController.swift */; };
 		97EA4B1A220CD32A00AB7612 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EA4B19220CD32A00AB7612 /* AppDelegate.swift */; };
 		97EA4B1C220CD32A00AB7612 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EA4B1B220CD32A00AB7612 /* ViewController.swift */; };
@@ -31,7 +30,6 @@
 		974FA07822128BC9006381DD /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		974FA07A22128C46006381DD /* RouteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteModel.swift; sourceTree = "<group>"; };
 		974FA07E22128CF0006381DD /* DataPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistenceManager.swift; sourceTree = "<group>"; };
-		974FA09A22136964006381DD /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 		974FA0A422149B69006381DD /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		97EA4B16220CD32A00AB7612 /* RouteB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RouteB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97EA4B19220CD32A00AB7612 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -59,7 +57,6 @@
 				97EA4B1B220CD32A00AB7612 /* ViewController.swift */,
 				974FA06E221213E8006381DD /* MapViewController.swift */,
 				974FA072221274CA006381DD /* CreateRouteViewController.swift */,
-				974FA09A22136964006381DD /* SearchTableViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -202,7 +199,6 @@
 				974FA07B22128C46006381DD /* RouteModel.swift in Sources */,
 				974FA06F221213E8006381DD /* MapViewController.swift in Sources */,
 				974FA073221274CA006381DD /* CreateRouteViewController.swift in Sources */,
-				974FA09B22136964006381DD /* SearchTableViewController.swift in Sources */,
 				974FA07922128BC9006381DD /* Route.swift in Sources */,
 				97EA4B1A220CD32A00AB7612 /* AppDelegate.swift in Sources */,
 			);
