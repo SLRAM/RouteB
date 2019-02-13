@@ -56,7 +56,6 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="tableLabel" destination="NKf-DP-Vba" id="bX4-4q-rO5"/>
-                                            <segue destination="JAC-eZ-NHw" kind="show" id="g1a-AB-jm9"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -92,7 +91,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Z4k-Dl-xnk">
-                                <rect key="frame" x="187.5" y="20" width="187.5" height="56"/>
+                                <rect key="frame" x="188" y="20" width="187" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qYm-OQ-Qmf">
@@ -224,11 +223,11 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="E3o-mq-Co1">
-                                <rect key="frame" x="187.5" y="64" width="187.5" height="56"/>
+                                <rect key="frame" x="188" y="64" width="187" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="T7Q-NP-kF8">
-                                <rect key="frame" x="187.5" y="220" width="187.5" height="56"/>
+                                <rect key="frame" x="188" y="220" width="187" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Oan-vY-i8H">
@@ -367,13 +366,13 @@
         <!--Title-->
         <scene sceneID="wn0-n7-aOK">
             <objects>
-                <viewController id="JAC-eZ-NHw" customClass="MapViewController" customModule="RouteB" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapViewController" id="JAC-eZ-NHw" customClass="MapViewController" customModule="RouteB" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LaW-XU-Lao">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="LPG-gN-t2w">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </mapView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pin" translatesAutoresizingMaskIntoConstraints="NO" id="Myf-hw-Ktn">
                                 <rect key="frame" x="167.5" y="323.5" width="40" height="40"/>
@@ -424,11 +423,13 @@
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="FOF-hD-RVr">
                                 <connections>
+                                    <action selector="editRoutePressed:" destination="JAC-eZ-NHw" id="JDV-r8-BNL"/>
                                     <segue destination="AGv-zp-3N6" kind="presentation" id="FMR-IN-pmv"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="..." id="1Jk-bY-hCc">
                                 <connections>
+                                    <action selector="routeStatusPressed:" destination="JAC-eZ-NHw" id="bez-ad-W3P"/>
                                     <segue destination="4nU-iR-lua" kind="presentation" id="RQ0-yT-Zri"/>
                                 </connections>
                             </barButtonItem>
@@ -436,7 +437,10 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addressLabel" destination="pUJ-2O-gu7" id="Iiy-2w-mWn"/>
+                        <outlet property="editRoute" destination="FOF-hD-RVr" id="1Fc-0S-MBe"/>
                         <outlet property="mapView" destination="LPG-gN-t2w" id="ear-dM-bUp"/>
+                        <outlet property="routeStatus" destination="1Jk-bY-hCc" id="Ub1-ya-9Os"/>
+                        <outlet property="titleLabel" destination="CK7-tb-9e1" id="fH4-zi-a0A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YUQ-Iz-Rsr" userLabel="First Responder" sceneMemberID="firstResponder"/>

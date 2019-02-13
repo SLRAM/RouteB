@@ -13,6 +13,9 @@ import CoreLocation
 class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var titleLabel: UINavigationItem!
+    @IBOutlet weak var routeStatus: UIBarButtonItem!
+    @IBOutlet weak var editRoute: UIBarButtonItem!
     
     let locationManager = CLLocationManager()
     let regionInMeters: Double = 10000
@@ -20,6 +23,15 @@ class MapViewController: UIViewController {
     
     let geoCoder = CLGeocoder()
     var directionsArray: [MKDirections] = []
+    
+    
+    var startingAddressLat : Double?
+    var startingAddressLong : Double?
+    var endingAddressLat : Double?
+    var endingAddressLong : Double?
+    var transportationArray : [String]?
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,6 +100,16 @@ class MapViewController: UIViewController {
         let longitude = mapView.centerCoordinate.longitude
         return CLLocation(latitude: latitude, longitude: longitude)
     }
+    
+    @IBAction func routeStatusPressed(_ sender: UIBarButtonItem) {
+    }
+    @IBAction func editRoutePressed(_ sender: UIBarButtonItem) {
+    }
+    
+    
+    
+    
+    
 }
 extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
