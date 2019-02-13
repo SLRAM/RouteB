@@ -19,6 +19,11 @@ class CreateRouteViewController: UIViewController {
     @IBOutlet weak var createTableView: UITableView!
     @IBOutlet weak var addTransportButton: UIButton!
     var transportationArray = [String]()
+    var startingAddressLat = Double()
+    var startingAddressLong = Double()
+    var endingAddressLat = Double()
+    var endingAddressLong = Double()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,27 +31,51 @@ class CreateRouteViewController: UIViewController {
         createTableView.delegate = self
 
         
-        getCoordinate(addressString: address) { (foundAddress, error) in
-            if let _ = error {
-                return
-            }
-            let foundAddressLat = foundAddress.latitude,
-            foundAddressLong = foundAddress.longitude
-            print("lat: \(foundAddressLat) long: \(foundAddressLong)")
-        }
+//        getCoordinate(addressString: address) { (foundAddress, error) in
+//            if let _ = error {
+//                return
+//            }
+//            let foundAddressLat = foundAddress.latitude,
+//            foundAddressLong = foundAddress.longitude
+//            print("lat: \(foundAddressLat) long: \(foundAddressLong)")
+//        }
     }
     
     private func saveRoute()-> Route? {
         //add found address lat long here
+        print(startingAddressField.text)
+        print(endingAddressField.text)
         guard let startingAddress = startingAddressField.text,
         let endingAddress = endingAddressField.text else {return nil}
+        
+//        getCoordinate(addressString: startingAddress) { (foundAddress, error) in
+//            if let _ = error {
+//                return
+//            } else if let foundAddress = foundAddress {
+//            print(foundAddress.latitude)
+//
+//            self.startingAddressLat = foundAddress.latitude
+//            self.startingAddressLong = foundAddress.longitude
+////            print("lat: \(foundAddressLat) long: \(foundAddressLong)")
+//            }
+//        }
+        getCoordinate(addressString: endingAddress) { (foundAddress, error) in
+            if let _ = error {
+                return
+            }
+            self.endingAddressLat = foundAddress.latitude
+            self.endingAddressLong = foundAddress.longitude
+//            print("lat: \(foundAddressLat) long: \(foundAddressLong)")
+        }
+        
+        
         let savedRoute = transportationArray
 //        let date = Date()
 //        let formatter = DateFormatter()
 //        formatter.dateStyle = DateFormatter.Style.long
 //        formatter.timeStyle = .medium
 //        let timestamp = formatter.string(from: date)
-        let route = Route.init(startingAddress: startingAddress, endingAddress: endingAddress, transportation: savedRoute)
+        let route = Route.init(startingAddressLat: startingAddressLat, startingAddressLong: startingAddressLong, endingAddressLat: endingAddressLat, endingAddressLong: endingAddressLong, transportation: savedRoute)
         return route
     }
 
@@ -72,6 +101,7 @@ class CreateRouteViewController: UIViewController {
     }
     
     @IBAction func createPressed(_ sender: UIBarButtonItem) {
+        
         guard let route = saveRoute() else {return}
         RouteModel.appendRoute(route: route)
         dismiss(animated: true, completion: nil)
@@ -91,6 +121,14 @@ class CreateRouteViewController: UIViewController {
     }
 }
 extension CreateRouteViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+    }
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        let controller = SearchTableViewController()
+        controller.modalPresentationStyle = .popover
+        return true
+    }
     
 }
 

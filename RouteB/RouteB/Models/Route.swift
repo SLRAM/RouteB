@@ -9,7 +9,11 @@
 import Foundation
 
 struct Route: Codable {
-    let startingAddress: String
-    let endingAddress: String
+    let startingAddressLat: Double
+    let startingAddressLong: Double
+
+    let endingAddressLat: Double
+    let endingAddressLong: Double
+
     let transportation: [String]
 }

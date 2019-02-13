@@ -25,6 +25,7 @@ class ViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         myRoutes = RouteModel.getRoutes()
+        print(DataPersistenceManager.documentsDirectory())
         
     }
     override func viewWillAppear(_ animated: Bool) {
