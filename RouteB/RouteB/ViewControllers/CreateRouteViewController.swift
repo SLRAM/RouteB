@@ -31,6 +31,10 @@ class CreateRouteViewController: UIViewController {
     var searchCompleter = MKLocalSearchCompleter()
     var searchResults = [MKLocalSearchCompletion]()
     
+    
+    var startingCoordinate: CLLocationCoordinate2D!
+    var endingCoordinate: CLLocationCoordinate2D!
+    
     let address = "89 Metropolitan Oval Bronx NY"
 
     
@@ -65,10 +69,11 @@ class CreateRouteViewController: UIViewController {
     
     private func saveRoute()-> Route? {
         //add found address lat long here
-        print(startingAddressField.text)
-        print(endingAddressField.text)
-        guard let startingAddress = startingAddressField.text,
-        let endingAddress = endingAddressField.text else {return nil}
+        let startingAddressLat = startingCoordinate.latitude
+        let startingAddressLong = startingCoordinate.longitude
+
+        let endingAddressLat = endingCoordinate.latitude
+        let endingAddressLong = endingCoordinate.longitude
         
 //        getCoordinate(addressString: startingAddress) { (foundAddress, error) in
 //            if let _ = error {
@@ -81,14 +86,14 @@ class CreateRouteViewController: UIViewController {
 ////            print("lat: \(foundAddressLat) long: \(foundAddressLong)")
 //            }
 //        }
-        getCoordinate(addressString: endingAddress) { (foundAddress, error) in
-            if let _ = error {
-                return
-            }
-            self.endingAddressLat = foundAddress.latitude
-            self.endingAddressLong = foundAddress.longitude
-//            print("lat: \(foundAddressLat) long: \(foundAddressLong)")
-        }
+//        getCoordinate(addressString: endingAddress) { (foundAddress, error) in
+//            if let _ = error {
+//                return
+//            }
+//            self.endingAddressLat = foundAddress.latitude
+//            self.endingAddressLong = foundAddress.longitude
+////            print("lat: \(foundAddressLat) long: \(foundAddressLong)")
+//        }
         
         
         let savedRoute = transportationArray
@@ -189,8 +194,8 @@ extension CreateRouteViewController: UITableViewDataSource, UITableViewDelegate 
             let searchRequest = MKLocalSearch.Request(completion: completion)
             let search = MKLocalSearch(request: searchRequest)
             search.start { (response, error) in
-                let coordinate = response?.mapItems[0].placemark.coordinate
-                print(String(describing: coordinate))
+                self.startingCoordinate = response?.mapItems[0].placemark.coordinate
+                print("Starting coordinate: \(String(describing: self.startingCoordinate))")
                 self.startingAddressTableView.isHidden = true
             }
         } else if (tableView == endingAddressTableView) {
@@ -203,8 +208,8 @@ extension CreateRouteViewController: UITableViewDataSource, UITableViewDelegate 
             let searchRequest = MKLocalSearch.Request(completion: completion)
             let search = MKLocalSearch(request: searchRequest)
             search.start { (response, error) in
-                let coordinate = response?.mapItems[0].placemark.coordinate
-                print(String(describing: coordinate))
+                self.endingCoordinate = response?.mapItems[0].placemark.coordinate
+                print("Ending coordinate: \(String(describing: self.endingCoordinate))")
                 self.endingAddressTableView.isHidden = true
             }
         } else {
