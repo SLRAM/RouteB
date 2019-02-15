@@ -7,6 +7,7 @@
 //
 
 import Foundation
+//import CoreLocation
 
 struct Route: Codable {
     let startingAddressLat: Double
@@ -16,4 +17,8 @@ struct Route: Codable {
     let endingAddressLong: Double
 
     let transportation: [String]
+
+//    public var coordinate: CLLocationCoordinate2D {
+//        return CLLocationCoordinate2DMake(lat, lon)
+//    }
 }

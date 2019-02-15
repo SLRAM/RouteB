@@ -53,11 +53,12 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         let viewController = storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
         let route = myRoutes[indexPath.row]
 //        let detailVC = MapViewController()
-        viewController.startingAddressLat = route.startingAddressLat
-        viewController.startingAddressLong = route.startingAddressLong
-        viewController.endingAddressLat = route.endingAddressLat
-        viewController.endingAddressLong = route.endingAddressLong
-        viewController.transportationArray = route.transportation
+//        viewController.startingAddressLat = route.startingAddressLat
+//        viewController.startingAddressLong = route.startingAddressLong
+//        viewController.endingAddressLat = route.endingAddressLat
+//        viewController.endingAddressLong = route.endingAddressLong
+//        viewController.transportationArray = route.transportation
+        viewController.myRoute = route
         navigationController?.pushViewController(viewController, animated: true)
     }
     
