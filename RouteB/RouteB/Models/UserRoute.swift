@@ -9,7 +9,7 @@
 import Foundation
 //import CoreLocation
 
-struct Route: Codable {
+struct UserRoute: Codable {
     let startingAddressLat: Double
     let startingAddressLong: Double
 

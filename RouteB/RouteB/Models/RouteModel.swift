@@ -10,9 +10,9 @@ import Foundation
 
 final class RouteModel {
     private static let filename = "SavedRouteList.plist"
-    private static var routes = [Route]()
+    private static var routes = [UserRoute]()
     private init() {}
-    static func appendRoute(route: Route) {
+    static func appendRoute(route: UserRoute) {
         routes.append(route)
         saveRoute()
     }
@@ -44,13 +44,13 @@ final class RouteModel {
         routes.remove(at: index)
         saveRoute()
     }
-    static func getRoutes() -> [Route] {
+    static func getRoutes() -> [UserRoute] {
         let path = DataPersistenceManager.filepathToDocumentsDirectory(filename: filename).path
         
         if FileManager.default.fileExists(atPath: path) {
             if let data = FileManager.default.contents(atPath: path) {
                 do {
-                    routes = try PropertyListDecoder().decode([Route].self, from: data)
+                    routes = try PropertyListDecoder().decode([UserRoute].self, from: data)
                 } catch {
                     print("Property list decoding error: \(error)")
                 }

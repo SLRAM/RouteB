@@ -30,6 +30,13 @@ class CreateRouteViewController: UIViewController {
     
     var searchCompleter = MKLocalSearchCompleter()
     var searchResults = [MKLocalSearchCompletion]()
+    private var MTABusesList = [List]() {
+        didSet {
+            DispatchQueue.main.async {
+                //reload a table view here
+            }
+        }
+    }
     
     
     var startingCoordinate: CLLocationCoordinate2D!
@@ -40,6 +47,8 @@ class CreateRouteViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBusList()
+
         startingAddressSearchBar.delegate = self
         startingAddressTableView.delegate = self
         startingAddressTableView.dataSource = self
@@ -55,6 +64,7 @@ class CreateRouteViewController: UIViewController {
         startingAddressTableView.isHidden = true
         endingAddressTableView.isHidden = true
         
+        
 
         
 //        getCoordinate(addressString: address) { (foundAddress, error) in
@@ -66,8 +76,19 @@ class CreateRouteViewController: UIViewController {
 //            print("lat: \(foundAddressLat) long: \(foundAddressLong)")
 //        }
     }
+    func searchBusList() {
+        
+        MTAAPIClient.searchAllBusRoutes { (error, list) in
+            if let error = error {
+                print("Error getting bus list: \(error)")
+            } else if let list = list {
+                self.MTABusesList = list
+//                print(list.count)
+            }
+        }
+    }
     
-    private func saveRoute()-> Route? {
+    private func saveRoute()-> UserRoute? {
         //add found address lat long here
         let startingAddressLat = startingCoordinate.latitude
         let startingAddressLong = startingCoordinate.longitude
@@ -102,7 +123,7 @@ class CreateRouteViewController: UIViewController {
 //        formatter.dateStyle = DateFormatter.Style.long
 //        formatter.timeStyle = .medium
 //        let timestamp = formatter.string(from: date)
-        let route = Route.init(startingAddressLat: startingAddressLat, startingAddressLong: startingAddressLong, endingAddressLat: endingAddressLat, endingAddressLong: endingAddressLong, transportation: savedRoute)
+        let route = UserRoute.init(startingAddressLat: startingAddressLat, startingAddressLong: startingAddressLong, endingAddressLat: endingAddressLat, endingAddressLong: endingAddressLong, transportation: savedRoute)
         return route
     }
 
@@ -135,6 +156,7 @@ class CreateRouteViewController: UIViewController {
     @IBAction func addTransportButtonPressed(_ sender: UIButton) {
         print("added")
         if let transportation = transportationField.text {
+            //create anothert model of the bus itself and save that to the plist instead
             transportationArray.append(transportation)
             transportationField.text = ""
             createTableView.reloadData()

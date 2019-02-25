@@ -11,7 +11,7 @@
 		974FA07122121578006381DD /* MyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA07022121578006381DD /* MyTableViewCell.swift */; };
 		974FA073221274CA006381DD /* CreateRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA072221274CA006381DD /* CreateRouteViewController.swift */; };
 		974FA075221287A1006381DD /* MyCreateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA074221287A1006381DD /* MyCreateTableViewCell.swift */; };
-		974FA07922128BC9006381DD /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA07822128BC9006381DD /* Route.swift */; };
+		974FA07922128BC9006381DD /* UserRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA07822128BC9006381DD /* UserRoute.swift */; };
 		974FA07B22128C46006381DD /* RouteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA07A22128C46006381DD /* RouteModel.swift */; };
 		974FA07F22128CF0006381DD /* DataPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA07E22128CF0006381DD /* DataPersistenceManager.swift */; };
 		974FA0A522149B69006381DD /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA0A422149B69006381DD /* SearchViewController.swift */; };
@@ -19,7 +19,7 @@
 		97C11CA0222448FC0008B236 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C11C9F222448FC0008B236 /* AppError.swift */; };
 		97C11CA22224493E0008B236 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C11CA12224493E0008B236 /* NetworkHelper.swift */; };
 		97C11CA4222449840008B236 /* MTABus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C11CA3222449840008B236 /* MTABus.swift */; };
-		97C11CA6222449910008B236 /* MTABusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C11CA5222449910008B236 /* MTABusModel.swift */; };
+		97C11CA6222449910008B236 /* BusLiveRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C11CA5222449910008B236 /* BusLiveRoute.swift */; };
 		97C11CA822244DE90008B236 /* SecretKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C11CA722244DE90008B236 /* SecretKeys.swift */; };
 		97EA4B1A220CD32A00AB7612 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EA4B19220CD32A00AB7612 /* AppDelegate.swift */; };
 		97EA4B1C220CD32A00AB7612 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EA4B1B220CD32A00AB7612 /* ViewController.swift */; };
@@ -33,7 +33,7 @@
 		974FA07022121578006381DD /* MyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTableViewCell.swift; sourceTree = "<group>"; };
 		974FA072221274CA006381DD /* CreateRouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRouteViewController.swift; sourceTree = "<group>"; };
 		974FA074221287A1006381DD /* MyCreateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCreateTableViewCell.swift; sourceTree = "<group>"; };
-		974FA07822128BC9006381DD /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		974FA07822128BC9006381DD /* UserRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRoute.swift; sourceTree = "<group>"; };
 		974FA07A22128C46006381DD /* RouteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteModel.swift; sourceTree = "<group>"; };
 		974FA07E22128CF0006381DD /* DataPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistenceManager.swift; sourceTree = "<group>"; };
 		974FA0A422149B69006381DD /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -41,7 +41,7 @@
 		97C11C9F222448FC0008B236 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		97C11CA12224493E0008B236 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		97C11CA3222449840008B236 /* MTABus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTABus.swift; sourceTree = "<group>"; };
-		97C11CA5222449910008B236 /* MTABusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTABusModel.swift; sourceTree = "<group>"; };
+		97C11CA5222449910008B236 /* BusLiveRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusLiveRoute.swift; sourceTree = "<group>"; };
 		97C11CA722244DE90008B236 /* SecretKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretKeys.swift; sourceTree = "<group>"; };
 		97EA4B16220CD32A00AB7612 /* RouteB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RouteB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97EA4B19220CD32A00AB7612 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -85,13 +85,13 @@
 		974FA082221320BE006381DD /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				974FA07822128BC9006381DD /* Route.swift */,
+				974FA07822128BC9006381DD /* UserRoute.swift */,
 				974FA07A22128C46006381DD /* RouteModel.swift */,
 				97C11C7A222445D60008B236 /* MTAAPIClient.swift */,
 				97C11C9F222448FC0008B236 /* AppError.swift */,
 				97C11CA12224493E0008B236 /* NetworkHelper.swift */,
 				97C11CA3222449840008B236 /* MTABus.swift */,
-				97C11CA5222449910008B236 /* MTABusModel.swift */,
+				97C11CA5222449910008B236 /* BusLiveRoute.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -219,11 +219,11 @@
 				974FA07122121578006381DD /* MyTableViewCell.swift in Sources */,
 				974FA07B22128C46006381DD /* RouteModel.swift in Sources */,
 				974FA06F221213E8006381DD /* MapViewController.swift in Sources */,
-				97C11CA6222449910008B236 /* MTABusModel.swift in Sources */,
+				97C11CA6222449910008B236 /* BusLiveRoute.swift in Sources */,
 				97C11CA0222448FC0008B236 /* AppError.swift in Sources */,
 				974FA073221274CA006381DD /* CreateRouteViewController.swift in Sources */,
 				97C11CA822244DE90008B236 /* SecretKeys.swift in Sources */,
-				974FA07922128BC9006381DD /* Route.swift in Sources */,
+				974FA07922128BC9006381DD /* UserRoute.swift in Sources */,
 				97EA4B1A220CD32A00AB7612 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

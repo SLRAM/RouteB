@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var myRoutes = [Route]() {
+    var myRoutes = [UserRoute]() {
         didSet {
             DispatchQueue.main.async {
                 self.tableView.reloadData()

@@ -31,7 +31,7 @@ class MapViewController: UIViewController {
 //    var endingAddressLat : Double?
 //    var endingAddressLong : Double?
 //    var transportationArray : [String]?
-    var myRoute : Route?
+    var myRoute : UserRoute?
     
     
 

@@ -14,25 +14,41 @@ import MapKit
 final class MTAAPIClient {
     
     private init() {}
-    static func searchMTA(completionHandler: @escaping (AppError?, [MTABus]?) -> Void) {
+    static func searchAllBusRoutes(completionHandler: @escaping (AppError?, [List]?) -> Void) {
         let endpointURLString = "http://bustime.mta.info/api/where/routes-for-agency/MTA%20NYCT.json?key=\(SecretKeys.MTABusKey)"
         //        print(endpointURLString)
         NetworkHelper.shared.performDataTask(endpointURLString: endpointURLString) { (appError, data) in
             if let appError = appError {
                 completionHandler(appError, nil)
+            } else if let data = data {
+                do {
+                    let mtaInfo = try JSONDecoder().decode(MTABus.self, from: data)
+                    completionHandler(nil, mtaInfo.data.list)
+//                    let mtaInfo = try JSONDecoder().decode(MTAInfo.self, from: data)
+//                    completionHandler(nil, mtaInfo.data.list)
+                } catch {
+                    completionHandler(AppError.jsonDecodingError(error), nil)
+                    //                    print("1")
+                }
             }
-            if let data = data {
-                print(data)
+        }
+    }
+    
+    static func searchLiveBusRoute(busLine: String, completionHandler: @escaping (AppError?, ServiceDelivery?) -> Void) {
+        let endpointURLString = "http://bustime.mta.info/api/siri/vehicle-monitoring.json?key=\(SecretKeys.MTABusKey)&version=2&LineRef=\(busLine)"
+        //        print(endpointURLString)
+        NetworkHelper.shared.performDataTask(endpointURLString: endpointURLString) { (appError, data) in
+            if let appError = appError {
+                completionHandler(appError, nil)
+            } else if let data = data {
+                do {
+                    let mtaInfo = try JSONDecoder().decode(BusLiveRoute.self, from: data)
+                    completionHandler(nil, mtaInfo.Siri.ServiceDelivery)
+                } catch {
+                    completionHandler(AppError.jsonDecodingError(error), nil)
+                    //                    print("1")
+                }
             }
-//            else if let data = data {
-//                do {
-//                    let busInfo = try JSONDecoder().decode(MTABus.self, from: data)
-//                    completionHandler(nil, busInfo.data)
-//                } catch {
-//                    completionHandler(AppError.jsonDecodingError(error), nil)
-//                    //                    print("1")
-//                }
-//            }
         }
     }
 }

@@ -8,10 +8,22 @@
 
 import Foundation
 
+//struct MTAInfo: Codable {
+//    struct DataInfo: Codable {
+//        let list: [List]
+//    }
+//    let data: DataInfo
+//}
+//
+//struct List: Codable {
+//    let agencyId: String
+//    let shortName: String
+//}
+
 struct MTABus: Codable {
-    let data : [Data]
+    let data : MTAData
 }
-struct Data: Codable {
+struct MTAData: Codable {
     let list : [List]
 }
 struct List: Codable {
