@@ -6,6 +6,8 @@
 build/
 DerivedData/
 
+SecretKeys.swift
+
 ## Various settings
 *.pbxuser
 !default.pbxuser

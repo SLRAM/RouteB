@@ -35,7 +35,7 @@ final class RouteModel {
         
         do {
             let data = try PropertyListEncoder().encode(routes)
-            try data.write(to: path, options: Data.WritingOptions.atomic)
+            try data.write(to: path, options: .atomic)
         } catch {
             print("property list encoder: \(error)")
         }
