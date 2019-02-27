@@ -24,6 +24,7 @@ class MapViewController: UIViewController {
     
     let geoCoder = CLGeocoder()
     var directionsArray: [MKDirections] = []
+    var allAnnotations = [MKAnnotation]()
     
     
 
@@ -66,6 +67,8 @@ class MapViewController: UIViewController {
         
     }
     func timer() {
+//        let allAnnotations = mapView.annotations
+//        mapView.removeAnnotations(allAnnotations)
         let myTimer = Timer(timeInterval: 20.0, target: self, selector: #selector(refresh), userInfo: nil, repeats: true)
         RunLoop.main.add(myTimer, forMode: RunLoop.Mode.default)
     }
@@ -79,12 +82,15 @@ class MapViewController: UIViewController {
     }
     
     func getActiveBusesOnRoute(buses: [String]) {
+        //use this to remove annotations
         
+        mapView.removeAnnotations(allAnnotations)
+        allAnnotations = []
         for bus in buses {
             guard let search = bus.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {print("not a valid search")
                 return
             }
-            MTAAPIClient.searchLiveBusRoute(busLine: search) { (error, busInfo) in
+            MTAAPIClient.searchLiveBusRoute(busLine: search) { (error, busInfo) in //weak self
                 if let error = error {
                     print(error)
                 }
@@ -95,20 +101,18 @@ class MapViewController: UIViewController {
                 }
             }
             }
+        //
 
         }
     
     func setupAnnotations(activeBuses: [VehicleActivity]){
         
-        
         var count = 0
-        //use this to remove annotations
-//        let allAnnotations = mapView.annotations
-//        mapView.removeAnnotations(allAnnotations)
+    
         for bus in activeBuses {
             
             print("bus number: \(count)")
-            let regionRadius: CLLocationDistance = 1000
+            let regionRadius: CLLocationDistance = 9000
             let busLat = bus.MonitoredVehicleJourney.VehicleLocation.Latitude
             let busLon = bus.MonitoredVehicleJourney.VehicleLocation.Longitude
 
@@ -120,13 +124,22 @@ class MapViewController: UIViewController {
             annotation.title = bus.MonitoredVehicleJourney.VehicleRef
             annotation.subtitle = "direction: \(bus.MonitoredVehicleJourney.DirectionRef)"
 //            annotation.tag = count
+//            mapView.reloadInputViews()
+//            mapView.setRegion(coordinateRegion, animated: true)
+            allAnnotations.append(annotation)
+//            mapView.addAnnotation(annotation)
+//            mapView.showAnnotations(allAnnotations, animated: true)
+            DispatchQueue.main.async {
+                self.mapView.addAnnotations(self.allAnnotations)
+            }
             
-            mapView.setRegion(coordinateRegion, animated: true)
-            mapView.addAnnotation(annotation)
             count += 1
+//            allAnnotations.append(annotation)
             
         }
 //        let myCurrentRegion = MKCoordinateRegion(center: venues[0].location.coordinate, latitudinalMeters: 9000, longitudinalMeters: 9000)
+        
+        
         
 //        mapView.setRegion(myCurrentRegion, animated: true)
         
@@ -143,16 +156,42 @@ class MapViewController: UIViewController {
         let coordinate = CLLocationCoordinate2D.init(latitude: lat, longitude: long)
         return coordinate
     }
+//    func getBusStops(buses: [String]) {
+//        for bus in buses {
+//            guard let search = bus.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {print("not a valid search")
+//                return
+//            }
+//            MTAAPIClient.getBusStops(busLine: search) { (error, stops) in //weak self
+//                if let error = error {
+//                    print("error getting bus stops: \(error)")
+//                }
+//                if let stops = stops {
+//                    for stop in stops {
+//                        print(stop.name)
+//                    }
+//                }
+//            }
+//        }
+//    }
+    
     func getBusStops(buses: [String]) {
         for bus in buses {
             guard let search = bus.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {print("not a valid search")
                 return
             }
-            MTAAPIClient.getBusStops(busLine: search) { (error, stops) in
+            MTAAPIClient.getBusStops(busLine: search) { (error, data) in //weak self
                 if let error = error {
                     print("error getting bus stops: \(error)")
                 }
-                if let stops = stops {
+                if let data = data {
+                    let polylines = data.entry.polylines
+                    print(polylines)
+                    
+//                    for polyline in polylines {
+//                        var poly = MKPolyline.init(points: polyline.points, count: 1)
+//                        print(MKPolyline(polyline.points))
+//                    }
+                    let stops = data.references.stops
                     for stop in stops {
                         print(stop.name)
                     }
@@ -160,6 +199,14 @@ class MapViewController: UIViewController {
             }
         }
     }
+    
+//    func getBusStopPolylines(encodingString: String) -> MKPolyline {
+//        
+//    }
+    
+    
+    
+    
 //    func getDirections() {
 //        guard let location = locationManager.location?.coordinate else {
 //            print("error getting a location")
@@ -210,7 +257,9 @@ class MapViewController: UIViewController {
             
             for route in unwrappedResponse.routes {
                 self.mapView.addOverlay(route.polyline)
-                self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, edgePadding: UIEdgeInsets.init(top: 30.0, left: 30.0, bottom: 30.0, right: 30.0), animated: true)
+//                print(MKPolyline_EncodedString(route.polyline))
+                //this is setting map visible space
+                self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, edgePadding: UIEdgeInsets.init(top: 300.0, left: 300.0, bottom: 300.0, right: 300.0), animated: true)
                 for steps in route.steps {
                     print(steps.instructions)
                 }
@@ -277,8 +326,8 @@ extension MapViewController: CLLocationManagerDelegate {
 //
 //        let endingCoordinate = CLLocationCoordinate2D.init(latitude: endingLat, longitude: endingLong)
         
-        let myCurrentRegion = MKCoordinateRegion(center: startingCoordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
-        mapView.setRegion(myCurrentRegion, animated: true)
+        //let myCurrentRegion = MKCoordinateRegion(center: startingCoordinate, latitudinalMeters: 10000, longitudinalMeters: 10000)
+        //mapView.setRegion(myCurrentRegion, animated: true)
         
         
         
@@ -291,10 +340,37 @@ extension MapViewController: CLLocationManagerDelegate {
         guard let currentLocation = locations.last else {return}
         print("The user is in lat: \(currentLocation.coordinate.latitude) and long:\(currentLocation.coordinate.longitude)")
         let myCurrentRegion = MKCoordinateRegion(center: currentLocation.coordinate, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
-        mapView.setRegion(myCurrentRegion, animated: true)
+//        mapView.setRegion(myCurrentRegion, animated: true)
     }
 }
 extension MapViewController: MKMapViewDelegate {
+    
+//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+//        let identifier = "MyPin"
+//        
+//        if annotation is MKUserLocation {
+//            return nil
+//        }
+//        
+//        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+//        
+//        if annotationView == nil {
+//            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+//            annotationView?.canShowCallout = true
+//            annotationView?.image = UIImage(named: "icons8-bus_stop_filled")
+////            annotationView?.image = UIImage(named: "pin")
+//            
+//            // if you want a disclosure button, you'd might do something like:
+//            //
+//            // let detailButton = UIButton(type: .detailDisclosure)
+//            // annotationView?.rightCalloutAccessoryView = detailButton
+//        } else {
+//            annotationView?.annotation = annotation
+//        }
+//        
+//        return annotationView
+//    }
+    
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         let center = getCenterLocation(for: mapView)
         let geoCoder = CLGeocoder()
@@ -302,6 +378,7 @@ extension MapViewController: MKMapViewDelegate {
         guard let previousLocation = self.previousLocation else {return}
         guard center.distance(from: previousLocation) > 50 else {return}
         self.previousLocation = center
+        //this is running and allowing annotations to show somehow
         
         geoCoder.reverseGeocodeLocation(center) { [weak self](placemarks, error) in
             guard let self = self else {return}
@@ -317,6 +394,7 @@ extension MapViewController: MKMapViewDelegate {
             
             DispatchQueue.main.async {
                 self.addressLabel.text = "\(streetNumber) \(streetName)"
+                
             }
         }
     }

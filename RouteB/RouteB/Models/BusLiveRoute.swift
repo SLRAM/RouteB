@@ -44,7 +44,7 @@ struct MonitoredVehicleJourney: Codable {
     let VehicleLocation: VehicleLocation
     let Bearing: Double
     let ProgressRate: String
-    let BlockRef: String
+//    let BlockRef: String
     let VehicleRef: String
     let MonitoredCall: MonitoredCall
 }
@@ -60,9 +60,9 @@ struct VehicleLocation: Codable {
     let Latitude: Double
 }
 struct MonitoredCall: Codable {
-    let ExpectedArrivalTime: String //actually timestamp
+//    let ExpectedArrivalTime: String //actually timestamp
     let ArrivalProximityText: String
-    let ExpectedDepartureTime: String //actually timestamp
+//    let ExpectedDepartureTime: String //actually timestamp
     let DistanceFromStop: Double //might be int
     let NumberOfStopsAway: Int
     let StopPointRef: String

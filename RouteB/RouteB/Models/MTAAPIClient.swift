@@ -52,8 +52,26 @@ final class MTAAPIClient {
         }
     }
     
-    static func getBusStops(busLine: String, completionHandler: @escaping (AppError?, [Stops]?) -> Void) {
-        let endpointURLString = "http://bustime.mta.info/api/where/stops-for-route/\(busLine).json?key=\(SecretKeys.MTABusKey)&includePolylines=false&version=2"
+//    static func getBusStops(busLine: String, completionHandler: @escaping (AppError?, [Stops]?) -> Void) {
+//        let endpointURLString = "http://bustime.mta.info/api/where/stops-for-route/\(busLine).json?key=\(SecretKeys.MTABusKey)&includePolylines=false&version=2"
+//        print(endpointURLString)
+//        NetworkHelper.shared.performDataTask(endpointURLString: endpointURLString) { (appError, data) in
+//            if let appError = appError {
+//                completionHandler(appError, nil)
+//            } else if let data = data {
+//                do {
+//                    let busStopInfo = try JSONDecoder().decode(BusStops.self, from: data)
+//                    completionHandler(nil, busStopInfo.data.references.stops)
+//                } catch {
+//                    completionHandler(AppError.jsonDecodingError(error), nil)
+//                    //                    print("1")
+//                }
+//            }
+//        }
+//    }
+    
+    static func getBusStops(busLine: String, completionHandler: @escaping (AppError?, BusStopData?) -> Void) {
+        let endpointURLString = "http://bustime.mta.info/api/where/stops-for-route/\(busLine).json?key=\(SecretKeys.MTABusKey)&includePolylines=true&version=2"
         print(endpointURLString)
         NetworkHelper.shared.performDataTask(endpointURLString: endpointURLString) { (appError, data) in
             if let appError = appError {
@@ -61,7 +79,7 @@ final class MTAAPIClient {
             } else if let data = data {
                 do {
                     let busStopInfo = try JSONDecoder().decode(BusStops.self, from: data)
-                    completionHandler(nil, busStopInfo.data.references.stops)
+                    completionHandler(nil, busStopInfo.data)
                 } catch {
                     completionHandler(AppError.jsonDecodingError(error), nil)
                     //                    print("1")

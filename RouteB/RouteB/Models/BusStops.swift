@@ -15,7 +15,16 @@ struct BusStops: Codable {
 }
 
 struct BusStopData: Codable {
+    let entry: Entry
     let references: References
+}
+struct Entry: Codable {
+    let polylines: [PolyLines]
+}
+struct PolyLines: Codable {
+    let length: Int
+//    let levels: String
+    let points: String
 }
 
 struct References: Codable {
