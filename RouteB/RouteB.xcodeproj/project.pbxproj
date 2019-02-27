@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		970497A322264EA900DD01C0 /* BusStops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970497A222264EA900DD01C0 /* BusStops.swift */; };
 		974FA06F221213E8006381DD /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA06E221213E8006381DD /* MapViewController.swift */; };
 		974FA07122121578006381DD /* MyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA07022121578006381DD /* MyTableViewCell.swift */; };
 		974FA073221274CA006381DD /* CreateRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA072221274CA006381DD /* CreateRouteViewController.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		970497A222264EA900DD01C0 /* BusStops.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStops.swift; sourceTree = "<group>"; };
 		974FA06E221213E8006381DD /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		974FA07022121578006381DD /* MyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTableViewCell.swift; sourceTree = "<group>"; };
 		974FA072221274CA006381DD /* CreateRouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRouteViewController.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				97C11CA12224493E0008B236 /* NetworkHelper.swift */,
 				97C11CA3222449840008B236 /* MTABus.swift */,
 				97C11CA5222449910008B236 /* BusLiveRoute.swift */,
+				970497A222264EA900DD01C0 /* BusStops.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -216,6 +219,7 @@
 				97C11C7B222445D60008B236 /* MTAAPIClient.swift in Sources */,
 				97C11CA4222449840008B236 /* MTABus.swift in Sources */,
 				974FA075221287A1006381DD /* MyCreateTableViewCell.swift in Sources */,
+				970497A322264EA900DD01C0 /* BusStops.swift in Sources */,
 				974FA07122121578006381DD /* MyTableViewCell.swift in Sources */,
 				974FA07B22128C46006381DD /* RouteModel.swift in Sources */,
 				974FA06F221213E8006381DD /* MapViewController.swift in Sources */,

@@ -26,21 +26,30 @@ class MapViewController: UIViewController {
     var directionsArray: [MKDirections] = []
     
     
+
+    var refresher: UIRefreshControl!
+    
+    
 //    var startingAddressLat : Double?
 //    var startingAddressLong : Double?
 //    var endingAddressLat : Double?
 //    var endingAddressLong : Double?
 //    var transportationArray : [String]?
     var myRoute : UserRoute?
+    var buses = [String]()
     
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let busesUnwrapped = myRoute?.transportation else {return}
+        buses = busesUnwrapped
         pinImage.isHidden = true
         locationManager.delegate = self
         mapView.delegate = self
-        
+        loadBusRouteAndActiveOnRoute()
+//        getActiveBusesOnRoute(buses: buses)
+        timer()
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
             startTrackingUserLocation()
             getTransitDirections()
@@ -54,16 +63,102 @@ class MapViewController: UIViewController {
         
         
         
+        
     }
+    func timer() {
+        let myTimer = Timer(timeInterval: 20.0, target: self, selector: #selector(refresh), userInfo: nil, repeats: true)
+        RunLoop.main.add(myTimer, forMode: RunLoop.Mode.default)
+    }
+    @objc func refresh() {
+        // here is the label to refresh
+        getActiveBusesOnRoute(buses: buses)
+    }
+    func loadBusRouteAndActiveOnRoute() {
+        getBusStops(buses: buses)
+        getActiveBusesOnRoute(buses: buses)
+    }
+    
+    func getActiveBusesOnRoute(buses: [String]) {
+        
+        for bus in buses {
+            guard let search = bus.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {print("not a valid search")
+                return
+            }
+            MTAAPIClient.searchLiveBusRoute(busLine: search) { (error, busInfo) in
+                if let error = error {
+                    print(error)
+                }
+                if let busInfo = busInfo {
+                    guard let activeBuses = busInfo.VehicleMonitoringDelivery.first?.VehicleActivity else {return}
+                    //get lat and long for bus
+                    self.setupAnnotations(activeBuses: activeBuses)
+                }
+            }
+            }
+
+        }
+    
+    func setupAnnotations(activeBuses: [VehicleActivity]){
+        
+        
+        var count = 0
+        //use this to remove annotations
+//        let allAnnotations = mapView.annotations
+//        mapView.removeAnnotations(allAnnotations)
+        for bus in activeBuses {
+            
+            print("bus number: \(count)")
+            let regionRadius: CLLocationDistance = 1000
+            let busLat = bus.MonitoredVehicleJourney.VehicleLocation.Latitude
+            let busLon = bus.MonitoredVehicleJourney.VehicleLocation.Longitude
+
+            
+            let coordinate = CLLocationCoordinate2D.init(latitude: busLat, longitude: busLon)
+            let coordinateRegion = MKCoordinateRegion.init(center: coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = coordinate
+            annotation.title = bus.MonitoredVehicleJourney.VehicleRef
+            annotation.subtitle = "direction: \(bus.MonitoredVehicleJourney.DirectionRef)"
+//            annotation.tag = count
+            
+            mapView.setRegion(coordinateRegion, animated: true)
+            mapView.addAnnotation(annotation)
+            count += 1
+            
+        }
+//        let myCurrentRegion = MKCoordinateRegion(center: venues[0].location.coordinate, latitudinalMeters: 9000, longitudinalMeters: 9000)
+        
+//        mapView.setRegion(myCurrentRegion, animated: true)
+        
+    }
+    
+    
     func resetMapView(withNew directions: MKDirections) {
         mapView.removeOverlays(mapView.overlays)
         directionsArray.append(directions)
         let _ = directionsArray.map {$0.cancel()}
 //        directionsArray = []
     }
-    func getRoute(lat: Double, long: Double)->CLLocationCoordinate2D {
+    func getCoordinates(lat: Double, long: Double)->CLLocationCoordinate2D {
         let coordinate = CLLocationCoordinate2D.init(latitude: lat, longitude: long)
         return coordinate
+    }
+    func getBusStops(buses: [String]) {
+        for bus in buses {
+            guard let search = bus.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {print("not a valid search")
+                return
+            }
+            MTAAPIClient.getBusStops(busLine: search) { (error, stops) in
+                if let error = error {
+                    print("error getting bus stops: \(error)")
+                }
+                if let stops = stops {
+                    for stop in stops {
+                        print(stop.name)
+                    }
+                }
+            }
+        }
     }
 //    func getDirections() {
 //        guard let location = locationManager.location?.coordinate else {
@@ -99,8 +194,8 @@ class MapViewController: UIViewController {
                 return
         }
         
-        let startingCoordinate = getRoute(lat: startingLat, long: startingLong)
-        let endingCoordinate = getRoute(lat: endingLat, long: endingLong)
+        let startingCoordinate = getCoordinates(lat: startingLat, long: startingLong)
+        let endingCoordinate = getCoordinates(lat: endingLat, long: endingLong)
         
         let request = MKDirections.Request()
         request.source = MKMapItem(placemark: MKPlacemark(coordinate: startingCoordinate, addressDictionary: nil))
@@ -175,8 +270,8 @@ extension MapViewController: CLLocationManagerDelegate {
                 return
         }
         
-        let startingCoordinate = getRoute(lat: startingLat, long: startingLong)
-        let endingCoordinate = getRoute(lat: endingLat, long: endingLong)
+        let startingCoordinate = getCoordinates(lat: startingLat, long: startingLong)
+        let endingCoordinate = getCoordinates(lat: endingLat, long: endingLong)
         
 //        let startingCoordinate = CLLocationCoordinate2D.init(latitude: startingLat, longitude: startingLong)
 //

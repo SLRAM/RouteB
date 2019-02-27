@@ -25,7 +25,7 @@ struct VehicleMonitoringDelivery: Codable {
     let ValidUntil: String //actually timestamp
 }
 struct VehicleActivity: Codable {
-    let MonitoredVehicleJourney: [MonitoredVehicleJourney]
+    let MonitoredVehicleJourney: MonitoredVehicleJourney
     let RecordedAtTime: String //actually timestamp
 }
 
@@ -39,7 +39,7 @@ struct MonitoredVehicleJourney: Codable {
     let OriginRef: String
     let DestinationRef: String
     let DestinationName: [String]
-    let SituationRef: SituationRef
+    let SituationRef: [SituationRef]
     let Monitored: Bool
     let VehicleLocation: VehicleLocation
     let Bearing: Double
@@ -93,14 +93,18 @@ struct PublicationWindow: Codable {
 struct Affects: Codable {
     let VehicleJourneys: VehicleJourneys
 }
-struct VehicleJourneys:Codable {
+struct VehicleJourneys: Codable {
+    let AffectedVehicleJourney: [AffectedVehicleJourney]
+    
+}
+struct AffectedVehicleJourney: Codable {
     let LineRef: String
     let DirectionRef: String
 }
 struct Consequences: Codable {
-    let Consequence: Consequence
+    let Consequence: [Consequence]
 }
 struct Consequence: Codable {
-    let Condition: String //use this for advisory warning
+    let Condition: [String] //use this for advisory warning
 }
 
