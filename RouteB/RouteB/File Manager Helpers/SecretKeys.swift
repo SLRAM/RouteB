@@ -10,5 +10,5 @@ import Foundation
 
 struct SecretKeys {
     static let MTABusKey = "76019626-1461-46da-988a-2a0fb97892e6"
-    static let clientSecret = "_"
+    static let googleKey = "AIzaSyAAMJZrtEH-aoD9eXNDn3kLgmOfrfa1VYg"
 }
