@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		970497A322264EA900DD01C0 /* BusStops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970497A222264EA900DD01C0 /* BusStops.swift */; };
+		9704980C2228EF2C00DD01C0 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 9704980B2228EF2C00DD01C0 /* Podfile */; };
+		9704980E2228EFF200DD01C0 /* GoogleMapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9704980D2228EFF200DD01C0 /* GoogleMapsViewController.swift */; };
 		974FA06F221213E8006381DD /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA06E221213E8006381DD /* MapViewController.swift */; };
 		974FA07122121578006381DD /* MyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA07022121578006381DD /* MyTableViewCell.swift */; };
 		974FA073221274CA006381DD /* CreateRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA072221274CA006381DD /* CreateRouteViewController.swift */; };
@@ -27,10 +29,14 @@
 		97EA4B1F220CD32A00AB7612 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97EA4B1D220CD32A00AB7612 /* Main.storyboard */; };
 		97EA4B21220CD32B00AB7612 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97EA4B20220CD32B00AB7612 /* Assets.xcassets */; };
 		97EA4B24220CD32B00AB7612 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97EA4B22220CD32B00AB7612 /* LaunchScreen.storyboard */; };
+		FFF661304B1B8C6A0AE0508F /* libPods-RouteB.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CC3C035EB09F0CE4EF23DE3E /* libPods-RouteB.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C129A2BDBA47622051726F4 /* Pods-RouteB.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RouteB.debug.xcconfig"; path = "Target Support Files/Pods-RouteB/Pods-RouteB.debug.xcconfig"; sourceTree = "<group>"; };
 		970497A222264EA900DD01C0 /* BusStops.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStops.swift; sourceTree = "<group>"; };
+		9704980B2228EF2C00DD01C0 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		9704980D2228EFF200DD01C0 /* GoogleMapsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapsViewController.swift; sourceTree = "<group>"; };
 		974FA06E221213E8006381DD /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		974FA07022121578006381DD /* MyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTableViewCell.swift; sourceTree = "<group>"; };
 		974FA072221274CA006381DD /* CreateRouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRouteViewController.swift; sourceTree = "<group>"; };
@@ -52,6 +58,8 @@
 		97EA4B20220CD32B00AB7612 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		97EA4B23220CD32B00AB7612 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97EA4B25220CD32C00AB7612 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BD85761B3156560250DBA071 /* Pods-RouteB.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RouteB.release.xcconfig"; path = "Target Support Files/Pods-RouteB/Pods-RouteB.release.xcconfig"; sourceTree = "<group>"; };
+		CC3C035EB09F0CE4EF23DE3E /* libPods-RouteB.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RouteB.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,18 +67,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFF661304B1B8C6A0AE0508F /* libPods-RouteB.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3EBB2D6CC7F4079B0B3C193F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4C129A2BDBA47622051726F4 /* Pods-RouteB.debug.xcconfig */,
+				BD85761B3156560250DBA071 /* Pods-RouteB.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		974FA07622128ACB006381DD /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				97EA4B1B220CD32A00AB7612 /* ViewController.swift */,
 				974FA06E221213E8006381DD /* MapViewController.swift */,
 				974FA072221274CA006381DD /* CreateRouteViewController.swift */,
+				9704980D2228EFF200DD01C0 /* GoogleMapsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -111,8 +130,11 @@
 		97EA4B0D220CD32A00AB7612 = {
 			isa = PBXGroup;
 			children = (
+				9704980B2228EF2C00DD01C0 /* Podfile */,
 				97EA4B18220CD32A00AB7612 /* RouteB */,
 				97EA4B17220CD32A00AB7612 /* Products */,
+				3EBB2D6CC7F4079B0B3C193F /* Pods */,
+				E976221E86825951309E7CE9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -141,6 +163,14 @@
 			path = RouteB;
 			sourceTree = "<group>";
 		};
+		E976221E86825951309E7CE9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CC3C035EB09F0CE4EF23DE3E /* libPods-RouteB.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -148,9 +178,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 97EA4B28220CD32C00AB7612 /* Build configuration list for PBXNativeTarget "RouteB" */;
 			buildPhases = (
+				70A68315BD96B1F4495D1BA4 /* [CP] Check Pods Manifest.lock */,
 				97EA4B12220CD32A00AB7612 /* Sources */,
 				97EA4B13220CD32A00AB7612 /* Frameworks */,
 				97EA4B14220CD32A00AB7612 /* Resources */,
+				1E900FA60759CE994A3A88B4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -201,11 +233,59 @@
 			files = (
 				97EA4B24220CD32B00AB7612 /* LaunchScreen.storyboard in Resources */,
 				97EA4B21220CD32B00AB7612 /* Assets.xcassets in Resources */,
+				9704980C2228EF2C00DD01C0 /* Podfile in Resources */,
 				97EA4B1F220CD32A00AB7612 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1E900FA60759CE994A3A88B4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RouteB/Pods-RouteB-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RouteB/Pods-RouteB-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		70A68315BD96B1F4495D1BA4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RouteB-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		97EA4B12220CD32A00AB7612 /* Sources */ = {
@@ -220,6 +300,7 @@
 				97C11CA4222449840008B236 /* MTABus.swift in Sources */,
 				974FA075221287A1006381DD /* MyCreateTableViewCell.swift in Sources */,
 				970497A322264EA900DD01C0 /* BusStops.swift in Sources */,
+				9704980E2228EFF200DD01C0 /* GoogleMapsViewController.swift in Sources */,
 				974FA07122121578006381DD /* MyTableViewCell.swift in Sources */,
 				974FA07B22128C46006381DD /* RouteModel.swift in Sources */,
 				974FA06F221213E8006381DD /* MapViewController.swift in Sources */,
@@ -372,6 +453,7 @@
 		};
 		97EA4B29220CD32C00AB7612 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4C129A2BDBA47622051726F4 /* Pods-RouteB.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -391,6 +473,7 @@
 		};
 		97EA4B2A220CD32C00AB7612 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BD85761B3156560250DBA071 /* Pods-RouteB.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

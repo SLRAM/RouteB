@@ -50,7 +50,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        guard let selectedCell = tableView.cellForRow(at: indexPath) as? MyTableViewCell else {return}
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+//        let viewController = storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+        let viewController = storyboard.instantiateViewController(withIdentifier: "GoogleMapsViewController") as! GoogleMapsViewController
         let route = myRoutes[indexPath.row]
 //        let detailVC = MapViewController()
 //        viewController.startingAddressLat = route.startingAddressLat
