@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import GoogleMaps
 
 class HomeViewController: UIViewController {
     
@@ -20,6 +21,10 @@ class HomeViewController: UIViewController {
     var searchResults = [MKLocalSearchCompletion]()
     
     var locationCoordinate: CLLocationCoordinate2D!
+    
+    
+    var mapView: GMSMapView?
+    
 //    private let homeListView = HomeListView()
 //
 //
@@ -41,6 +46,8 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        GMSServices.provideAPIKey(SecretKeys.googleKey)
+
         mapListButton()
         homeView.delegate = self
         
@@ -48,10 +55,10 @@ class HomeViewController: UIViewController {
         searchCompleter.delegate = self
 
         //        centerOnMap(location: initialLocation)
-        homeView.mapView.delegate = self
+//        homeView.mapView.delegate = self
         
 //        homeView.locationTextField.delegate = self
-        homeView.queryTextField.delegate = self
+        homeView.locationSearch.delegate = self
         // setupAnnotations()
     
 
@@ -79,11 +86,11 @@ class HomeViewController: UIViewController {
         
         if navigationItem.rightBarButtonItem?.title == "Map" {
             UIView.animate(withDuration: 0.5, delay: 0.0, options: [], animations: {
-                self.homeView.mapView.alpha = 0.0
+                self.homeView.myMapView.alpha = 0.0
             })
         } else {
             UIView.animate(withDuration: 0.5, delay: 0.0, options: [], animations: {
-                self.homeView.mapView.alpha = 1.0
+                self.homeView.myMapView.alpha = 1.0
             })
             self.view.addSubview(homeView)
             homeView.reloadInputViews()
@@ -107,7 +114,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate{
         tableView.deselectRow(at: indexPath, animated: true)
         
         let completion = searchResults[indexPath.row]
-        homeView.queryTextField.text = "\(completion.title) \(completion.subtitle)"
+        homeView.locationSearch.text = "\(completion.title) \(completion.subtitle)"
         let searchRequest = MKLocalSearch.Request(completion: completion)
         let search = MKLocalSearch(request: searchRequest)
         search.start { (response, error) in
@@ -115,7 +122,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate{
             print("Ending coordinate: \(String(describing: self.locationCoordinate))")
         }
         UIView.animate(withDuration: 0.5, delay: 0.0, options: [], animations: {
-            self.homeView.mapView.alpha = 1.0
+            self.homeView.myMapView.alpha = 1.0
         })
         self.view.addSubview(homeView)
         homeView.reloadInputViews()
@@ -133,23 +140,27 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate{
 //        navigationController?.pushViewController(detailVC, animated: true)
     }
 }
-extension HomeViewController: MKMapViewDelegate{
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        guard annotation is MKPointAnnotation else { return nil }
-        
-        let identifier = "Annotation"
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-        
-        if annotationView == nil {
-            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            annotationView?.rightCalloutAccessoryView = UIButton(type: .infoLight)
-            annotationView!.canShowCallout = true
-        } else {
-            annotationView!.annotation = annotation
-        }
-        return annotationView
-    }
+//extension HomeViewController: MKMapViewDelegate{
+//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+//        guard annotation is MKPointAnnotation else { return nil }
+//
+//        let identifier = "Annotation"
+//        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+//
+//        if annotationView == nil {
+//            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+//            annotationView?.rightCalloutAccessoryView = UIButton(type: .infoLight)
+//            annotationView!.canShowCallout = true
+//        } else {
+//            annotationView!.annotation = annotation
+//        }
+//        return annotationView
+//    }
+//
+//}
 
+extension HomeViewController: GMSMapViewDelegate {
+    
 }
 extension HomeViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -157,11 +168,11 @@ extension HomeViewController: UISearchBarDelegate {
         
         if searchText.count > 0 {
             UIView.animate(withDuration: 0.5, delay: 0.0, options: [], animations: {
-                self.homeView.mapView.alpha = 0.0
+                self.homeView.myMapView.alpha = 0.0
             })
         } else {
             UIView.animate(withDuration: 0.5, delay: 0.0, options: [], animations: {
-                self.homeView.mapView.alpha = 1.0
+                self.homeView.myMapView.alpha = 1.0
             })
             self.view.addSubview(homeView)
             homeView.reloadInputViews()
@@ -187,22 +198,22 @@ extension HomeViewController: HomeViewDelegate {
         print("pushed")
     }
 }
-extension HomeViewController: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        print("user changed the authorization")
-        statusRawValue = status.rawValue
-        let currentLocation = homeView.mapView.userLocation
-        let myCurrentRegion = MKCoordinateRegion(center: currentLocation.coordinate, latitudinalMeters: 9000, longitudinalMeters: 9000)
-        homeView.mapView.setRegion(myCurrentRegion, animated: true)
-        print(status.rawValue)
-    }
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("user has changed locations")
-        guard let currentLocation = locations.last else {return}
-        updatedUserLocation = currentLocation.coordinate
-        print("The user is in lat: \(currentLocation.coordinate.latitude) and long:\(currentLocation.coordinate.longitude)")
-        //        let myCurrentRegion = MKCoordinateRegion(center: currentLocation.coordinate, latitudinalMeters: 9000, longitudinalMeters: 9000)
-        //        homeView.mapView.setRegion(myCurrentRegion, animated: true)
-        //        getVenues(userLocation: updatedUserLocation, near: "", query: "Taco")
-    }
-}
+//extension HomeViewController: CLLocationManagerDelegate {
+//    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+//        print("user changed the authorization")
+//        statusRawValue = status.rawValue
+//        let currentLocation = homeView.mapView.userLocation
+//        let myCurrentRegion = MKCoordinateRegion(center: currentLocation.coordinate, latitudinalMeters: 9000, longitudinalMeters: 9000)
+//        homeView.mapView.setRegion(myCurrentRegion, animated: true)
+//        print(status.rawValue)
+//    }
+//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        print("user has changed locations")
+//        guard let currentLocation = locations.last else {return}
+//        updatedUserLocation = currentLocation.coordinate
+//        print("The user is in lat: \(currentLocation.coordinate.latitude) and long:\(currentLocation.coordinate.longitude)")
+//        //        let myCurrentRegion = MKCoordinateRegion(center: currentLocation.coordinate, latitudinalMeters: 9000, longitudinalMeters: 9000)
+//        //        homeView.mapView.setRegion(myCurrentRegion, animated: true)
+//        //        getVenues(userLocation: updatedUserLocation, near: "", query: "Taco")
+//    }
+//}
