@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    var advisoryMessages = [String]()
     
     var myRoutes = [UserRoute]() {
         didSet {
@@ -26,15 +27,12 @@ class ViewController: UIViewController {
         tableView.delegate = self
         myRoutes = RouteModel.getRoutes()
         print(DataPersistenceManager.documentsDirectory())
-        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         myRoutes = RouteModel.getRoutes()
         tableView.reloadData()
     }
-
-
 }
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -43,8 +41,47 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MyTableViewCell", for: indexPath) as? MyTableViewCell else {return UITableViewCell()}
-        
+        let route = myRoutes[indexPath.row]
+        let buses = route.transportation
         cell.tableLabel.text = "Route \(indexPath.row + 1)"
+        cell.backgroundColor = .green
+        MTAAPIClient.getBusInfo(advisoryMessage: true, buses: buses) { (advisoryMessage, activeBuses) in
+            if let advisoryMessage = advisoryMessage {
+                for message in advisoryMessage {
+                    DispatchQueue.main.async {
+                        guard let conditions = message.Consequences.Consequence.first?.Condition else {return}
+                        //fix so that if delayed comes up then it will always print out red maybe
+                        var color = ""
+                        for condition in conditions {
+                            if color == "delayed" {
+                                break
+                            } else if color == "altered" {
+                                switch condition {
+                                case "altered":
+                                    cell.backgroundColor = .yellow
+                                case "delayed":
+                                    cell.backgroundColor = .red
+                                    color = "delayed"
+                                default:
+                                    print("unable to get background color")
+                                }
+                            } else {
+                                switch condition {
+                                case "altered":
+                                    cell.backgroundColor = .yellow
+                                    color = "altered"
+                                case "delayed":
+                                    cell.backgroundColor = .red
+                                    color = "delayed"
+                                default:
+                                    print("unable to get background color")
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -53,15 +90,9 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
 //        let viewController = storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
         let viewController = storyboard.instantiateViewController(withIdentifier: "GoogleMapsViewController") as! GoogleMapsViewController
         let route = myRoutes[indexPath.row]
-//        let detailVC = MapViewController()
-//        viewController.startingAddressLat = route.startingAddressLat
-//        viewController.startingAddressLong = route.startingAddressLong
-//        viewController.endingAddressLat = route.endingAddressLat
-//        viewController.endingAddressLong = route.endingAddressLong
-//        viewController.transportationArray = route.transportation
+        let buses = route.transportation
         viewController.myRoute = route
+        viewController.advisoryMessages = self.advisoryMessages
         navigationController?.pushViewController(viewController, animated: true)
     }
-    
-    
 }

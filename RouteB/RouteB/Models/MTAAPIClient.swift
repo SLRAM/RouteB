@@ -14,7 +14,7 @@ import MapKit
 final class MTAAPIClient {
     
     private init() {}
-    static func searchAllBusRoutes(completionHandler: @escaping (AppError?, [List]?) -> Void) {
+    static func searchNYCTBusRoutes(completionHandler: @escaping (AppError?, [List]?) -> Void) {
         let endpointURLString = "http://bustime.mta.info/api/where/routes-for-agency/MTA%20NYCT.json?key=\(SecretKeys.MTABusKey)"
         //        print(endpointURLString)
         NetworkHelper.shared.performDataTask(endpointURLString: endpointURLString) { (appError, data) in
@@ -26,6 +26,25 @@ final class MTAAPIClient {
                     completionHandler(nil, mtaInfo.data.list)
 //                    let mtaInfo = try JSONDecoder().decode(MTAInfo.self, from: data)
 //                    completionHandler(nil, mtaInfo.data.list)
+                } catch {
+                    completionHandler(AppError.jsonDecodingError(error), nil)
+                    //                    print("1")
+                }
+            }
+        }
+    }
+    static func searchMTABCBusRoutes(completionHandler: @escaping (AppError?, [List]?) -> Void) {
+        let endpointURLString = "http://bustime.mta.info/api/where/routes-for-agency/MTABC.json?key=\(SecretKeys.MTABusKey)"
+        //        print(endpointURLString)
+        NetworkHelper.shared.performDataTask(endpointURLString: endpointURLString) { (appError, data) in
+            if let appError = appError {
+                completionHandler(appError, nil)
+            } else if let data = data {
+                do {
+                    let mtaInfo = try JSONDecoder().decode(MTABus.self, from: data)
+                    completionHandler(nil, mtaInfo.data.list)
+                    //                    let mtaInfo = try JSONDecoder().decode(MTAInfo.self, from: data)
+                    //                    completionHandler(nil, mtaInfo.data.list)
                 } catch {
                     completionHandler(AppError.jsonDecodingError(error), nil)
                     //                    print("1")
@@ -87,4 +106,31 @@ final class MTAAPIClient {
             }
         }
     }
+    
+    static func getBusInfo(advisoryMessage: Bool, buses: [String], completionHandler:  @escaping ([PtSituationElement]?,[VehicleActivity]?) -> Void) {
+        
+        for bus in buses {
+            guard let search = bus.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {print("not a valid search")
+                return
+            }
+            MTAAPIClient.searchLiveBusRoute(busLine: search) { (error, busInfo) in //weak self
+                if let error = error {
+                    print(error)
+                }
+                if let busInfo = busInfo {
+                    if advisoryMessage {
+                        guard let busAdvisory = busInfo.SituationExchangeDelivery.first?.Situations.PtSituationElement else {return}
+                        completionHandler(busAdvisory, nil)
+                        
+                    } else {
+                        guard let activeBuses = busInfo.VehicleMonitoringDelivery.first?.VehicleActivity else {return}
+                        completionHandler(nil, activeBuses)
+                        
+                    }
+                }
+            }
+        }
+        
+    }
 }
+

@@ -12,6 +12,7 @@ class GoogleMapsViewController: UIViewController {
 
     var myRoute : UserRoute?
     var mapView: GMSMapView?
+    var advisoryMessages: [String]?
     var buses = [String]()
 //    var allAnnotations = [MKAnnotation]()
     var allMarkers = [GMSMarker]()
@@ -43,22 +44,73 @@ class GoogleMapsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print("advisoryMessages: \(advisoryMessages)")
         guard let busesUnwrapped = myRoute?.transportation else {return}
         buses = busesUnwrapped
         GMSServices.provideAPIKey(SecretKeys.googleKey)
+//        setupView()
+        timer()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
         setupView()
         loadBusRouteAndActiveOnRoute()
-        timer()
+
     }
     
     func setupView() {
-        let camera = GMSCameraPosition.camera(withLatitude: 40.838625, longitude: -73.861000, zoom: 15)
-        mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-        view = mapView
-        let currentLocation = CLLocationCoordinate2D(latitude: 40.838625, longitude: -73.861000)
-        let marker = GMSMarker(position: currentLocation)
-        marker.title = "Home"
-        marker.map = mapView
+        guard let startingLat = myRoute?.startingAddressLat,
+            let startingLong = myRoute?.startingAddressLong else {
+                print("unable to convert starting lat and long")
+                return
+        }
+        guard let endingLat = myRoute?.endingAddressLat,
+            let endingLong = myRoute?.endingAddressLong else {
+                print("unable to convert starting lat and long")
+                return
+        }
+//        let startingLocation = CLLocationCoordinate2D(latitude: startingLat, longitude: startingLong)
+//        let endingLocation = CLLocationCoordinate2D(latitude: endingLat,longitude: endingLong)
+
+        let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6)
+        mapView = GMSMapView.init(frame: CGRect.zero, camera: camera)
+        self.view = mapView
+        
+        let startingLocation = CLLocationCoordinate2DMake(startingLat, startingLong)
+        let endingLocation = CLLocationCoordinate2DMake(endingLat, endingLong)
+        
+        let startingMarker = GMSMarker.init()
+        startingMarker.position = startingLocation
+        startingMarker.title = "Starting"
+        startingMarker.map = mapView
+        
+        let endingMarker = GMSMarker.init()
+        endingMarker.position = endingLocation
+        endingMarker.title = "ending"
+        endingMarker.map = mapView
+        
+        
+        let vancouver = CLLocationCoordinate2DMake(49.26, -123.11);
+        let calgary = CLLocationCoordinate2DMake(51.05, -114.05);
+        
+        let vancouverMarker = GMSMarker.init()
+        vancouverMarker.position = vancouver
+        vancouverMarker.title = "Vancouver"
+        vancouverMarker.map = mapView
+        
+        let calgaryMarker = GMSMarker.init()
+        calgaryMarker.position = calgary
+        calgaryMarker.title = "Calgary"
+        calgaryMarker.map = mapView
+        
+        let bounds = GMSCoordinateBounds.init(coordinate: startingLocation, coordinate: endingLocation)
+        mapView?.moveCamera(GMSCameraUpdate.fit(bounds))
+        
+        
+        
+        
+        
+        
     }
     func timer() {
         let myTimer = Timer(timeInterval: 20.0, target: self, selector: #selector(refresh), userInfo: nil, repeats: true)
@@ -80,27 +132,15 @@ class GoogleMapsViewController: UIViewController {
         }
         self.allMarkers.removeAll()
         
-        for bus in buses {
-            guard let search = bus.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {print("not a valid search")
-                return
-            }
-            MTAAPIClient.searchLiveBusRoute(busLine: search) { (error, busInfo) in //weak self
-                if let error = error {
-                    print(error)
-                }
-                if let busInfo = busInfo {
-                    guard let activeBuses = busInfo.VehicleMonitoringDelivery.first?.VehicleActivity else {return}
-                    //get lat and long for bus
-                    DispatchQueue.main.async {
-                        self.setupMarkers(activeBuses: activeBuses)
-                    }
-                    
+        MTAAPIClient.getBusInfo(advisoryMessage: false, buses: buses) { (adivsoryMessage, activeBuses) in
+            if let activeBuses = activeBuses {
+                DispatchQueue.main.async {
+                    self.setupMarkers(activeBuses: activeBuses)
                 }
             }
         }
-        //
-        
     }
+    
     func setupMarkers(activeBuses: [VehicleActivity]){
         
         var count = 0
@@ -143,26 +183,24 @@ class GoogleMapsViewController: UIViewController {
                         DispatchQueue.main.async {
                             let polyline = GMSPolyline(path: GMSPath.init(fromEncodedPath: poly.points))
                             self.busStopPolylines.append(polyline)
-            
-//                            guard let busStop = polyline.path?.coordinate(at: 0) else {return}
-//                            let marker = GMSMarker(position: busStop)
-//                            marker.map = self.mapView
                             polyline.map = self.mapView
-                            
                         }
                     }
                     let stops = data.references.stops
                     for stop in stops {
                         print(stop.name)
                         DispatchQueue.main.async {
-                            let busStop = CLLocationCoordinate2D(latitude: stop.lat, longitude: stop.lon)
-                            let marker = GMSMarker(position: busStop)
-                            marker.icon = UIImage(named: "icons8-bus_stop")
-//                            marker.icon = GMSMarker.markerImage(with: .blue)
-                            marker.title = stop.name
-                            marker.map = self.mapView
+                            let circleCenter = CLLocationCoordinate2D(latitude: stop.lat, longitude: stop.lon)
+                            let busStop = GMSCircle(position: circleCenter, radius: 15)
+                            busStop.title = stop.name
+                            busStop.fillColor = .green
+                            busStop.map = self.mapView
+                            
+                            let stopMarker = GMSMarker.init(position: circleCenter)
+                            stopMarker.snippet = busStop.title
+                            stopMarker.opacity = 0
+                            stopMarker.map = self.mapView
                         }
-                        
                     }
                 }
             }

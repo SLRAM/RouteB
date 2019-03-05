@@ -10,6 +10,7 @@
 		970497A322264EA900DD01C0 /* BusStops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970497A222264EA900DD01C0 /* BusStops.swift */; };
 		9704980C2228EF2C00DD01C0 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 9704980B2228EF2C00DD01C0 /* Podfile */; };
 		9704980E2228EFF200DD01C0 /* GoogleMapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9704980D2228EFF200DD01C0 /* GoogleMapsViewController.swift */; };
+		97049810222DDFF900DD01C0 /* BusIDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9704980F222DDFF900DD01C0 /* BusIDs.swift */; };
 		974FA06F221213E8006381DD /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA06E221213E8006381DD /* MapViewController.swift */; };
 		974FA07122121578006381DD /* MyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA07022121578006381DD /* MyTableViewCell.swift */; };
 		974FA073221274CA006381DD /* CreateRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA072221274CA006381DD /* CreateRouteViewController.swift */; };
@@ -18,6 +19,9 @@
 		974FA07B22128C46006381DD /* RouteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA07A22128C46006381DD /* RouteModel.swift */; };
 		974FA07F22128CF0006381DD /* DataPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA07E22128CF0006381DD /* DataPersistenceManager.swift */; };
 		974FA0A522149B69006381DD /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA0A422149B69006381DD /* SearchViewController.swift */; };
+		97BA31FE222E304F006A4365 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BA31FD222E304F006A4365 /* HomeView.swift */; };
+		97BA3200222E307D006A4365 /* HomeListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BA31FF222E307D006A4365 /* HomeListTableViewCell.swift */; };
+		97BA3202222E30B0006A4365 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BA3201222E30B0006A4365 /* HomeViewController.swift */; };
 		97C11C7B222445D60008B236 /* MTAAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C11C7A222445D60008B236 /* MTAAPIClient.swift */; };
 		97C11CA0222448FC0008B236 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C11C9F222448FC0008B236 /* AppError.swift */; };
 		97C11CA22224493E0008B236 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C11CA12224493E0008B236 /* NetworkHelper.swift */; };
@@ -37,6 +41,7 @@
 		970497A222264EA900DD01C0 /* BusStops.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStops.swift; sourceTree = "<group>"; };
 		9704980B2228EF2C00DD01C0 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		9704980D2228EFF200DD01C0 /* GoogleMapsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapsViewController.swift; sourceTree = "<group>"; };
+		9704980F222DDFF900DD01C0 /* BusIDs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusIDs.swift; sourceTree = "<group>"; };
 		974FA06E221213E8006381DD /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		974FA07022121578006381DD /* MyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTableViewCell.swift; sourceTree = "<group>"; };
 		974FA072221274CA006381DD /* CreateRouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRouteViewController.swift; sourceTree = "<group>"; };
@@ -45,6 +50,9 @@
 		974FA07A22128C46006381DD /* RouteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteModel.swift; sourceTree = "<group>"; };
 		974FA07E22128CF0006381DD /* DataPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistenceManager.swift; sourceTree = "<group>"; };
 		974FA0A422149B69006381DD /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		97BA31FD222E304F006A4365 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		97BA31FF222E307D006A4365 /* HomeListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListTableViewCell.swift; sourceTree = "<group>"; };
+		97BA3201222E30B0006A4365 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		97C11C7A222445D60008B236 /* MTAAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTAAPIClient.swift; sourceTree = "<group>"; };
 		97C11C9F222448FC0008B236 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		97C11CA12224493E0008B236 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
@@ -90,6 +98,9 @@
 				974FA06E221213E8006381DD /* MapViewController.swift */,
 				974FA072221274CA006381DD /* CreateRouteViewController.swift */,
 				9704980D2228EFF200DD01C0 /* GoogleMapsViewController.swift */,
+				97BA31FD222E304F006A4365 /* HomeView.swift */,
+				97BA31FF222E307D006A4365 /* HomeListTableViewCell.swift */,
+				97BA3201222E30B0006A4365 /* HomeViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -114,6 +125,7 @@
 				97C11CA3222449840008B236 /* MTABus.swift */,
 				97C11CA5222449910008B236 /* BusLiveRoute.swift */,
 				970497A222264EA900DD01C0 /* BusStops.swift */,
+				9704980F222DDFF900DD01C0 /* BusIDs.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -294,16 +306,20 @@
 			files = (
 				97C11CA22224493E0008B236 /* NetworkHelper.swift in Sources */,
 				974FA07F22128CF0006381DD /* DataPersistenceManager.swift in Sources */,
+				97049810222DDFF900DD01C0 /* BusIDs.swift in Sources */,
 				974FA0A522149B69006381DD /* SearchViewController.swift in Sources */,
 				97EA4B1C220CD32A00AB7612 /* ViewController.swift in Sources */,
 				97C11C7B222445D60008B236 /* MTAAPIClient.swift in Sources */,
 				97C11CA4222449840008B236 /* MTABus.swift in Sources */,
+				97BA3202222E30B0006A4365 /* HomeViewController.swift in Sources */,
+				97BA3200222E307D006A4365 /* HomeListTableViewCell.swift in Sources */,
 				974FA075221287A1006381DD /* MyCreateTableViewCell.swift in Sources */,
 				970497A322264EA900DD01C0 /* BusStops.swift in Sources */,
 				9704980E2228EFF200DD01C0 /* GoogleMapsViewController.swift in Sources */,
 				974FA07122121578006381DD /* MyTableViewCell.swift in Sources */,
 				974FA07B22128C46006381DD /* RouteModel.swift in Sources */,
 				974FA06F221213E8006381DD /* MapViewController.swift in Sources */,
+				97BA31FE222E304F006A4365 /* HomeView.swift in Sources */,
 				97C11CA6222449910008B236 /* BusLiveRoute.swift in Sources */,
 				97C11CA0222448FC0008B236 /* AppError.swift in Sources */,
 				974FA073221274CA006381DD /* CreateRouteViewController.swift in Sources */,
