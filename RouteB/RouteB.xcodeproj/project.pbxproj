@@ -101,6 +101,7 @@
 				97BA31FD222E304F006A4365 /* HomeView.swift */,
 				97BA31FF222E307D006A4365 /* HomeListTableViewCell.swift */,
 				97BA3201222E30B0006A4365 /* HomeViewController.swift */,
+				974FA0A422149B69006381DD /* SearchViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -167,7 +168,6 @@
 				974FA07622128ACB006381DD /* ViewControllers */,
 				97EA4B19220CD32A00AB7612 /* AppDelegate.swift */,
 				97EA4B1D220CD32A00AB7612 /* Main.storyboard */,
-				974FA0A422149B69006381DD /* SearchViewController.swift */,
 				97EA4B20220CD32B00AB7612 /* Assets.xcassets */,
 				97EA4B22220CD32B00AB7612 /* LaunchScreen.storyboard */,
 				97EA4B25220CD32C00AB7612 /* Info.plist */,

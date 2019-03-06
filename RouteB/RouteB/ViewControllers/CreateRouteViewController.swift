@@ -89,7 +89,9 @@ class CreateRouteViewController: UIViewController {
         //        }
         //    }
         
-        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let searchVC = storyboard.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
+        navigationController?.pushViewController(searchVC, animated: true)
     }
     @IBAction func endingAddressClicked(_ sender: UIButton) {
         let detailVC = HomeViewController()

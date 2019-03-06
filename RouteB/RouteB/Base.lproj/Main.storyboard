@@ -128,7 +128,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z3b-PC-RYr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="276" y="992.65367316341838"/>
+            <point key="canvasLocation" x="2492" y="994"/>
         </scene>
         <!--Create Route-->
         <scene sceneID="Mnj-RV-mbb">
@@ -251,7 +251,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ODH-zT-h9E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2015.2" y="993.55322338830592"/>
+            <point key="canvasLocation" x="1782" y="994"/>
         </scene>
         <!--Route Status-->
         <scene sceneID="DMi-1F-sTg">
@@ -279,7 +279,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iMU-D3-aVK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2800.8000000000002" y="993.55322338830592"/>
+            <point key="canvasLocation" x="2492" y="134"/>
         </scene>
         <!--Google Maps View Controller-->
         <scene sceneID="pxp-uR-ebf">
@@ -294,7 +294,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P85-pg-Jn9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1870" y="-560"/>
+            <point key="canvasLocation" x="1782" y="134"/>
         </scene>
         <!--Title-->
         <scene sceneID="wn0-n7-aOK">
@@ -357,13 +357,11 @@
                             <barButtonItem systemItem="add" id="FOF-hD-RVr">
                                 <connections>
                                     <action selector="editRoutePressed:" destination="JAC-eZ-NHw" id="JDV-r8-BNL"/>
-                                    <segue destination="AGv-zp-3N6" kind="presentation" id="FMR-IN-pmv"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="..." id="1Jk-bY-hCc">
                                 <connections>
                                     <action selector="routeStatusPressed:" destination="JAC-eZ-NHw" id="bez-ad-W3P"/>
-                                    <segue destination="4nU-iR-lua" kind="presentation" id="RQ0-yT-Zri"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -379,7 +377,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YUQ-Iz-Rsr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1861.5999999999999" y="139.880059970015"/>
+            <point key="canvasLocation" x="276" y="-602"/>
         </scene>
         <!--Edit Route-->
         <scene sceneID="06a-vB-FdP">
@@ -407,7 +405,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eUf-cS-G3l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2653" y="141"/>
+            <point key="canvasLocation" x="2492" y="-602"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aqc-YQ-0Pf">
