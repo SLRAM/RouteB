@@ -27,6 +27,13 @@ class ViewController: UIViewController {
         tableView.delegate = self
         myRoutes = RouteModel.getRoutes()
         print(DataPersistenceManager.documentsDirectory())
+//        MTAAPIClient.searchNYCTBusRoutes { (appError, routes) in
+//            if let routes = routes {
+//                for route in routes {
+//                    print("\"\(route.id)\" : \"\(route.shortName)\",")
+//                }
+//            }
+//        }
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -45,6 +52,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         let buses = route.transportation
         cell.tableLabel.text = "Route \(indexPath.row + 1)"
         cell.backgroundColor = .green
+        //pull this code out and create a helper method/func and add in activity indicator?
         MTAAPIClient.getBusInfo(advisoryMessage: true, buses: buses) { (advisoryMessage, activeBuses) in
             if let advisoryMessage = advisoryMessage {
                 for message in advisoryMessage {
@@ -83,6 +91,18 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             }
         }
         return cell
+    }
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            myRoutes.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            print(indexPath.row)
+            RouteModel.deleteRoute(index: indexPath.row)
+            //add code to plist to delete at
+        }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        guard let selectedCell = tableView.cellForRow(at: indexPath) as? MyTableViewCell else {return}

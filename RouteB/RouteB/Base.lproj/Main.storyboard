@@ -133,17 +133,16 @@
         <!--Create Route-->
         <scene sceneID="Mnj-RV-mbb">
             <objects>
-                <viewController id="3S3-Ed-BLO" customClass="CreateRouteViewController" customModule="RouteB" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateRouteViewController" id="3S3-Ed-BLO" customClass="CreateRouteViewController" customModule="RouteB" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Mve-on-Luw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="16i-FI-w7M">
-                                <rect key="frame" x="0.0" y="427" width="375" height="240"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="16i-FI-w7M">
+                                <rect key="frame" x="0.0" y="431" width="375" height="236"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="240" id="2pI-oz-T8u"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="240" id="5Mm-L2-Ggq"/>
+                                    <constraint firstAttribute="height" constant="236" id="t0H-oV-pR8"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MyCreateTableViewCell" id="TVm-Ot-aah" customClass="MyCreateTableViewCell" customModule="RouteB" customModuleProvider="target">
@@ -172,75 +171,60 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add Bus/Train" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gt5-YI-241">
-                                <rect key="frame" x="0.0" y="389" width="131.5" height="20.5"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T7Q-NP-kF8">
-                                <rect key="frame" x="187.5" y="120" width="187.5" height="56"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EWW-i7-X93">
-                                <rect key="frame" x="0.0" y="176" width="375" height="195"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wYg-VV-Y33">
+                                <rect key="frame" x="0.0" y="64" width="375" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="195" id="ebn-Jt-C4S"/>
+                                    <constraint firstAttribute="height" constant="60" id="nsE-7l-EpU"/>
                                 </constraints>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="YZx-8l-3t1">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YZx-8l-3t1" id="hak-Je-4W3">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O3Q-Xf-y7w">
-                                <rect key="frame" x="319" y="371" width="56" height="56"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="56" id="80y-Vn-2Wv"/>
-                                    <constraint firstAttribute="height" constant="56" id="dfq-Uk-6uG"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
-                                <state key="normal" title="+"/>
-                                <connections>
-                                    <action selector="addTransportButtonPressed:" destination="3S3-Ed-BLO" eventType="touchUpInside" id="89o-h5-kal"/>
-                                </connections>
-                            </button>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3fr-6n-myd">
-                                <rect key="frame" x="131.5" y="371" width="187.5" height="56"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wYg-VV-Y33">
-                                <rect key="frame" x="36" y="77" width="115" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Starting Address"/>
                                 <connections>
                                     <action selector="startingAddressClicked:" destination="3S3-Ed-BLO" eventType="touchUpInside" id="TEh-5k-YnN"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BPH-Ca-wo7">
-                                <rect key="frame" x="39" y="120" width="108" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BPH-Ca-wo7">
+                                <rect key="frame" x="0.0" y="124" width="375" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="84C-yK-Th3"/>
+                                </constraints>
                                 <state key="normal" title="Ending Address"/>
                                 <connections>
                                     <action selector="endingAddressClicked:" destination="3S3-Ed-BLO" eventType="touchUpInside" id="G4c-3Z-lmp"/>
                                 </connections>
                             </button>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E3o-mq-Co1">
-                                <rect key="frame" x="188" y="64" width="187.5" height="56"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gsQ-pB-2Jp" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="184" width="375" height="211"/>
+                                <color key="backgroundColor" red="0.99969620589999997" green="1" blue="0.47851909749999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="gsQ-pB-2Jp" secondAttribute="height" multiplier="16:9" id="H66-uf-89S"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F4z-Ss-1Wl">
+                                <rect key="frame" x="0.0" y="395" width="375" height="36"/>
+                                <state key="normal" title="Add Buses and Trains"/>
+                                <connections>
+                                    <action selector="transportationButtonClicked:" destination="3S3-Ed-BLO" eventType="touchUpInside" id="TWl-wN-6qt"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="gsQ-pB-2Jp" firstAttribute="leading" secondItem="Fw4-5P-caS" secondAttribute="leading" id="2CJ-Ax-Kvv"/>
+                            <constraint firstItem="BPH-Ca-wo7" firstAttribute="leading" secondItem="Fw4-5P-caS" secondAttribute="leading" id="2rQ-Nq-acV"/>
+                            <constraint firstItem="16i-FI-w7M" firstAttribute="trailing" secondItem="Fw4-5P-caS" secondAttribute="trailing" id="5DO-gZ-t4L"/>
+                            <constraint firstItem="wYg-VV-Y33" firstAttribute="top" secondItem="Fw4-5P-caS" secondAttribute="top" id="9oJ-Xp-yYg"/>
+                            <constraint firstItem="Fw4-5P-caS" firstAttribute="trailing" secondItem="gsQ-pB-2Jp" secondAttribute="trailing" id="Hgh-L4-81v"/>
+                            <constraint firstItem="Fw4-5P-caS" firstAttribute="trailing" secondItem="F4z-Ss-1Wl" secondAttribute="trailing" id="LjO-y6-6aw"/>
+                            <constraint firstItem="16i-FI-w7M" firstAttribute="bottom" secondItem="Fw4-5P-caS" secondAttribute="bottom" id="Lkq-H8-nfW"/>
+                            <constraint firstItem="gsQ-pB-2Jp" firstAttribute="top" secondItem="BPH-Ca-wo7" secondAttribute="bottom" id="a5d-vx-gKm"/>
+                            <constraint firstItem="BPH-Ca-wo7" firstAttribute="top" secondItem="wYg-VV-Y33" secondAttribute="bottom" id="bnN-7p-8vK"/>
+                            <constraint firstItem="F4z-Ss-1Wl" firstAttribute="top" secondItem="gsQ-pB-2Jp" secondAttribute="bottom" id="cOl-AM-bNE"/>
+                            <constraint firstItem="wYg-VV-Y33" firstAttribute="leading" secondItem="Fw4-5P-caS" secondAttribute="leading" id="ccJ-dm-t0y"/>
+                            <constraint firstItem="F4z-Ss-1Wl" firstAttribute="leading" secondItem="Fw4-5P-caS" secondAttribute="leading" id="d4r-EC-Zh7"/>
+                            <constraint firstItem="Fw4-5P-caS" firstAttribute="trailing" secondItem="BPH-Ca-wo7" secondAttribute="trailing" id="mjb-la-Ttj"/>
+                            <constraint firstItem="16i-FI-w7M" firstAttribute="leading" secondItem="Fw4-5P-caS" secondAttribute="leading" id="sfo-VI-xHM"/>
+                            <constraint firstItem="16i-FI-w7M" firstAttribute="top" secondItem="F4z-Ss-1Wl" secondAttribute="bottom" id="u03-fF-AyG"/>
+                            <constraint firstItem="Fw4-5P-caS" firstAttribute="trailing" secondItem="wYg-VV-Y33" secondAttribute="trailing" id="zUa-Dg-0Ba"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Fw4-5P-caS"/>
                     </view>
                     <navigationItem key="navigationItem" title="Create Route" id="b5c-tg-asb">
@@ -256,16 +240,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="addTransportButton" destination="O3Q-Xf-y7w" id="Gck-gr-QoI"/>
-                        <outlet property="busSearchBar" destination="3fr-6n-myd" id="sRv-6L-yms"/>
                         <outlet property="cancelButton" destination="ll1-IH-7CS" id="95r-2j-7lD"/>
                         <outlet property="createButton" destination="gCc-lX-UPM" id="ppm-Od-mHn"/>
                         <outlet property="createTableView" destination="16i-FI-w7M" id="iVg-Pv-960"/>
                         <outlet property="endingAddressButton" destination="BPH-Ca-wo7" id="gET-aX-xBc"/>
-                        <outlet property="endingAddressSearchBar" destination="T7Q-NP-kF8" id="Nlu-8T-RqH"/>
-                        <outlet property="searchTableView" destination="EWW-i7-X93" id="hK6-0c-mri"/>
+                        <outlet property="mapView" destination="gsQ-pB-2Jp" id="PWO-CN-VaY"/>
                         <outlet property="startingAddressButton" destination="wYg-VV-Y33" id="ir0-3t-iBX"/>
-                        <outlet property="startingAddressSearchBar" destination="E3o-mq-Co1" id="fZz-y2-j5V"/>
+                        <outlet property="transportationButton" destination="F4z-Ss-1Wl" id="qZv-dp-VpB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ODH-zT-h9E" userLabel="First Responder" sceneMemberID="firstResponder"/>

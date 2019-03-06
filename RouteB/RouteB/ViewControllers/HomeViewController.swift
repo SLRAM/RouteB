@@ -11,29 +11,26 @@ import MapKit
 import CoreLocation
 import GoogleMaps
 
+protocol HomeViewControllerDelegate: AnyObject {
+//    func getLocation(location: Dictionary<String,CLLocationCoordinate2D>)
+    func getLocation(buttonTag: Int, locationTuple: (String, CLLocationCoordinate2D))
+
+}
 class HomeViewController: UIViewController {
     
-    
+    weak var delegate: HomeViewControllerDelegate?
     private let homeView = HomeView()
     public let identifer = "marker"
-    
+    var allMarkers = [GMSMarker]()
     var searchCompleter = MKLocalSearchCompleter()
     var searchResults = [MKLocalSearchCompletion]()
-    
-    var locationCoordinate: CLLocationCoordinate2D!
-    
-    
-    var mapView: GMSMapView?
-    
-//    private let homeListView = HomeListView()
-//
-//
-//    private let searchbarView = SearchBarView()
-//    private var venues = [Venues]()
-    //    let testingCoordinate = CLLocationCoordinate2D.init(latitude: 40.7484, longitude: -73.9857)
+    var locationCoordinate: CLLocationCoordinate2D?
+    var tag: Int?
+
     var query : String?
     var near = String()
     var locationString = String()
+    var locationTuple = (str:"", location:CLLocationCoordinate2D.init())
     var statusRawValue = Int32()
     var userLocation : CLLocationCoordinate2D?
     var updatedUserLocation = CLLocationCoordinate2D()
@@ -41,60 +38,46 @@ class HomeViewController: UIViewController {
         var tag: Int!
     }
     
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        GMSServices.provideAPIKey(SecretKeys.googleKey)
-
         mapListButton()
         homeView.delegate = self
-        
         homeViewSetup()
         searchCompleter.delegate = self
-
         //        centerOnMap(location: initialLocation)
 //        homeView.mapView.delegate = self
-        
 //        homeView.locationTextField.delegate = self
         homeView.locationSearch.delegate = self
         // setupAnnotations()
+        
     
 
     }
     
     func mapListButton() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "List", style: .plain, target: self, action: #selector(toggle))
+        navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "Add", style: .plain, target: self, action: #selector(addButton))
     }
     
-    @objc func toggle() {
-        print("pressed toggle")
-
-            if navigationItem.rightBarButtonItem?.title == "List" {
-                navigationItem.rightBarButtonItem?.title = "Map"
-            } else {
-                navigationItem.rightBarButtonItem?.title = "List"
-            }
-            homeViewSetup()
-        
+    @objc func addButton() {
+        guard let noLocation = homeView.locationSearch.text?.isEmpty else {return}
+        if noLocation {
+            let alertController = UIAlertController(title: "Please provide a location to add to your route.", message: nil, preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            present(alertController, animated: true)
+        } else {
+            guard let buttonTag = tag else {return}
+            delegate?.getLocation(buttonTag: buttonTag, locationTuple: locationTuple)
+            let alertController = UIAlertController(title: "This location has been added to your route.", message: nil, preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            present(alertController, animated: true)
+        }
     }
     func homeViewSetup() {
         view.addSubview(homeView)
         homeView.myTableView.delegate = self
         homeView.myTableView.dataSource = self
-        
-        if navigationItem.rightBarButtonItem?.title == "Map" {
-            UIView.animate(withDuration: 0.5, delay: 0.0, options: [], animations: {
-                self.homeView.myMapView.alpha = 0.0
-            })
-        } else {
-            UIView.animate(withDuration: 0.5, delay: 0.0, options: [], animations: {
-                self.homeView.myMapView.alpha = 1.0
-            })
-            self.view.addSubview(homeView)
-            homeView.reloadInputViews()
-        }
     }
 }
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate{
@@ -111,55 +94,59 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate{
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //do code here to make sure coordinates are obtained from location. possible alert saying sorry the location you entered could not be found try again.
         tableView.deselectRow(at: indexPath, animated: true)
         
         let completion = searchResults[indexPath.row]
-        homeView.locationSearch.text = "\(completion.title) \(completion.subtitle)"
+        let completionFull = "\(completion.title) \(completion.subtitle)"
+        homeView.locationSearch.text = completionFull
+        
         let searchRequest = MKLocalSearch.Request(completion: completion)
         let search = MKLocalSearch(request: searchRequest)
         search.start { (response, error) in
             self.locationCoordinate = response?.mapItems[0].placemark.coordinate
             print("Ending coordinate: \(String(describing: self.locationCoordinate))")
+            DispatchQueue.main.async {
+                guard let inputLocation = self.locationCoordinate else {return}
+                self.locationTuple = (completionFull, inputLocation)
+
+                self.homeView.myMapView.animate(toLocation: CLLocationCoordinate2D(latitude: inputLocation.latitude, longitude: inputLocation.longitude))
+                let locate = GMSCameraPosition.camera(withLatitude: inputLocation.latitude,
+                                                      longitude: inputLocation.longitude,
+                                                      zoom: 17)
+                for marker in self.allMarkers {
+                    marker.map = nil
+                }
+                self.allMarkers.removeAll()
+                let locationMarker = GMSMarker.init()
+                locationMarker.position = inputLocation
+                locationMarker.title = "Starting"
+                locationMarker.map = self.homeView.myMapView
+                self.allMarkers.append(locationMarker)
+            }
+            
+            
         }
         UIView.animate(withDuration: 0.5, delay: 0.0, options: [], animations: {
             self.homeView.myMapView.alpha = 1.0
+            
+            
         })
+        
+        //add map code here
         self.view.addSubview(homeView)
         homeView.reloadInputViews()
-        
-            
-            
-//        guard let selectedCell = homeView.myTableView.cellForRow(at: indexPath) as? HomeListTableViewCell else {return}
-//        let venue = venues[indexPath.row]
-//        let detailVC = HomeDetailViewController()
-//        detailVC.venue = venue
-//        detailVC.homeDetailView.detailImageView.image = selectedCell.cellImage.image
-//        //        detailVC
-//        //        UIView.animate(withDuration: 5.5, delay: 0.0, options: [], animations: {
-//        //        })
-//        navigationController?.pushViewController(detailVC, animated: true)
     }
 }
-//extension HomeViewController: MKMapViewDelegate{
-//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-//        guard annotation is MKPointAnnotation else { return nil }
-//
-//        let identifier = "Annotation"
-//        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-//
-//        if annotationView == nil {
-//            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-//            annotationView?.rightCalloutAccessoryView = UIButton(type: .infoLight)
-//            annotationView!.canShowCallout = true
-//        } else {
-//            annotationView!.annotation = annotation
-//        }
-//        return annotationView
-//    }
-//
-//}
 
 extension HomeViewController: GMSMapViewDelegate {
+//    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
+//        print("camera changed")
+//    }
+//    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
+//        print("updating")
+//    }
+    
     
 }
 extension HomeViewController: UISearchBarDelegate {
@@ -198,22 +185,3 @@ extension HomeViewController: HomeViewDelegate {
         print("pushed")
     }
 }
-//extension HomeViewController: CLLocationManagerDelegate {
-//    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-//        print("user changed the authorization")
-//        statusRawValue = status.rawValue
-//        let currentLocation = homeView.mapView.userLocation
-//        let myCurrentRegion = MKCoordinateRegion(center: currentLocation.coordinate, latitudinalMeters: 9000, longitudinalMeters: 9000)
-//        homeView.mapView.setRegion(myCurrentRegion, animated: true)
-//        print(status.rawValue)
-//    }
-//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        print("user has changed locations")
-//        guard let currentLocation = locations.last else {return}
-//        updatedUserLocation = currentLocation.coordinate
-//        print("The user is in lat: \(currentLocation.coordinate.latitude) and long:\(currentLocation.coordinate.longitude)")
-//        //        let myCurrentRegion = MKCoordinateRegion(center: currentLocation.coordinate, latitudinalMeters: 9000, longitudinalMeters: 9000)
-//        //        homeView.mapView.setRegion(myCurrentRegion, animated: true)
-//        //        getVenues(userLocation: updatedUserLocation, near: "", query: "Taco")
-//    }
-//}

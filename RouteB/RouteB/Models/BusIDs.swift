@@ -9,338 +9,339 @@
 import Foundation
 
 struct BusIDs {
-    static let BusIDs = ["MTABC_QM31"
-        , "MTABC_QM32"
-        , "MTABC_QM35"
-        , "MTABC_QM36"
-        , "MTABC_QM34"
-        , "MTABC_BM5"
-        , "MTABC_BM3"
-        , "MTABC_BM4"
-        , "MTABC_BM1"
-        , "MTABC_BM2"
-        , "MTABC_QM20"
-        , "MTABC_QM21"
-        , "MTABC_QM24"
-        , "MTABC_QM25"
-        , "MTABC_Q53+"
-        , "MTABC_QM17"
-        , "MTABC_QM18"
-        , "MTABC_QM15"
-        , "MTABC_QM16"
-        , "MTABC_QM10"
-        , "MTABC_QM11"
-        , "MTABC_Q52+"
-        , "MTABC_QM12"
-        , "MTABC_BX23"
-        , "MTABC_QM8"
-        , "MTABC_QM6"
-        , "MTABC_QM7"
-        , "MTABC_QM4"
-        , "MTABC_QM5"
-        , "MTABC_QM2"
-        , "MTABC_QM3"
-        , "MTABC_QM1"
-        , "MTABC_QM42"
-        , "MTABC_QM40"
-        , "MTABC_QM44"
-        , "MTABC_Q29"
-        , "MTABC_Q25"
-        , "MTABC_Q23"
-        , "MTABC_Q21"
-        , "MTABC_Q22"
-        , "MTABC_BXM1"
-        , "MTABC_BXM2"
-        , "MTABC_BXM3"
-        , "MTABC_BXM4"
-        , "MTABC_BXM6"
-        , "MTABC_BXM7"
-        , "MTABC_BXM8"
-        , "MTABC_BXM9"
-        , "MTABC_Q38"
-        , "MTABC_Q39"
-        , "MTABC_Q37"
-        , "MTABC_Q34"
-        , "MTABC_Q35"
-        , "MTABC_B100"
-        , "MTABC_Q33"
-        , "MTABC_B103"
-        , "MTABC_Q09"
-        , "MTABC_Q07"
-        , "MTABC_Q08"
-        , "MTABC_Q06"
-        , "MTABC_Q113"
-        , "MTABC_Q114"
-        , "MTABC_Q111"
-        , "MTABC_Q112"
-        , "MTABC_Q110"
-        , "MTABC_Q18"
-        , "MTABC_Q19"
-        , "MTABC_Q10"
-        , "MTABC_Q11"
-        , "MTABC_Q102"
-        , "MTABC_Q103"
-        , "MTABC_Q100"
-        , "MTABC_Q101"
-        , "MTABC_Q104"
-        , "MTABC_BXM10"
-        , "MTABC_BXM11"
-        , "MTABC_BXM18"
-        , "MTABC_Q69"
-        , "MTABC_Q67"
-        , "MTABC_Q65"
-        , "MTABC_Q66"
-        , "MTABC_Q64"
-        , "MTABC_Q60"
-        , "MTABC_Q72"
-        , "MTABC_Q49"
-        , "MTABC_Q47"
-        , "MTABC_Q41"
-        , "MTABC_Q40"
-        , "MTABC_Q50"
-        , "MTABC_Q70+"
-        , "MTA NYCT_BX4A"
-        , "MTA NYCT_M31"
-        , "MTA NYCT_M35"
-        , "MTA NYCT_M60+"
-        , "MTA NYCT_M20"
-        , "MTA NYCT_BX42"
-        , "MTA NYCT_BX41"
-        , "MTA NYCT_M22"
-        , "MTA NYCT_BX40"
-        , "MTA NYCT_M21"
-        , "MTA NYCT_BX46"
-        , "MTA NYCT_M15+"
-        , "MTA NYCT_M14A"
-        , "MTA NYCT_M15"
-        , "MTA NYCT_M14D"
-        , "MTA NYCT_SIM4C"
-        , "MTA NYCT_BX32"
-        , "MTA NYCT_BX31"
-        , "MTA NYCT_BX34"
-        , "MTA NYCT_SIM4X"
-        , "MTA NYCT_BX33"
-        , "MTA NYCT_M12"
-        , "MTA NYCT_BX30"
-        , "MTA NYCT_M11"
-        , "MTA NYCT_M10"
-        , "MTA NYCT_BX39"
-        , "MTA NYCT_BX36"
-        , "MTA NYCT_BX35"
-        , "MTA NYCT_BX38"
-        , "MTA NYCT_X68"
-        , "MTA NYCT_Q88"
-        , "MTA NYCT_X64"
-        , "MTA NYCT_X63"
-        , "MTA NYCT_BX21"
-        , "MTA NYCT_BX20"
-        , "MTA NYCT_BX22"
-        , "MTA NYCT_Q85"
-        , "MTA NYCT_Q84"
-        , "MTA NYCT_Q83"
-        , "MTA NYCT_BX29"
-        , "MTA NYCT_BX28"
-        , "MTA NYCT_BX24"
-        , "MTA NYCT_BX27"
-        , "MTA NYCT_BX26"
-        , "MTA NYCT_Q20B"
-        , "MTA NYCT_Q20A"
-        , "MTA NYCT_SIM35"
-        , "MTA NYCT_SIM34"
-        , "MTA NYCT_B17"
-        , "MTA NYCT_M72"
-        , "MTA NYCT_B11"
-        , "MTA NYCT_B12"
-        , "MTA NYCT_B15"
-        , "MTA NYCT_SIM31"
-        , "MTA NYCT_B16"
-        , "MTA NYCT_SIM30"
-        , "MTA NYCT_B13"
-        , "MTA NYCT_SIM33"
-        , "MTA NYCT_B14"
-        , "MTA NYCT_SIM32"
-        , "MTA NYCT_BX12+"
-        , "MTA NYCT_SIM3C"
-        , "MTA NYCT_M66"
-        , "MTA NYCT_SIM15"
-        , "MTA NYCT_M50"
-        , "MTA NYCT_M57"
-        , "MTA NYCT_M55"
-        , "MTA NYCT_M34A+"
-        , "MTA NYCT_M86+"
-        , "MTA NYCT_SIM11"
-        , "MTA NYCT_SIM10"
-        , "MTA NYCT_SIM1C"
-        , "MTA NYCT_Q44+"
-        , "MTA NYCT_BX6+"
-        , "MTA NYCT_L0202"
-        , "MTA NYCT_M42"
-        , "MTA NYCT_M7"
-        , "MTA NYCT_M8"
-        , "MTA NYCT_M5"
-        , "MTA NYCT_SIM26"
-        , "MTA NYCT_SIM25"
-        , "MTA NYCT_M9"
-        , "MTA NYCT_M3"
-        , "MTA NYCT_M4"
-        , "MTA NYCT_M1"
-        , "MTA NYCT_SIM22"
-        , "MTA NYCT_M2"
-        , "MTA NYCT_SIM3"
-        , "MTA NYCT_SIM4"
-        , "MTA NYCT_SIM5"
-        , "MTA NYCT_B46+"
-        , "MTA NYCT_SIM6"
-        , "MTA NYCT_B62"
-        , "MTA NYCT_B63"
-        , "MTA NYCT_B60"
-        , "MTA NYCT_SIM1"
-        , "MTA NYCT_B61"
-        , "MTA NYCT_SIM2"
-        , "MTA NYCT_S76"
-        , "MTA NYCT_S79+"
-        , "MTA NYCT_Q32"
-        , "MTA NYCT_S74"
-        , "MTA NYCT_Q36"
-        , "MTA NYCT_S78"
-        , "MTA NYCT_Q31"
-        , "MTA NYCT_Q30"
-        , "MTA NYCT_B54"
-        , "MTA NYCT_B57"
-        , "MTA NYCT_M34+"
-        , "MTA NYCT_B52"
-        , "MTA NYCT_Q24"
-        , "MTA NYCT_S66"
-        , "MTA NYCT_Q28"
-        , "MTA NYCT_Q27"
-        , "MTA NYCT_Q26"
-        , "MTA NYCT_S62"
-        , "MTA NYCT_S61"
-        , "MTA NYCT_B44"
-        , "MTA NYCT_B45"
-        , "MTA NYCT_B42"
-        , "MTA NYCT_B43"
-        , "MTA NYCT_B48"
-        , "MTA NYCT_SIM7"
-        , "MTA NYCT_B49"
-        , "MTA NYCT_SIM8"
-        , "MTA NYCT_B46"
-        , "MTA NYCT_SIM9"
-        , "MTA NYCT_B47"
-        , "MTA NYCT_B41"
-        , "MTA NYCT_M79+"
-        , "MTA NYCT_B4"
-        , "MTA NYCT_Q13"
-        , "MTA NYCT_S55"
-        , "MTA NYCT_Q12"
-        , "MTA NYCT_S54"
-        , "MTA NYCT_B2"
-        , "MTA NYCT_S53"
-        , "MTA NYCT_B3"
-        , "MTA NYCT_S52"
-        , "MTA NYCT_B8"
-        , "MTA NYCT_Q17"
-        , "MTA NYCT_S59"
-        , "MTA NYCT_B44+"
-        , "MTA NYCT_B9"
-        , "MTA NYCT_Q16"
-        , "MTA NYCT_L1227"
-        , "MTA NYCT_B6"
-        , "MTA NYCT_Q15"
-        , "MTA NYCT_S57"
-        , "MTA NYCT_B7"
-        , "MTA NYCT_S56"
-        , "MTA NYCT_M96"
-        , "MTA NYCT_B39"
-        , "MTA NYCT_S51"
-        , "MTA NYCT_B1"
-        , "MTA NYCT_M98"
-        , "MTA NYCT_B31"
-        , "MTA NYCT_B32"
-        , "MTA NYCT_B37"
-        , "MTA NYCT_B38"
-        , "MTA NYCT_B35"
-        , "MTA NYCT_B36"
-        , "MTA NYCT_S44"
-        , "MTA NYCT_S42"
-        , "MTA NYCT_S48"
-        , "MTA NYCT_S46"
-        , "MTA NYCT_S40"
-        , "MTA NYCT_Q3"
-        , "MTA NYCT_Q4"
-        , "MTA NYCT_B20"
-        , "MTA NYCT_Q1"
-        , "MTA NYCT_Q2"
-        , "MTA NYCT_B26"
-        , "MTA NYCT_SIM33C"
-        , "MTA NYCT_B24"
-        , "MTA NYCT_Q5"
-        , "MTA NYCT_B25"
-        , "MTA NYCT_L0719"
-        , "MTA NYCT_BX41+"
-        , "MTA NYCT_Q77"
-        , "MTA NYCT_B82+"
-        , "MTA NYCT_Q76"
-        , "MTA NYCT_BX10"
-        , "MTA NYCT_BX12"
-        , "MTA NYCT_BX11"
-        , "MTA NYCT_BX18"
-        , "MTA NYCT_BX17"
-        , "MTA NYCT_BX19"
-        , "MTA NYCT_BX13"
-        , "MTA NYCT_BX16"
-        , "MTA NYCT_BX15"
-        , "MTA NYCT_B84"
-        , "MTA NYCT_M23+"
-        , "MTA NYCT_B82"
-        , "MTA NYCT_X38"
-        , "MTA NYCT_B83"
-        , "MTA NYCT_X37"
-        , "MTA NYCT_Q56"
-        , "MTA NYCT_S98"
-        , "MTA NYCT_Q55"
-        , "MTA NYCT_Q54"
-        , "MTA NYCT_S96"
-        , "MTA NYCT_Q59"
-        , "MTA NYCT_Q58"
-        , "MTA NYCT_S91"
-        , "MTA NYCT_M104"
-        , "MTA NYCT_S90"
-        , "MTA NYCT_M106"
-        , "MTA NYCT_S94"
-        , "MTA NYCT_S93"
-        , "MTA NYCT_S92"
-        , "MTA NYCT_BX9"
-        , "MTA NYCT_BX8"
-        , "MTA NYCT_BX7"
-        , "MTA NYCT_BX6"
-        , "MTA NYCT_M101"
-        , "MTA NYCT_M100"
-        , "MTA NYCT_M103"
-        , "MTA NYCT_SIM8X"
-        , "MTA NYCT_M102"
-        , "MTA NYCT_BX1"
-        , "MTA NYCT_B70"
-        , "MTA NYCT_BX5"
-        , "MTA NYCT_BX4"
-        , "MTA NYCT_B74"
-        , "MTA NYCT_X28"
-        , "MTA NYCT_BX3"
-        , "MTA NYCT_X27"
-        , "MTA NYCT_BX2"
-        , "MTA NYCT_Q46"
-        , "MTA NYCT_S86"
-        , "MTA NYCT_Q43"
-        , "MTA NYCT_Q48"
-        , "MTA NYCT_S89"
-        , "MTA NYCT_M116"
-        , "MTA NYCT_Q15A"
-        , "MTA NYCT_Q42"
-        , "MTA NYCT_S84"
-        , "MTA NYCT_S81"
-        , "MTA NYCT_B67"
-        , "MTA NYCT_B64"
-        , "MTA NYCT_B65"
-        , "MTA NYCT_B68"
-        , "MTA NYCT_B69"]
+    static let BusIDs = ["MTABC_QM31" : "QM31",
+                         "MTABC_QM32" : "QM32",
+                         "MTABC_QM35" : "QM35",
+                         "MTABC_QM36" : "QM36",
+                         "MTABC_QM34" : "QM34",
+                         "MTABC_BM5" : "BM5",
+                         "MTABC_BM3" : "BM3",
+                         "MTABC_BM4" : "BM4",
+                         "MTABC_BM1" : "BM1",
+                         "MTABC_BM2" : "BM2",
+                         "MTABC_QM20" : "QM20",
+                         "MTABC_QM21" : "QM21",
+                         "MTABC_QM24" : "QM24",
+                         "MTABC_QM25" : "QM25",
+                         "MTABC_Q53+" : "Q53-SBS",
+                         "MTABC_QM17" : "QM17",
+                         "MTABC_QM18" : "QM18",
+                         "MTABC_QM15" : "QM15",
+                         "MTABC_QM16" : "QM16",
+                         "MTABC_QM10" : "QM10",
+                         "MTABC_QM11" : "QM11",
+                         "MTABC_Q52+" : "Q52-SBS",
+                         "MTABC_QM12" : "QM12",
+                         "MTABC_BX23" : "Bx23",
+                         "MTABC_QM8" : "QM8",
+                         "MTABC_QM6" : "QM6",
+                         "MTABC_QM7" : "QM7",
+                         "MTABC_QM4" : "QM4",
+                         "MTABC_QM5" : "QM5",
+                         "MTABC_QM2" : "QM2",
+                         "MTABC_QM3" : "QM3",
+                         "MTABC_QM1" : "QM1",
+                         "MTABC_QM42" : "QM42",
+                         "MTABC_QM40" : "QM40",
+                         "MTABC_QM44" : "QM44",
+                         "MTABC_Q29" : "Q29",
+                         "MTABC_Q25" : "Q25",
+                         "MTABC_Q23" : "Q23",
+                         "MTABC_Q21" : "Q21",
+                         "MTABC_Q22" : "Q22",
+                         "MTABC_BXM1" : "BxM1",
+                         "MTABC_BXM2" : "BxM2",
+                         "MTABC_BXM3" : "BxM3",
+                         "MTABC_BXM4" : "BxM4",
+                         "MTABC_BXM6" : "BxM6",
+                         "MTABC_BXM7" : "BxM7",
+                         "MTABC_BXM8" : "BxM8",
+                         "MTABC_BXM9" : "BxM9",
+                         "MTABC_Q38" : "Q38",
+                         "MTABC_Q39" : "Q39",
+                         "MTABC_Q37" : "Q37",
+                         "MTABC_Q34" : "Q34",
+                         "MTABC_Q35" : "Q35",
+                         "MTABC_B100" : "B100",
+                         "MTABC_Q33" : "Q33",
+                         "MTABC_B103" : "B103",
+                         "MTABC_Q09" : "Q9",
+                         "MTABC_Q07" : "Q7",
+                         "MTABC_Q08" : "Q8",
+                         "MTABC_Q06" : "Q6",
+                         "MTABC_Q113" : "Q113",
+                         "MTABC_Q114" : "Q114",
+                         "MTABC_Q111" : "Q111",
+                         "MTABC_Q112" : "Q112",
+                         "MTABC_Q110" : "Q110",
+                         "MTABC_Q18" : "Q18",
+                         "MTABC_Q19" : "Q19",
+                         "MTABC_Q10" : "Q10",
+                         "MTABC_Q11" : "Q11",
+                         "MTABC_Q102" : "Q102",
+                         "MTABC_Q103" : "Q103",
+                         "MTABC_Q100" : "Q100",
+                         "MTABC_Q101" : "Q101",
+                         "MTABC_Q104" : "Q104",
+                         "MTABC_BXM10" : "BxM10",
+                         "MTABC_BXM11" : "BxM11",
+                         "MTABC_BXM18" : "BxM18",
+                         "MTABC_Q69" : "Q69",
+                         "MTABC_Q67" : "Q67",
+                         "MTABC_Q65" : "Q65",
+                         "MTABC_Q66" : "Q66",
+                         "MTABC_Q64" : "Q64",
+                         "MTABC_Q60" : "Q60",
+                         "MTABC_Q72" : "Q72",
+                         "MTABC_Q49" : "Q49",
+                         "MTABC_Q47" : "Q47",
+                         "MTABC_Q41" : "Q41",
+                         "MTABC_Q40" : "Q40",
+                         "MTABC_Q50" : "Q50",
+                         "MTABC_Q70+" : "Q70-SBS",
+                         "MTA NYCT_BX4A" : "Bx4A",
+                         "MTA NYCT_M31" : "M31",
+                         "MTA NYCT_M35" : "M35",
+                         "MTA NYCT_M60+" : "M60-SBS",
+                         "MTA NYCT_M20" : "M20",
+                         "MTA NYCT_BX42" : "Bx42",
+                         "MTA NYCT_BX41" : "Bx41",
+                         "MTA NYCT_M22" : "M22",
+                         "MTA NYCT_BX40" : "Bx40",
+                         "MTA NYCT_M21" : "M21",
+                         "MTA NYCT_BX46" : "Bx46",
+                         "MTA NYCT_M15+" : "M15-SBS",
+                         "MTA NYCT_M14A" : "M14A",
+                         "MTA NYCT_M15" : "M15",
+                         "MTA NYCT_M14D" : "M14D",
+                         "MTA NYCT_SIM4C" : "SIM4C",
+                         "MTA NYCT_BX32" : "Bx32",
+                         "MTA NYCT_BX31" : "Bx31",
+                         "MTA NYCT_BX34" : "Bx34",
+                         "MTA NYCT_SIM4X" : "SIM4X",
+                         "MTA NYCT_BX33" : "Bx33",
+                         "MTA NYCT_M12" : "M12",
+                         "MTA NYCT_BX30" : "Bx30",
+                         "MTA NYCT_M11" : "M11",
+                         "MTA NYCT_M10" : "M10",
+                         "MTA NYCT_BX39" : "Bx39",
+                         "MTA NYCT_BX36" : "Bx36",
+                         "MTA NYCT_BX35" : "Bx35",
+                         "MTA NYCT_BX38" : "Bx38",
+                         "MTA NYCT_X68" : "X68",
+                         "MTA NYCT_Q88" : "Q88",
+                         "MTA NYCT_X64" : "X64",
+                         "MTA NYCT_X63" : "X63",
+                         "MTA NYCT_BX21" : "Bx21",
+                         "MTA NYCT_BX20" : "Bx20",
+                         "MTA NYCT_BX22" : "Bx22",
+                         "MTA NYCT_Q85" : "Q85",
+                         "MTA NYCT_Q84" : "Q84",
+                         "MTA NYCT_Q83" : "Q83",
+                         "MTA NYCT_BX29" : "Bx29",
+                         "MTA NYCT_BX28" : "Bx28",
+                         "MTA NYCT_BX24" : "Bx24",
+                         "MTA NYCT_BX27" : "Bx27",
+                         "MTA NYCT_BX26" : "Bx26",
+                         "MTA NYCT_Q20B" : "Q20B",
+                         "MTA NYCT_Q20A" : "Q20A",
+                         "MTA NYCT_SIM35" : "SIM35",
+                         "MTA NYCT_SIM34" : "SIM34",
+                         "MTA NYCT_B17" : "B17",
+                         "MTA NYCT_M72" : "M72",
+                         "MTA NYCT_B11" : "B11",
+                         "MTA NYCT_B12" : "B12",
+                         "MTA NYCT_B15" : "B15",
+                         "MTA NYCT_SIM31" : "SIM31",
+                         "MTA NYCT_B16" : "B16",
+                         "MTA NYCT_SIM30" : "SIM30",
+                         "MTA NYCT_B13" : "B13",
+                         "MTA NYCT_SIM33" : "SIM33",
+                         "MTA NYCT_B14" : "B14",
+                         "MTA NYCT_SIM32" : "SIM32",
+                         "MTA NYCT_BX12+" : "Bx12-SBS",
+                         "MTA NYCT_SIM3C" : "SIM3C",
+                         "MTA NYCT_M66" : "M66",
+                         "MTA NYCT_SIM15" : "SIM15",
+                         "MTA NYCT_M50" : "M50",
+                         "MTA NYCT_M57" : "M57",
+                         "MTA NYCT_M55" : "M55",
+                         "MTA NYCT_M34A+" : "M34A-SBS",
+                         "MTA NYCT_M86+" : "M86-SBS",
+                         "MTA NYCT_SIM11" : "SIM11",
+                         "MTA NYCT_SIM10" : "SIM10",
+                         "MTA NYCT_SIM1C" : "SIM1C",
+                         "MTA NYCT_Q44+" : "Q44-SBS",
+                         "MTA NYCT_BX6+" : "Bx6-SBS",
+                         "MTA NYCT_L0202" : "MW-ML",
+                         "MTA NYCT_M42" : "M42",
+                         "MTA NYCT_M7" : "M7",
+                         "MTA NYCT_M8" : "M8",
+                         "MTA NYCT_M5" : "M5",
+                         "MTA NYCT_SIM26" : "SIM26",
+                         "MTA NYCT_SIM25" : "SIM25",
+                         "MTA NYCT_M9" : "M9",
+                         "MTA NYCT_M3" : "M3",
+                         "MTA NYCT_M4" : "M4",
+                         "MTA NYCT_M1" : "M1",
+                         "MTA NYCT_SIM22" : "SIM22",
+                         "MTA NYCT_M2" : "M2",
+                         "MTA NYCT_SIM3" : "SIM3",
+                         "MTA NYCT_SIM4" : "SIM4",
+                         "MTA NYCT_SIM5" : "SIM5",
+                         "MTA NYCT_B46+" : "B46-SBS",
+                         "MTA NYCT_SIM6" : "SIM6",
+                         "MTA NYCT_B62" : "B62",
+                         "MTA NYCT_B63" : "B63",
+                         "MTA NYCT_B60" : "B60",
+                         "MTA NYCT_SIM1" : "SIM1",
+                         "MTA NYCT_B61" : "B61",
+                         "MTA NYCT_SIM2" : "SIM2",
+                         "MTA NYCT_S76" : "S76",
+                         "MTA NYCT_S79+" : "S79-SBS",
+                         "MTA NYCT_Q32" : "Q32",
+                         "MTA NYCT_S74" : "S74",
+                         "MTA NYCT_Q36" : "Q36",
+                         "MTA NYCT_S78" : "S78",
+                         "MTA NYCT_Q31" : "Q31",
+                         "MTA NYCT_Q30" : "Q30",
+                         "MTA NYCT_B54" : "B54",
+                         "MTA NYCT_B57" : "B57",
+                         "MTA NYCT_M34+" : "M34-SBS",
+                         "MTA NYCT_B52" : "B52",
+                         "MTA NYCT_Q24" : "Q24",
+                         "MTA NYCT_S66" : "S66",
+                         "MTA NYCT_Q28" : "Q28",
+                         "MTA NYCT_Q27" : "Q27",
+                         "MTA NYCT_Q26" : "Q26",
+                         "MTA NYCT_S62" : "S62",
+                         "MTA NYCT_S61" : "S61",
+                         "MTA NYCT_B44" : "B44",
+                         "MTA NYCT_B45" : "B45",
+                         "MTA NYCT_B42" : "B42",
+                         "MTA NYCT_B43" : "B43",
+                         "MTA NYCT_B48" : "B48",
+                         "MTA NYCT_SIM7" : "SIM7",
+                         "MTA NYCT_B49" : "B49",
+                         "MTA NYCT_SIM8" : "SIM8",
+                         "MTA NYCT_B46" : "B46",
+                         "MTA NYCT_SIM9" : "SIM9",
+                         "MTA NYCT_B47" : "B47",
+                         "MTA NYCT_B41" : "B41",
+                         "MTA NYCT_M79+" : "M79-SBS",
+                         "MTA NYCT_B4" : "B4",
+                         "MTA NYCT_Q13" : "Q13",
+                         "MTA NYCT_S55" : "S55",
+                         "MTA NYCT_Q12" : "Q12",
+                         "MTA NYCT_S54" : "S54",
+                         "MTA NYCT_B2" : "B2",
+                         "MTA NYCT_S53" : "S53",
+                         "MTA NYCT_B3" : "B3",
+                         "MTA NYCT_S52" : "S52",
+                         "MTA NYCT_B8" : "B8",
+                         "MTA NYCT_Q17" : "Q17",
+                         "MTA NYCT_S59" : "S59",
+                         "MTA NYCT_B44+" : "B44-SBS",
+                         "MTA NYCT_B9" : "B9",
+                         "MTA NYCT_Q16" : "Q16",
+                         "MTA NYCT_L1227" : "BJ-MW",
+                         "MTA NYCT_B6" : "B6",
+                         "MTA NYCT_Q15" : "Q15",
+                         "MTA NYCT_S57" : "S57",
+                         "MTA NYCT_B7" : "B7",
+                         "MTA NYCT_S56" : "S56",
+                         "MTA NYCT_M96" : "M96",
+                         "MTA NYCT_B39" : "B39",
+                         "MTA NYCT_S51" : "S51",
+                         "MTA NYCT_B1" : "B1",
+                         "MTA NYCT_M98" : "M98",
+                         "MTA NYCT_B31" : "B31",
+                         "MTA NYCT_B32" : "B32",
+                         "MTA NYCT_B37" : "B37",
+                         "MTA NYCT_B38" : "B38",
+                         "MTA NYCT_B35" : "B35",
+                         "MTA NYCT_B36" : "B36",
+                         "MTA NYCT_S44" : "S44",
+                         "MTA NYCT_S42" : "S42",
+                         "MTA NYCT_S48" : "S48",
+                         "MTA NYCT_S46" : "S46",
+                         "MTA NYCT_S40" : "S40",
+                         "MTA NYCT_Q3" : "Q3",
+                         "MTA NYCT_Q4" : "Q4",
+                         "MTA NYCT_B20" : "B20",
+                         "MTA NYCT_Q1" : "Q1",
+                         "MTA NYCT_Q2" : "Q2",
+                         "MTA NYCT_B26" : "B26",
+                         "MTA NYCT_SIM33C" : "SIM33C",
+                         "MTA NYCT_B24" : "B24",
+                         "MTA NYCT_Q5" : "Q5",
+                         "MTA NYCT_B25" : "B25",
+                         "MTA NYCT_L0719" : "BEDLOOP",
+                         "MTA NYCT_BX41+" : "Bx41-SBS",
+                         "MTA NYCT_Q77" : "Q77",
+                         "MTA NYCT_B82+" : "B82-SBS",
+                         "MTA NYCT_Q76" : "Q76",
+                         "MTA NYCT_BX10" : "Bx10",
+                         "MTA NYCT_BX12" : "Bx12",
+                         "MTA NYCT_BX11" : "Bx11",
+                         "MTA NYCT_BX18" : "Bx18",
+                         "MTA NYCT_BX17" : "Bx17",
+                         "MTA NYCT_BX19" : "Bx19",
+                         "MTA NYCT_BX13" : "Bx13",
+                         "MTA NYCT_BX16" : "Bx16",
+                         "MTA NYCT_BX15" : "Bx15",
+                         "MTA NYCT_B84" : "B84",
+                         "MTA NYCT_M23+" : "M23-SBS",
+                         "MTA NYCT_B82" : "B82",
+                         "MTA NYCT_X38" : "X38",
+                         "MTA NYCT_B83" : "B83",
+                         "MTA NYCT_X37" : "X37",
+                         "MTA NYCT_Q56" : "Q56",
+                         "MTA NYCT_S98" : "S98",
+                         "MTA NYCT_Q55" : "Q55",
+                         "MTA NYCT_Q54" : "Q54",
+                         "MTA NYCT_S96" : "S96",
+                         "MTA NYCT_Q59" : "Q59",
+                         "MTA NYCT_Q58" : "Q58",
+                         "MTA NYCT_S91" : "S91",
+                         "MTA NYCT_M104" : "M104",
+                         "MTA NYCT_S90" : "S90",
+                         "MTA NYCT_M106" : "M106",
+                         "MTA NYCT_S94" : "S94",
+                         "MTA NYCT_S93" : "S93",
+                         "MTA NYCT_S92" : "S92",
+                         "MTA NYCT_BX9" : "Bx9",
+                         "MTA NYCT_BX8" : "Bx8",
+                         "MTA NYCT_BX7" : "Bx7",
+                         "MTA NYCT_BX6" : "Bx6",
+                         "MTA NYCT_M101" : "M101",
+                         "MTA NYCT_M100" : "M100",
+                         "MTA NYCT_M103" : "M103",
+                         "MTA NYCT_SIM8X" : "SIM8X",
+                         "MTA NYCT_M102" : "M102",
+                         "MTA NYCT_BX1" : "Bx1",
+                         "MTA NYCT_B70" : "B70",
+                         "MTA NYCT_BX5" : "Bx5",
+                         "MTA NYCT_BX4" : "Bx4",
+                         "MTA NYCT_B74" : "B74",
+                         "MTA NYCT_X28" : "X28",
+                         "MTA NYCT_BX3" : "Bx3",
+                         "MTA NYCT_X27" : "X27",
+                         "MTA NYCT_BX2" : "Bx2",
+                         "MTA NYCT_Q46" : "Q46",
+                         "MTA NYCT_S86" : "S86",
+                         "MTA NYCT_Q43" : "Q43",
+                         "MTA NYCT_Q48" : "Q48",
+                         "MTA NYCT_S89" : "S89",
+                         "MTA NYCT_M116" : "M116",
+                         "MTA NYCT_Q15A" : "Q15A",
+                         "MTA NYCT_Q42" : "Q42",
+                         "MTA NYCT_S84" : "S84",
+                         "MTA NYCT_S81" : "S81",
+                         "MTA NYCT_B67" : "B67",
+                         "MTA NYCT_B64" : "B64",
+                         "MTA NYCT_B65" : "B65",
+                         "MTA NYCT_B68" : "B68",
+                         "MTA NYCT_B69" : "B69"
+    ]
 }

@@ -8,43 +8,35 @@
 
 import UIKit
 import MapKit
+import GoogleMaps
 
 //change search function so that it segues to a mapview with a search bar ontop and the searchbar is it's own view same as foursquare. toggles out mapview for tableview when location is selected it shows on map then user can confirm location. potentially allow user to adjust location by dragging map around?
 
 class CreateRouteViewController: UIViewController {
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var createButton: UIBarButtonItem!
-//    @IBOutlet weak var startingAddressField: UITextField!
-    @IBOutlet weak var startingAddressSearchBar: UISearchBar!
-//    @IBOutlet weak var startingAddressTableView: UITableView!
-//    @IBOutlet weak var endingAddressField: UITextField!
-    @IBOutlet weak var endingAddressSearchBar: UISearchBar!
-    @IBOutlet weak var searchTableView: UITableView!
-    @IBOutlet weak var busSearchBar: UISearchBar!
-//    @IBOutlet weak var transportationField: UITextField!
+    @IBOutlet weak var transportationButton: UIButton!
     @IBOutlet weak var createTableView: UITableView!
-    @IBOutlet weak var addTransportButton: UIButton!
-    
     @IBOutlet weak var startingAddressButton: UIButton!
-    
-    
     @IBOutlet weak var endingAddressButton: UIButton!
+    @IBOutlet var mapView: GMSMapView! //reacts diff if left as UIView
     
-    
-    
-    
-    
-    
-    var transportationArray = [String]()
+    var myMapView: GMSMapView?
+
+    var startingCoordinate: CLLocationCoordinate2D!
     var startingAddressLat = Double()
     var startingAddressLong = Double()
+    
+    var endingCoordinate: CLLocationCoordinate2D!
     var endingAddressLat = Double()
     var endingAddressLong = Double()
+    
+    var transportationArray = [String]()
 
-    var currentSearchBar = Int()
     
     var searchCompleter = MKLocalSearchCompleter()
     var searchResults = [MKLocalSearchCompletion]()
+    
     private var MTABusesList = [List]() {
         didSet {
             DispatchQueue.main.async {
@@ -52,60 +44,59 @@ class CreateRouteViewController: UIViewController {
             }
         }
     }
-    
-    
-    var startingCoordinate: CLLocationCoordinate2D!
-    var endingCoordinate: CLLocationCoordinate2D!
-    
-    let address = "89 Metropolitan Oval Bronx NY"
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(BusIDs.BusIDs)
-
-        startingAddressSearchBar.delegate = self
-//        startingAddressTableView.delegate = self
-//        startingAddressTableView.dataSource = self
-        
-        endingAddressSearchBar.delegate = self
-        searchTableView.delegate = self
-        searchTableView.dataSource = self
-        
-        busSearchBar.delegate = self
-        
+        let camera = GMSCameraPosition.camera(withLatitude: 40.793840, longitude: 73.886012, zoom: 11)
+        myMapView = GMSMapView.init(frame: CGRect.zero, camera: camera)
+        //        mapView = GMSMapView.init(frame: CGRect.zero, camera: camera)
+        //mapView = myMapView
+        mapView.addSubview(myMapView!)
         searchCompleter.delegate = self
         createTableView.dataSource = self
         createTableView.delegate = self
-        searchTableView.isHidden = true
-
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+//        let camera = GMSCameraPosition.camera(withLatitude: 40.793840, longitude: -73.886012, zoom: 11)
+//        myMapView = GMSMapView.init(frame: CGRect.zero, camera: camera)
+////        mapView = GMSMapView.init(frame: CGRect.zero, camera: camera)
+//        mapView = myMapView
+//        view.addSubview(mapView)
     }
     
     @IBAction func startingAddressClicked(_ sender: UIButton) {
-        print("clicked")
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let searchVC = storyboard.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
-        navigationController?.pushViewController(searchVC, animated: true)
-    }
-    
-    @IBAction func endingAddressClicked(_ sender: UIButton) {
-//        print("clicked")
-//
+        let detailVC = HomeViewController()
+        detailVC.delegate = self
+        detailVC.tag = 0
+        navigationController?.pushViewController(detailVC, animated: true)
 //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
 //        let searchVC = storyboard.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
 //        navigationController?.pushViewController(searchVC, animated: true)
-        
-                let detailVC = HomeViewController()
-
-                //        detailVC
-                //        UIView.animate(withDuration: 5.5, delay: 0.0, options: [], animations: {
-                //        })
-                navigationController?.pushViewController(detailVC, animated: true)
     }
     
-    
-
+    @IBAction func transportationButtonClicked(_ sender: UIButton) {
+        
+        //    old code
+        //    @IBAction func addTransportButtonPressed(_ sender: UIButton) {
+        //        print("added")
+        //        if let transportation = busSearchBar.text {
+        //            transportationArray.append(transportation)
+        //            createTableView.reloadData()
+        //            print(transportationArray.count)
+        //            print(transportationArray[transportationArray.count-1].description)
+        //        }
+        //    }
+        
+        
+    }
+    @IBAction func endingAddressClicked(_ sender: UIButton) {
+        let detailVC = HomeViewController()
+        detailVC.delegate = self
+        detailVC.tag = 1
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
     
     private func saveRoute()-> UserRoute? {
         let startingAddressLat = startingCoordinate.latitude
@@ -146,26 +137,7 @@ class CreateRouteViewController: UIViewController {
         RouteModel.appendRoute(route: route)
         dismiss(animated: true, completion: nil)
     }
-    @IBAction func addTransportButtonPressed(_ sender: UIButton) {
-        print("added")
-        if let transportation = busSearchBar.text {
-            searchTableView.reloadData()
-            transportationArray.append(transportation)
-            busSearchBar.text = ""
-            createTableView.reloadData()
-            print(transportationArray.count)
-            print(transportationArray[transportationArray.count-1].description)
-        }
-    }
-}
-extension CreateRouteViewController: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        
-    }
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        return true
-    }
-    
+
 }
 
 extension CreateRouteViewController: UITableViewDataSource, UITableViewDelegate {
@@ -175,98 +147,25 @@ extension CreateRouteViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (tableView == searchTableView){
-            return searchResults.count
-        } else {
-            return transportationArray.count
-        }
+        return transportationArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if tableView == searchTableView{
-            if currentSearchBar == 0 || currentSearchBar == 1 {
-                let searchResult = searchResults[indexPath.row]
-                let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
-                cell.textLabel?.text = searchResult.title
-                cell.detailTextLabel?.text = searchResult.subtitle
-                return cell
-            } else {
-                let searchResult = BusIDs.BusIDs[indexPath.row]
-                //filter with searchbar
-                let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
-                cell.textLabel?.text = searchResult.description
-//                cell.detailTextLabel?.text = //this will hide id but textlabel will show short name
-                return cell
-            }
-            
-        } else {
-            guard let cell = createTableView.dequeueReusableCell(withIdentifier: "MyCreateTableViewCell", for: indexPath) as? MyCreateTableViewCell else {return UITableViewCell()}
-            print(transportationArray[indexPath.row].description)
-            let route = transportationArray[indexPath.row]
-            cell.createdLabel.text = route
-            return cell
-        }
+        guard let cell = createTableView.dequeueReusableCell(withIdentifier: "MyCreateTableViewCell", for: indexPath) as? MyCreateTableViewCell else {return UITableViewCell()}
+        print(transportationArray[indexPath.row].description)
+        let route = transportationArray[indexPath.row]
+        cell.createdLabel.text = route
+        return cell
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if (tableView == searchTableView) {
-            tableView.deselectRow(at: indexPath, animated: true)
-            
-            let completion = searchResults[indexPath.row]
-            let busSelected = BusIDs.BusIDs[indexPath.row]
-            
-            if currentSearchBar == 0 {
-                startingAddressSearchBar.text = "\(completion.title) \(completion.subtitle)"
-                let searchRequest = MKLocalSearch.Request(completion: completion)
-                let search = MKLocalSearch(request: searchRequest)
-                search.start { (response, error) in
-                    self.startingCoordinate = response?.mapItems[0].placemark.coordinate
-                    print("Ending coordinate: \(String(describing: self.startingCoordinate))")
-                    self.searchTableView.isHidden = true
-                }
-            } else if currentSearchBar == 1 {
-                endingAddressSearchBar.text = "\(completion.title) \(completion.subtitle)"
-                
-                let searchRequest = MKLocalSearch.Request(completion: completion)
-                let search = MKLocalSearch(request: searchRequest)
-                search.start { (response, error) in
-                    self.endingCoordinate = response?.mapItems[0].placemark.coordinate
-                    print("Ending coordinate: \(String(describing: self.endingCoordinate))")
-                    self.searchTableView.isHidden = true
-                }
-            } else {
-                busSearchBar.text = "\(busSelected.description)"
-                //use for bus tableview
-            }
-            
-        } else {
-            
-        }
-    }
-}
-extension CreateRouteViewController: UISearchBarDelegate {
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        if searchBar == startingAddressSearchBar {
-            print("First clicked")
-            currentSearchBar = 0
-            searchCompleter.queryFragment = searchText
-//            startingAddressTableView.isHidden = false
-            searchTableView.isHidden = false
-        }
-        if searchBar == endingAddressSearchBar {
-            print("Second clicked")
-            currentSearchBar = 1
-            searchCompleter.queryFragment = searchText
-            searchTableView.isHidden = false
-        }
-        if searchBar == busSearchBar {
-            print("Third clicked")
-            currentSearchBar = 2
-            searchTableView.isHidden = false
-        }
 
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            transportationArray.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
     }
 }
 
@@ -274,7 +173,6 @@ extension CreateRouteViewController: MKLocalSearchCompleterDelegate {
     
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
         searchResults = completer.results
-        searchTableView.reloadData()
     }
     
     func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
@@ -282,3 +180,23 @@ extension CreateRouteViewController: MKLocalSearchCompleterDelegate {
     }
 }
 
+extension CreateRouteViewController: HomeViewControllerDelegate {
+    func getLocation(buttonTag: Int, locationTuple: (String, CLLocationCoordinate2D)) {
+        if buttonTag == 0 {
+            print("tuple printout of string: \(locationTuple.0)")
+            print("tuple printout of coordinates: \(locationTuple.1)")
+            startingCoordinate = locationTuple.1
+            startingAddressButton.setTitle(locationTuple.0, for: .normal)
+            startingAddressButton.titleLabel?.text = locationTuple.0
+        } else {
+            print("tuple printout of string: \(locationTuple.0)")
+            print("tuple printout of coordinates: \(locationTuple.1)")
+            endingCoordinate = locationTuple.1
+            endingAddressButton.setTitle(locationTuple.0, for: .normal)
+            endingAddressButton.titleLabel?.text = locationTuple.0
+        }
+        
+        //if button text is changed then update map
+    }
+
+}

@@ -43,11 +43,9 @@ class GoogleMapsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         print("advisoryMessages: \(advisoryMessages)")
         guard let busesUnwrapped = myRoute?.transportation else {return}
         buses = busesUnwrapped
-        GMSServices.provideAPIKey(SecretKeys.googleKey)
 //        setupView()
         timer()
     }
@@ -102,6 +100,8 @@ class GoogleMapsViewController: UIViewController {
         calgaryMarker.position = calgary
         calgaryMarker.title = "Calgary"
         calgaryMarker.map = mapView
+        
+        
         
         let bounds = GMSCoordinateBounds.init(coordinate: startingLocation, coordinate: endingLocation)
         mapView?.moveCamera(GMSCameraUpdate.fit(bounds))

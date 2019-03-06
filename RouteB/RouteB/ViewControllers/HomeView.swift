@@ -15,7 +15,7 @@ protocol HomeViewDelegate: AnyObject {
 }
 
 class HomeView: UIView {
-    var mapView: GMSMapView?
+//    var mapView: GMSMapView?
     
     weak var delegate: HomeViewDelegate?
     
@@ -43,18 +43,11 @@ class HomeView: UIView {
         return tv
     }()
     
-//    lazy var mapView: MKMapView = {
-//        let view = MKMapView()
-//        view.mapType = MKMapType.standard
-//        view.isZoomEnabled = true
-//        view.isScrollEnabled = true
-//        view.center = self.center
-//        return view
-//    }()
-    
-    lazy var myMapView: UIView = {
-        var view = UIView()
-//        GMSServices.provideAPIKey(SecretKeys.googleKey)
+    lazy var myMapView: GMSMapView = {
+        var view = GMSMapView()
+        
+        let camera = GMSCameraPosition.camera(withLatitude: 40.793840, longitude: -73.886012, zoom: 11)
+        view = GMSMapView.init(frame: CGRect.zero, camera: camera)
 //        let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6)
 //        myMapView = GMSMapView.init(frame: CGRect.zero, camera: camera)
 //        view = myMapView
