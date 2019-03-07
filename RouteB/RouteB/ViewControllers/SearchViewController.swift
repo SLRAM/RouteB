@@ -53,7 +53,7 @@ class SearchViewController: UIViewController {
         } else {
 //            delegate?.getLocation(buttonTag: buttonTag, locationTuple: locationTuple)
             delegate?.selectedBuses(buses: savedBuses)
-            let alertController = UIAlertController(title: "These buses has been added to your route.", message: nil, preferredStyle: .alert)
+            let alertController = UIAlertController(title: "These buses have been added to your route.", message: nil, preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             alertController.addAction(okAction)
             present(alertController, animated: true)

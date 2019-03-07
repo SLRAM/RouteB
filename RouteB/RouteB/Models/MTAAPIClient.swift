@@ -55,7 +55,7 @@ final class MTAAPIClient {
     
     static func searchLiveBusRoute(busLine: String, completionHandler: @escaping (AppError?, ServiceDelivery?) -> Void) {
         let endpointURLString = "http://bustime.mta.info/api/siri/vehicle-monitoring.json?key=\(SecretKeys.MTABusKey)&version=2&LineRef=\(busLine)"
-                print(endpointURLString)
+//                print(endpointURLString)
         NetworkHelper.shared.performDataTask(endpointURLString: endpointURLString) { (appError, data) in
             if let appError = appError {
                 completionHandler(appError, nil)
@@ -91,7 +91,7 @@ final class MTAAPIClient {
     
     static func getBusStops(busLine: String, completionHandler: @escaping (AppError?, BusStopData?) -> Void) {
         let endpointURLString = "http://bustime.mta.info/api/where/stops-for-route/\(busLine).json?key=\(SecretKeys.MTABusKey)&includePolylines=true&version=2"
-        print(endpointURLString)
+//        print(endpointURLString)
         NetworkHelper.shared.performDataTask(endpointURLString: endpointURLString) { (appError, data) in
             if let appError = appError {
                 completionHandler(appError, nil)
