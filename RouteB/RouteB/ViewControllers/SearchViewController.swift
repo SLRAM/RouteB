@@ -10,18 +10,20 @@ import UIKit
 
 class SearchViewController: UIViewController {
 
-    @IBOutlet weak var searchResultsTableView: UITableView!
+    @IBOutlet weak var busTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
     var savedBuses = [(String, String)]()
+    
     var buses = BusIDs.BusIDs
     override func viewDidLoad() {
         super.viewDidLoad()
         print(buses)
         searchBar.delegate = self
-        searchResultsTableView.delegate = self
-        searchResultsTableView.dataSource = self
+        busTableView.delegate = self
+        busTableView.dataSource = self
         addButton()
+
     }
     
     
@@ -57,14 +59,33 @@ extension SearchViewController: UISearchBarDelegate {
 extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return buses.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //if + add -SBS
 //        let searchResult = searchResults[indexPath.row]
+//        let busName = buses[indexPath.row].1
+        let bus = buses[indexPath.row]
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
-//        cell.textLabel?.text = searchResult.title
-//        cell.detailTextLabel?.text = searchResult.subtitle
+//        let busShortName = bus
+        
+        if let range = bus.range(of: "_") {
+            let busShortName = bus[range.upperBound...]
+            print(busShortName)
+            let newBusFormat = busShortName.replacingOccurrences(of: "+", with: "-SBS")
+            cell.textLabel?.text = newBusFormat
+        }
+        
+        
+        
+        
+        
+//        cell.textLabel?.text = bus
+        
+//        cell.textLabel?.text = busName
+////        cell.textLabel?.text = searchResult.title
+////        cell.detailTextLabel?.text = searchResult.subtitle
         return cell
     }
     

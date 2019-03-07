@@ -30,14 +30,17 @@ class ViewController: UIViewController {
 //        MTAAPIClient.searchNYCTBusRoutes { (appError, routes) in
 //            if let routes = routes {
 //                for route in routes {
-//                    print("(\"\(route.id)\", \"\(route.shortName)\"),")
+////                    print("(\"\(route.id)\", \"\(route.shortName)\"),")
+//                    print("\"\(route.id)\",")
 //                }
 //            }
 //        }
 //        MTAAPIClient.searchMTABCBusRoutes { (appError, routes) in
 //            if let routes = routes {
 //                for route in routes {
-//                    print("(\"\(route.id)\", \"\(route.shortName)\"),")
+////                    print("(\"\(route.id)\", \"\(route.shortName)\"),")
+//                    print("\"\(route.id)\",")
+//
 //                }
 //            }
 //        }
