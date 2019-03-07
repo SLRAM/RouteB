@@ -7,19 +7,30 @@
 //
 
 import UIKit
-
+import Foundation
+protocol SearchViewControllerDelegate: AnyObject {
+    func selectedBuses(buses: [String])
+}
 class SearchViewController: UIViewController {
 
+    weak var delegate: SearchViewControllerDelegate?
+    
     @IBOutlet weak var busTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    var savedBuses = [(String, String)]()
+    var savedBuses = [String]()
     
     var buses = BusIDs.BusIDs
+    var filteredBuses = [String]()
+    
+    var isSearching = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(buses)
+        buses.sort(by: {$0 < $1})
+        filteredBuses = buses
         searchBar.delegate = self
+//        searchBar.returnKeyType = UIReturnKeyType.done
         busTableView.delegate = self
         busTableView.dataSource = self
         addButton()
@@ -41,6 +52,7 @@ class SearchViewController: UIViewController {
             present(alertController, animated: true)
         } else {
 //            delegate?.getLocation(buttonTag: buttonTag, locationTuple: locationTuple)
+            delegate?.selectedBuses(buses: savedBuses)
             let alertController = UIAlertController(title: "These buses has been added to your route.", message: nil, preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             alertController.addAction(okAction)
@@ -52,40 +64,52 @@ class SearchViewController: UIViewController {
 extension SearchViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-
+        if searchText == "" {
+            isSearching = false
+            view.endEditing(true)
+        } else {
+            isSearching = true
+            filteredBuses = buses.filter({$0.lowercased().contains(searchText.lowercased())})
+            
+        }
+        busTableView.reloadData()
     }
+    
 }
 
 extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return buses.count
+        
+        if isSearching {
+            return filteredBuses.count
+        } else {
+            return buses.count
+        }
+        
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //if + add -SBS
-//        let searchResult = searchResults[indexPath.row]
-//        let busName = buses[indexPath.row].1
-        let bus = buses[indexPath.row]
+
+        var bus = String()
+        if isSearching {
+            bus = filteredBuses[indexPath.row]
+        } else {
+            bus = buses[indexPath.row]
+        }
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
-//        let busShortName = bus
-        
         if let range = bus.range(of: "_") {
             let busShortName = bus[range.upperBound...]
-            print(busShortName)
+//            print(busShortName)
             let newBusFormat = busShortName.replacingOccurrences(of: "+", with: "-SBS")
             cell.textLabel?.text = newBusFormat
         }
+        if savedBuses.contains(bus) {
+            cell.accessoryType = .checkmark
+        }
         
-        
-        
-        
-        
-//        cell.textLabel?.text = bus
-        
-//        cell.textLabel?.text = busName
-////        cell.textLabel?.text = searchResult.title
-////        cell.detailTextLabel?.text = searchResult.subtitle
         return cell
     }
     
@@ -93,6 +117,27 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        var bus = String()
+        if isSearching {
+            bus = filteredBuses[indexPath.row]
+
+        } else {
+            bus = buses[indexPath.row]
+        }
+        print(bus)
+        if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
+            tableView.cellForRow(at: indexPath)?.accessoryType = .none
+            var counter = 0
+            for savedBus in savedBuses {
+                if savedBus != bus {
+                    counter += 1
+                }
+            }
+            savedBuses.remove(at: counter)
+        } else {
+            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+            savedBuses.append(bus)
+        }
         
     }
 }

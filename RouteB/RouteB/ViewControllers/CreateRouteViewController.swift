@@ -91,6 +91,7 @@ class CreateRouteViewController: UIViewController {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let searchVC = storyboard.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
+        searchVC.delegate = self
         navigationController?.pushViewController(searchVC, animated: true)
     }
     @IBAction func endingAddressClicked(_ sender: UIButton) {
@@ -156,7 +157,19 @@ extension CreateRouteViewController: UITableViewDataSource, UITableViewDelegate 
         guard let cell = createTableView.dequeueReusableCell(withIdentifier: "MyCreateTableViewCell", for: indexPath) as? MyCreateTableViewCell else {return UITableViewCell()}
         print(transportationArray[indexPath.row].description)
         let route = transportationArray[indexPath.row]
-        cell.createdLabel.text = route
+        
+        if let range = route.range(of: "_") {
+            let busShortName = route[range.upperBound...]
+            //            print(busShortName)
+            let newBusFormat = busShortName.replacingOccurrences(of: "+", with: "-SBS")
+            cell.createdLabel.text = newBusFormat
+        }
+        
+        
+//        cell.createdLabel.text = route
+        
+        
+        
         return cell
     }
 
@@ -201,4 +214,12 @@ extension CreateRouteViewController: HomeViewControllerDelegate {
         //if button text is changed then update map
     }
 
+}
+extension CreateRouteViewController: SearchViewControllerDelegate {
+    func selectedBuses(buses: [String]) {
+            transportationArray = buses
+            createTableView.reloadData()
+    }
+    
+    
 }
