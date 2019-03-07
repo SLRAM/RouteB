@@ -76,24 +76,7 @@ class CreateRouteViewController: UIViewController {
 //        navigationController?.pushViewController(searchVC, animated: true)
     }
     
-    @IBAction func transportationButtonClicked(_ sender: UIButton) {
-        
-        //    old code
-        //    @IBAction func addTransportButtonPressed(_ sender: UIButton) {
-        //        print("added")
-        //        if let transportation = busSearchBar.text {
-        //            transportationArray.append(transportation)
-        //            createTableView.reloadData()
-        //            print(transportationArray.count)
-        //            print(transportationArray[transportationArray.count-1].description)
-        //        }
-        //    }
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let searchVC = storyboard.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
-        searchVC.delegate = self
-        navigationController?.pushViewController(searchVC, animated: true)
-    }
+
     @IBAction func endingAddressClicked(_ sender: UIButton) {
         let detailVC = HomeViewController()
         detailVC.delegate = self

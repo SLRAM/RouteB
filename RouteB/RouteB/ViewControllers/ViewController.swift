@@ -8,10 +8,13 @@
 
 import UIKit
 
+//additions: add train info
+
 class ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
 //    var advisoryMessages = [String]()
+    @IBOutlet weak var noRoutesView: UIView!
     
     var myRoutes = [UserRoute]() {
         didSet {
@@ -23,9 +26,13 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        myRoutes = RouteModel.getRoutes()
+        if !myRoutes.isEmpty {
+            noRoutesView.alpha = 0
+        }
         tableView.dataSource = self
         tableView.delegate = self
-        myRoutes = RouteModel.getRoutes()
+        
         print(DataPersistenceManager.documentsDirectory())
 //        MTAAPIClient.searchNYCTBusRoutes { (appError, routes) in
 //            if let routes = routes {

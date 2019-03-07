@@ -8,6 +8,9 @@
 
 import UIKit
 import GoogleMaps
+
+//additions: get bus arrival time for each stop. can find arrival info in bus live info but there is no connection to specific bus stops
+
 class GoogleMapsViewController: UIViewController {
 
     var myRoute : UserRoute?
