@@ -11,14 +11,14 @@ import MapKit
 import CoreLocation
 import GoogleMaps
 
-protocol HomeViewControllerDelegate: AnyObject {
+protocol LocationSearchViewControllerDelegate: AnyObject {
 //    func getLocation(location: Dictionary<String,CLLocationCoordinate2D>)
     func getLocation(buttonTag: Int, locationTuple: (String, CLLocationCoordinate2D))
 
 }
-class HomeViewController: UIViewController {
+class LocationSearchViewController: UIViewController {
     
-    weak var delegate: HomeViewControllerDelegate?
+    weak var delegate: LocationSearchViewControllerDelegate?
     private let homeView = HomeView()
     public let identifer = "marker"
     var allMarkers = [GMSMarker]()
@@ -80,7 +80,7 @@ class HomeViewController: UIViewController {
         homeView.myTableView.dataSource = self
     }
 }
-extension HomeViewController: UITableViewDataSource, UITableViewDelegate{
+extension LocationSearchViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchResults.count
     }
@@ -139,7 +139,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate{
     }
 }
 
-extension HomeViewController: GMSMapViewDelegate {
+extension LocationSearchViewController: GMSMapViewDelegate {
 //    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
 //        print("camera changed")
 //    }
@@ -149,7 +149,7 @@ extension HomeViewController: GMSMapViewDelegate {
     
     
 }
-extension HomeViewController: UISearchBarDelegate {
+extension LocationSearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("typing")
         
@@ -168,7 +168,7 @@ extension HomeViewController: UISearchBarDelegate {
         
     }
 }
-extension HomeViewController: MKLocalSearchCompleterDelegate {
+extension LocationSearchViewController: MKLocalSearchCompleterDelegate {
     
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
         searchResults = completer.results
@@ -180,7 +180,7 @@ extension HomeViewController: MKLocalSearchCompleterDelegate {
     }
 }
 
-extension HomeViewController: HomeViewDelegate {
+extension LocationSearchViewController: HomeViewDelegate {
     func userLocationButton() {
         print("pushed")
     }

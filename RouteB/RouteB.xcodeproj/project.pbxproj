@@ -20,11 +20,11 @@
 		974FA0A522149B69006381DD /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA0A422149B69006381DD /* SearchViewController.swift */; };
 		97BA31FE222E304F006A4365 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BA31FD222E304F006A4365 /* HomeView.swift */; };
 		97BA3200222E307D006A4365 /* HomeListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BA31FF222E307D006A4365 /* HomeListTableViewCell.swift */; };
-		97BA3202222E30B0006A4365 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BA3201222E30B0006A4365 /* HomeViewController.swift */; };
+		97BA3202222E30B0006A4365 /* LocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BA3201222E30B0006A4365 /* LocationSearchViewController.swift */; };
 		97C11C7B222445D60008B236 /* MTAAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C11C7A222445D60008B236 /* MTAAPIClient.swift */; };
 		97C11CA0222448FC0008B236 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C11C9F222448FC0008B236 /* AppError.swift */; };
 		97C11CA22224493E0008B236 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C11CA12224493E0008B236 /* NetworkHelper.swift */; };
-		97C11CA4222449840008B236 /* MTABus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C11CA3222449840008B236 /* MTABus.swift */; };
+		97C11CA4222449840008B236 /* MTABuses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C11CA3222449840008B236 /* MTABuses.swift */; };
 		97C11CA6222449910008B236 /* BusLiveRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C11CA5222449910008B236 /* BusLiveRoute.swift */; };
 		97C11CA822244DE90008B236 /* SecretKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C11CA722244DE90008B236 /* SecretKeys.swift */; };
 		97EA4B1A220CD32A00AB7612 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EA4B19220CD32A00AB7612 /* AppDelegate.swift */; };
@@ -50,11 +50,11 @@
 		974FA0A422149B69006381DD /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		97BA31FD222E304F006A4365 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		97BA31FF222E307D006A4365 /* HomeListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListTableViewCell.swift; sourceTree = "<group>"; };
-		97BA3201222E30B0006A4365 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		97BA3201222E30B0006A4365 /* LocationSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchViewController.swift; sourceTree = "<group>"; };
 		97C11C7A222445D60008B236 /* MTAAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTAAPIClient.swift; sourceTree = "<group>"; };
 		97C11C9F222448FC0008B236 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		97C11CA12224493E0008B236 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
-		97C11CA3222449840008B236 /* MTABus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTABus.swift; sourceTree = "<group>"; };
+		97C11CA3222449840008B236 /* MTABuses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTABuses.swift; sourceTree = "<group>"; };
 		97C11CA5222449910008B236 /* BusLiveRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusLiveRoute.swift; sourceTree = "<group>"; };
 		97C11CA722244DE90008B236 /* SecretKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretKeys.swift; sourceTree = "<group>"; };
 		97EA4B16220CD32A00AB7612 /* RouteB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RouteB.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,6 +89,16 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		971499452232F36A000CC1CE /* Network Services */ = {
+			isa = PBXGroup;
+			children = (
+				97C11C9F222448FC0008B236 /* AppError.swift */,
+				97C11C7A222445D60008B236 /* MTAAPIClient.swift */,
+				97C11CA12224493E0008B236 /* NetworkHelper.swift */,
+			);
+			path = "Network Services";
+			sourceTree = "<group>";
+		};
 		974FA07622128ACB006381DD /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -97,7 +107,7 @@
 				9704980D2228EFF200DD01C0 /* GoogleMapsViewController.swift */,
 				97BA31FD222E304F006A4365 /* HomeView.swift */,
 				97BA31FF222E307D006A4365 /* HomeListTableViewCell.swift */,
-				97BA3201222E30B0006A4365 /* HomeViewController.swift */,
+				97BA3201222E30B0006A4365 /* LocationSearchViewController.swift */,
 				974FA0A422149B69006381DD /* SearchViewController.swift */,
 			);
 			path = ViewControllers;
@@ -116,14 +126,10 @@
 			isa = PBXGroup;
 			children = (
 				974FA07822128BC9006381DD /* UserRoute.swift */,
-				974FA07A22128C46006381DD /* RouteModel.swift */,
-				97C11C7A222445D60008B236 /* MTAAPIClient.swift */,
-				97C11C9F222448FC0008B236 /* AppError.swift */,
-				97C11CA12224493E0008B236 /* NetworkHelper.swift */,
-				97C11CA3222449840008B236 /* MTABus.swift */,
+				97C11CA3222449840008B236 /* MTABuses.swift */,
+				9704980F222DDFF900DD01C0 /* BusIDs.swift */,
 				97C11CA5222449910008B236 /* BusLiveRoute.swift */,
 				970497A222264EA900DD01C0 /* BusStops.swift */,
-				9704980F222DDFF900DD01C0 /* BusIDs.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -133,6 +139,7 @@
 			children = (
 				974FA07E22128CF0006381DD /* DataPersistenceManager.swift */,
 				97C11CA722244DE90008B236 /* SecretKeys.swift */,
+				974FA07A22128C46006381DD /* RouteModel.swift */,
 			);
 			path = "File Manager Helpers";
 			sourceTree = "<group>";
@@ -159,6 +166,7 @@
 		97EA4B18220CD32A00AB7612 /* RouteB */ = {
 			isa = PBXGroup;
 			children = (
+				971499452232F36A000CC1CE /* Network Services */,
 				974FA083221320DF006381DD /* File Manager Helpers */,
 				974FA082221320BE006381DD /* Models */,
 				974FA07722128AD3006381DD /* Cells */,
@@ -307,8 +315,8 @@
 				974FA0A522149B69006381DD /* SearchViewController.swift in Sources */,
 				97EA4B1C220CD32A00AB7612 /* ViewController.swift in Sources */,
 				97C11C7B222445D60008B236 /* MTAAPIClient.swift in Sources */,
-				97C11CA4222449840008B236 /* MTABus.swift in Sources */,
-				97BA3202222E30B0006A4365 /* HomeViewController.swift in Sources */,
+				97C11CA4222449840008B236 /* MTABuses.swift in Sources */,
+				97BA3202222E30B0006A4365 /* LocationSearchViewController.swift in Sources */,
 				97BA3200222E307D006A4365 /* HomeListTableViewCell.swift in Sources */,
 				974FA075221287A1006381DD /* MyCreateTableViewCell.swift in Sources */,
 				970497A322264EA900DD01C0 /* BusStops.swift in Sources */,

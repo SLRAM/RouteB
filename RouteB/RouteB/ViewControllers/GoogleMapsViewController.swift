@@ -132,7 +132,10 @@ class GoogleMapsViewController: UIViewController {
         endingMarker.map = mapView
         
         let bounds = GMSCoordinateBounds.init(coordinate: startingLocation, coordinate: endingLocation)
-        mapView?.moveCamera(GMSCameraUpdate.fit(bounds))
+//        mapView?.moveCamera(GMSCameraUpdate.fit(bounds))
+        mapView?.moveCamera(GMSCameraUpdate.fit(bounds, withPadding: 125))
+    
+
     }
     func timer() {
         let myTimer = Timer(timeInterval: 20.0, target: self, selector: #selector(refresh), userInfo: nil, repeats: true)

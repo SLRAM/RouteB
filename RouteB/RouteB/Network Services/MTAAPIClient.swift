@@ -22,7 +22,7 @@ final class MTAAPIClient {
                 completionHandler(appError, nil)
             } else if let data = data {
                 do {
-                    let mtaInfo = try JSONDecoder().decode(MTABus.self, from: data)
+                    let mtaInfo = try JSONDecoder().decode(MTABuses.self, from: data)
                     completionHandler(nil, mtaInfo.data.list)
 //                    let mtaInfo = try JSONDecoder().decode(MTAInfo.self, from: data)
 //                    completionHandler(nil, mtaInfo.data.list)
@@ -41,7 +41,7 @@ final class MTAAPIClient {
                 completionHandler(appError, nil)
             } else if let data = data {
                 do {
-                    let mtaInfo = try JSONDecoder().decode(MTABus.self, from: data)
+                    let mtaInfo = try JSONDecoder().decode(MTABuses.self, from: data)
                     completionHandler(nil, mtaInfo.data.list)
                     //                    let mtaInfo = try JSONDecoder().decode(MTAInfo.self, from: data)
                     //                    completionHandler(nil, mtaInfo.data.list)

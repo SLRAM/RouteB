@@ -20,7 +20,7 @@ import Foundation
 //    let shortName: String
 //}
 
-struct MTABus: Codable {
+struct MTABuses: Codable {
     let data : MTAData
 }
 struct MTAData: Codable {

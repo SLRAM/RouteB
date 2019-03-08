@@ -66,7 +66,7 @@ class CreateRouteViewController: UIViewController {
 
     
     @IBAction func startingAddressClicked(_ sender: UIButton) {
-        let detailVC = HomeViewController()
+        let detailVC = LocationSearchViewController()
         detailVC.delegate = self
         detailVC.tag = 0
         navigationController?.pushViewController(detailVC, animated: true)
@@ -74,7 +74,7 @@ class CreateRouteViewController: UIViewController {
     
 
     @IBAction func endingAddressClicked(_ sender: UIButton) {
-        let detailVC = HomeViewController()
+        let detailVC = LocationSearchViewController()
         detailVC.delegate = self
         detailVC.tag = 1
         navigationController?.pushViewController(detailVC, animated: true)
@@ -197,7 +197,7 @@ extension CreateRouteViewController: MKLocalSearchCompleterDelegate {
     }
 }
 
-extension CreateRouteViewController: HomeViewControllerDelegate {
+extension CreateRouteViewController: LocationSearchViewControllerDelegate {
     func getLocation(buttonTag: Int, locationTuple: (String, CLLocationCoordinate2D)) {
         if buttonTag == 0 {
             print("tuple printout of string: \(locationTuple.0)")

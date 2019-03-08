@@ -181,7 +181,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         guard let selectedCell = tableView.cellForRow(at: indexPath) as? MyTableViewCell else {return}
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "GoogleMapsViewController") as! GoogleMapsViewController
-        let route = myRoutes[indexPath.row]
+        let route = myRoutes[indexPath.section]
         viewController.myRoute = route
         viewController.advisoryMessages = selectedCell.warning
         viewController.statusColor = selectedCell.backgroundColor
