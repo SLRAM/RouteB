@@ -16,7 +16,7 @@ class GoogleMapsViewController: UIViewController {
     var myRoute : UserRoute?
     var mapView: GMSMapView?
     var statusColor: UIColor?
-    var advisoryMessages: [String]?
+    var advisoryMessages: [[String]]?
     var buses = [String]()
 //    var allAnnotations = [MKAnnotation]()
     var allMarkers = [GMSMarker]()
@@ -85,7 +85,7 @@ class GoogleMapsViewController: UIViewController {
             return}
         var newStr = ""
         for message in messages {
-            newStr += "-\(message)" + "\n"
+            newStr += "-\(message[0])" + "\n"
         }
         print("this is the new string: \(newStr)")
         if messages.isEmpty {

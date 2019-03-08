@@ -68,40 +68,92 @@ class ViewController: UIViewController {
 //        self.navigationController!.navigationBar.barTintColor = UIColor.black
 
     }
-    
-    
-    
+    func characterFromInt(index : Int) -> String {
+        let startingValue = Int(("A" as UnicodeScalar).value)
+        var characterString = ""
+        characterString.append(Character(Unicode.Scalar(startingValue + index)!))
+        return characterString
+    }
 }
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         return myRoutes.count
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    
+    // Set the spacing between sections
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 5
+    }
+    
+    // Make the background color show through
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.clear
+        return headerView
+    }
+    
+    
+    
+    
+    
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MyTableViewCell", for: indexPath) as? MyTableViewCell else {return UITableViewCell()}
-        let route = myRoutes[indexPath.row]
+
+        let cellNumber = indexPath.section
+        
+        
+        
+        if cellNumber > 25 {
+            let number = cellNumber - 25
+            cell.tableLabel.text = "Route \(number)"
+        } else {
+            let letter = characterFromInt(index: cellNumber)
+            cell.tableLabel.text = "Route \(letter)"
+        }
+        let route = myRoutes[cellNumber]
         let buses = route.transportation
-        cell.tableLabel.text = "Route \(indexPath.row + 1)"
         cell.backgroundColor = .green
         
         //pull this code out and create a helper method/func and add in activity indicator?
+        var statusArray = [[String]]()
+        var conditionArray = [[String]]()
+
+
         MTAAPIClient.getBusInfo(advisoryMessage: true, buses: buses) { (advisoryMessage, activeBuses) in
-            if let advisoryMessage = advisoryMessage {
-                for message in advisoryMessage {
-                    DispatchQueue.main.async {
+            DispatchQueue.main.async {
+
+                if let advisoryMessage = advisoryMessage {
+                    for message in advisoryMessage {
                         guard let conditions = message.Consequences.Consequence.first?.Condition else {return}
-                        print(conditions)
+//                        print(conditions)
+                        conditionArray.append(conditions)
                         //store conditions in an array and check if array contains delayed or noservice if yes then red else yellow. one run
+                        
+                        
                         if !conditions.isEmpty {
                             cell.backgroundColor = .yellow
+//                            if conditionArray.contains(["delayed"]) {
+//                                print("contained")
+//                                cell.backgroundColor = .red
+//                            }
+                            
+                            
                             for condition in conditions {
                                 if condition.contains("delayed") || condition.contains("noService") {
                                     cell.backgroundColor = .red
                                 }
                             }
                         }
-                        let conditionDescription = message.Description
-                        cell.warning = conditionDescription
+                        statusArray.append(message.Description)
+                        cell.warning = statusArray
                     }
                 }
             }
@@ -113,10 +165,11 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            myRoutes.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
+            myRoutes.remove(at: indexPath.section)
+            tableView.deleteSections([indexPath.section], with: .automatic)
+//            tableView.deleteRows(at: [indexPath], with: .automatic)
             print(indexPath.row)
-            RouteModel.deleteRoute(index: indexPath.row)
+            RouteModel.deleteRoute(index: indexPath.section)
         }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

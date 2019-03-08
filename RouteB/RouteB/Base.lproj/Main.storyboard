@@ -65,7 +65,10 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nbb-ed-D90">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You currently have no routes. Click the + to create one." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R9K-7u-RHi">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blueGreen" translatesAutoresizingMaskIntoConstraints="NO" id="ZkT-95-RgT">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You currently have no routes. Click the + to create one." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vVX-EG-Q4y">
                                         <rect key="frame" x="94" y="303" width="187.5" height="61"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -74,9 +77,13 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="R9K-7u-RHi" firstAttribute="width" secondItem="Nbb-ed-D90" secondAttribute="width" multiplier="0.5" id="7OO-b6-klQ"/>
-                                    <constraint firstItem="R9K-7u-RHi" firstAttribute="centerY" secondItem="Nbb-ed-D90" secondAttribute="centerY" id="NyF-ca-O4s"/>
-                                    <constraint firstItem="R9K-7u-RHi" firstAttribute="centerX" secondItem="Nbb-ed-D90" secondAttribute="centerX" id="oUh-Bn-6qA"/>
+                                    <constraint firstItem="ZkT-95-RgT" firstAttribute="top" secondItem="Nbb-ed-D90" secondAttribute="top" id="0tR-Yk-e3H"/>
+                                    <constraint firstAttribute="bottom" secondItem="ZkT-95-RgT" secondAttribute="bottom" id="2H5-4U-ge0"/>
+                                    <constraint firstItem="vVX-EG-Q4y" firstAttribute="width" secondItem="ZkT-95-RgT" secondAttribute="width" multiplier="0.5" id="5ve-yl-QzJ"/>
+                                    <constraint firstItem="vVX-EG-Q4y" firstAttribute="centerY" secondItem="ZkT-95-RgT" secondAttribute="centerY" id="Ixr-St-Ce3"/>
+                                    <constraint firstItem="vVX-EG-Q4y" firstAttribute="centerX" secondItem="ZkT-95-RgT" secondAttribute="centerX" id="VWU-Za-NPA"/>
+                                    <constraint firstItem="ZkT-95-RgT" firstAttribute="leading" secondItem="Nbb-ed-D90" secondAttribute="leading" id="ku7-TK-OUb"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZkT-95-RgT" secondAttribute="trailing" id="qnb-PQ-YpF"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -98,7 +105,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Your Routes" id="Qos-br-Sna"/>
                     <connections>
-                        <outlet property="noRoutesView" destination="Nbb-ed-D90" id="xmq-XS-end"/>
+                        <outlet property="noRoutesView" destination="Nbb-ed-D90" id="FkF-ha-0Xd"/>
                         <outlet property="tableView" destination="9pY-yL-ywh" id="FyL-vk-TbI"/>
                     </connections>
                 </viewController>
@@ -163,12 +170,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="16i-FI-w7M">
-                                <rect key="frame" x="0.0" y="431" width="375" height="236"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blueGreen" translatesAutoresizingMaskIntoConstraints="NO" id="iCD-bQ-VUx">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wYg-VV-Y33">
+                                <rect key="frame" x="5" y="74" width="365" height="80"/>
+                                <color key="backgroundColor" red="0.68731713289999996" green="0.83201617000000005" blue="0.7843104005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="236" id="t0H-oV-pR8"/>
+                                    <constraint firstAttribute="height" constant="80" id="LfY-hx-xwx"/>
                                 </constraints>
+                                <state key="normal" title="Add Starting Address">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="startingAddressClicked:" destination="3S3-Ed-BLO" eventType="touchUpInside" id="TEh-5k-YnN"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F4z-Ss-1Wl">
+                                <rect key="frame" x="5" y="254" width="365" height="80"/>
+                                <color key="backgroundColor" red="0.68731713289999996" green="0.83201617000000005" blue="0.7843104005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="e2a-Ue-QVl"/>
+                                </constraints>
+                                <state key="normal" title="Add Buses">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="transportationButtonClicked:" destination="3S3-Ed-BLO" eventType="touchUpInside" id="TWl-wN-6qt"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="16i-FI-w7M">
+                                <rect key="frame" x="0.0" y="334" width="375" height="333"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MyCreateTableViewCell" id="TVm-Ot-aah" customClass="MyCreateTableViewCell" customModule="RouteB" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -196,58 +229,51 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wYg-VV-Y33">
-                                <rect key="frame" x="0.0" y="64" width="375" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="nsE-7l-EpU"/>
-                                </constraints>
-                                <state key="normal" title="Starting Address"/>
-                                <connections>
-                                    <action selector="startingAddressClicked:" destination="3S3-Ed-BLO" eventType="touchUpInside" id="TEh-5k-YnN"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BPH-Ca-wo7">
-                                <rect key="frame" x="0.0" y="124" width="375" height="60"/>
+                                <rect key="frame" x="5" y="164" width="365" height="80"/>
+                                <color key="backgroundColor" red="0.68731713289999996" green="0.83201617000000005" blue="0.7843104005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="84C-yK-Th3"/>
+                                    <constraint firstAttribute="height" constant="80" id="84C-yK-Th3"/>
                                 </constraints>
-                                <state key="normal" title="Ending Address"/>
+                                <state key="normal" title="Add Ending Address">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="endingAddressClicked:" destination="3S3-Ed-BLO" eventType="touchUpInside" id="G4c-3Z-lmp"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F4z-Ss-1Wl">
-                                <rect key="frame" x="0.0" y="401" width="375" height="30"/>
-                                <state key="normal" title="Add Buses and Trains"/>
-                                <connections>
-                                    <action selector="transportationButtonClicked:" destination="3S3-Ed-BLO" eventType="touchUpInside" id="TWl-wN-6qt"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="BPH-Ca-wo7" firstAttribute="leading" secondItem="Fw4-5P-caS" secondAttribute="leading" id="2rQ-Nq-acV"/>
-                            <constraint firstItem="16i-FI-w7M" firstAttribute="trailing" secondItem="Fw4-5P-caS" secondAttribute="trailing" id="5DO-gZ-t4L"/>
-                            <constraint firstItem="wYg-VV-Y33" firstAttribute="top" secondItem="Fw4-5P-caS" secondAttribute="top" id="9oJ-Xp-yYg"/>
-                            <constraint firstItem="Fw4-5P-caS" firstAttribute="trailing" secondItem="F4z-Ss-1Wl" secondAttribute="trailing" id="LjO-y6-6aw"/>
-                            <constraint firstItem="16i-FI-w7M" firstAttribute="bottom" secondItem="Fw4-5P-caS" secondAttribute="bottom" id="Lkq-H8-nfW"/>
-                            <constraint firstItem="BPH-Ca-wo7" firstAttribute="top" secondItem="wYg-VV-Y33" secondAttribute="bottom" id="bnN-7p-8vK"/>
-                            <constraint firstItem="wYg-VV-Y33" firstAttribute="leading" secondItem="Fw4-5P-caS" secondAttribute="leading" id="ccJ-dm-t0y"/>
-                            <constraint firstItem="F4z-Ss-1Wl" firstAttribute="leading" secondItem="Fw4-5P-caS" secondAttribute="leading" id="d4r-EC-Zh7"/>
-                            <constraint firstItem="Fw4-5P-caS" firstAttribute="trailing" secondItem="BPH-Ca-wo7" secondAttribute="trailing" id="mjb-la-Ttj"/>
-                            <constraint firstItem="16i-FI-w7M" firstAttribute="leading" secondItem="Fw4-5P-caS" secondAttribute="leading" id="sfo-VI-xHM"/>
-                            <constraint firstItem="16i-FI-w7M" firstAttribute="top" secondItem="F4z-Ss-1Wl" secondAttribute="bottom" id="u03-fF-AyG"/>
-                            <constraint firstItem="Fw4-5P-caS" firstAttribute="trailing" secondItem="wYg-VV-Y33" secondAttribute="trailing" id="zUa-Dg-0Ba"/>
+                            <constraint firstItem="16i-FI-w7M" firstAttribute="bottom" secondItem="Fw4-5P-caS" secondAttribute="bottom" id="0hK-vy-kvj"/>
+                            <constraint firstItem="16i-FI-w7M" firstAttribute="trailing" secondItem="Fw4-5P-caS" secondAttribute="trailing" id="2p9-Mc-86A"/>
+                            <constraint firstItem="F4z-Ss-1Wl" firstAttribute="top" secondItem="BPH-Ca-wo7" secondAttribute="bottom" constant="10" id="3JP-Ta-rfA"/>
+                            <constraint firstItem="BPH-Ca-wo7" firstAttribute="top" secondItem="wYg-VV-Y33" secondAttribute="bottom" constant="10" id="4Oe-N1-FSw"/>
+                            <constraint firstItem="16i-FI-w7M" firstAttribute="leading" secondItem="Fw4-5P-caS" secondAttribute="leading" id="8Jh-Z6-X54"/>
+                            <constraint firstItem="16i-FI-w7M" firstAttribute="top" secondItem="F4z-Ss-1Wl" secondAttribute="bottom" id="ESi-4G-4hR"/>
+                            <constraint firstItem="BPH-Ca-wo7" firstAttribute="leading" secondItem="Fw4-5P-caS" secondAttribute="leading" constant="5" id="HtR-hF-Ltb"/>
+                            <constraint firstItem="wYg-VV-Y33" firstAttribute="trailing" secondItem="Fw4-5P-caS" secondAttribute="trailing" constant="-5" id="K2B-E0-9ME"/>
+                            <constraint firstItem="F4z-Ss-1Wl" firstAttribute="leading" secondItem="Fw4-5P-caS" secondAttribute="leading" constant="5" id="Kg9-ew-4rF"/>
+                            <constraint firstItem="Fw4-5P-caS" firstAttribute="trailing" secondItem="iCD-bQ-VUx" secondAttribute="trailing" id="LuR-oH-QPT"/>
+                            <constraint firstItem="wYg-VV-Y33" firstAttribute="leading" secondItem="Fw4-5P-caS" secondAttribute="leading" constant="5" id="cVY-HL-R6E"/>
+                            <constraint firstItem="Fw4-5P-caS" firstAttribute="bottom" secondItem="iCD-bQ-VUx" secondAttribute="bottom" id="fGU-ZE-LDy"/>
+                            <constraint firstItem="iCD-bQ-VUx" firstAttribute="top" secondItem="Fw4-5P-caS" secondAttribute="top" id="gyY-A3-gep"/>
+                            <constraint firstItem="wYg-VV-Y33" firstAttribute="top" secondItem="Fw4-5P-caS" secondAttribute="top" constant="10" id="lDi-Jm-bHg"/>
+                            <constraint firstItem="BPH-Ca-wo7" firstAttribute="trailing" secondItem="Fw4-5P-caS" secondAttribute="trailing" constant="-5" id="lJP-ya-3ty"/>
+                            <constraint firstItem="iCD-bQ-VUx" firstAttribute="leading" secondItem="Fw4-5P-caS" secondAttribute="leading" id="qie-Mq-8g5"/>
+                            <constraint firstItem="F4z-Ss-1Wl" firstAttribute="trailing" secondItem="Fw4-5P-caS" secondAttribute="trailing" constant="-5" id="waQ-4A-lM3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Fw4-5P-caS"/>
                     </view>
                     <navigationItem key="navigationItem" title="Create Route" id="b5c-tg-asb">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="ll1-IH-7CS">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="cancelPressed:" destination="3S3-Ed-BLO" id="QAS-Yc-n6N"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Create" id="gCc-lX-UPM">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="createPressed:" destination="3S3-Ed-BLO" id="A2Q-Pu-JuC"/>
                             </connections>
@@ -264,7 +290,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ODH-zT-h9E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1782" y="994"/>
+            <point key="canvasLocation" x="1781.5999999999999" y="993.55322338830592"/>
         </scene>
         <!--Route Status-->
         <scene sceneID="DMi-1F-sTg">
@@ -349,4 +375,7 @@
             <point key="canvasLocation" x="1076" y="993.55322338830592"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="blueGreen" width="809.89874267578125" height="1439.8199462890625"/>
+    </resources>
 </document>

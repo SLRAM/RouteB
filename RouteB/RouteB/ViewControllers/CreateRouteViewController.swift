@@ -48,7 +48,21 @@ class CreateRouteViewController: UIViewController {
         searchCompleter.delegate = self
         createTableView.dataSource = self
         createTableView.delegate = self
+        designSetup()
     }
+    
+    func designSetup() {
+        //        tableView.backgroundColor = .blue
+        createTableView.tableFooterView = UIView()
+        let backgroundImage = UIImage(named: "blueGreen")
+        let imageView = UIImageView(image: backgroundImage)
+        createTableView.backgroundColor = .clear
+        
+        //        self.navigationController!.navigationBar.barTintColor = UIColor.black
+        
+    }
+    
+    
 
     
     @IBAction func startingAddressClicked(_ sender: UIButton) {
@@ -67,18 +81,6 @@ class CreateRouteViewController: UIViewController {
     }
     
     @IBAction func transportationButtonClicked(_ sender: UIButton) {
-        
-        //    old code
-        //    @IBAction func addTransportButtonPressed(_ sender: UIButton) {
-        //        print("added")
-        //        if let transportation = busSearchBar.text {
-        //            transportationArray.append(transportation)
-        //            createTableView.reloadData()
-        //            print(transportationArray.count)
-        //            print(transportationArray[transportationArray.count-1].description)
-        //        }
-        //    }
-        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let searchVC = storyboard.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
         searchVC.delegate = self
@@ -121,9 +123,26 @@ class CreateRouteViewController: UIViewController {
     }
     
     @IBAction func createPressed(_ sender: UIBarButtonItem) {
-        guard let route = saveRoute() else {return}
-        RouteModel.appendRoute(route: route)
-        dismiss(animated: true, completion: nil)
+        if startingAddressButton.titleLabel?.text == "Add Starting Address" || endingAddressButton.titleLabel?.text == "Add Ending Address" || transportationArray.count == 0 {
+            let alertController = UIAlertController(title: "Please fill in required areas to save route.", message: nil, preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            present(alertController, animated: true)
+            
+            
+        } else {
+            
+            let alertController = UIAlertController(title: "This route has been saved.", message: nil, preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+
+                guard let route = self.saveRoute() else {return}
+                RouteModel.appendRoute(route: route)
+                self.dismiss(animated: true, completion: nil)
+            })
+            alertController.addAction(okAction)
+            present(alertController, animated: true)
+            
+        }
     }
 
 }
@@ -159,6 +178,10 @@ extension CreateRouteViewController: UITableViewDataSource, UITableViewDelegate 
             transportationArray.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
     }
 }
 
