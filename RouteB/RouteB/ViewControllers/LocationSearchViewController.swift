@@ -60,6 +60,7 @@ class LocationSearchViewController: UIViewController {
         let backgroundImage = UIImage(named: "blueGreen")
         let imageView = UIImageView(image: backgroundImage)
         homeView.myTableView.backgroundView = imageView
+        homeView.backgroundColor = #colorLiteral(red: 0.5901091695, green: 0.8428633809, blue: 0.7824015021, alpha: 1)
         
         //        self.navigationController!.navigationBar.barTintColor = UIColor.black
         

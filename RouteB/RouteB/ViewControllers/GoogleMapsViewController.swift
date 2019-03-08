@@ -89,7 +89,7 @@ class GoogleMapsViewController: UIViewController {
             newStr += "-\(message[0])" + "\n"
         }
         print("this is the new string: \(newStr)")
-        if messages.isEmpty {
+        if messages.isEmpty || statusColor == .green {
             let alertController = UIAlertController(title: "There are no issues currently with this route.", message: nil, preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             alertController.addAction(okAction)
