@@ -40,7 +40,7 @@ This view has:
       * Cancel
    * Table View for route buses
       
-   ![deny location gif](https://github.com/SLRAM/RouteB/blob/master/Images/CreateRoute.gif)
+   ![deny location gif](https://github.com/SLRAM/RouteB/blob/master/Images/CreateRouteAddBuses.gif)
 
    The view will display the users temporary route information. The user can press the Starting Address Button which will segue to the Location Search View Controller. Once a location has been created the Starting Address Button text will change to the selected address. The user can press the Ending Address Button which will segue to the Location Search View Controller. Once a location has been created the Ending Address Button text will change to the selected address. If the user wishes to update either of the location buttons they can click the button to start the process over. The user can press the Add Buses Button which will segue to the Bus Search View Controller. Once buses have been selected the Buses Table View will populate. If the user no longer wants to keep a certain bus they can swipe the cell from right to left to delete it. Once the user is satisfied with they selections they can click the Create Route Button. Once pressed they will recieve an alert informing them that their route has been saved. When the user clicks OK the app will segue back to the Route View Controller. If the user is missing any field and they click the Create Route Button they will recieve an alert message notifying them about the issue.
 
