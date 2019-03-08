@@ -25,6 +25,8 @@ This view has:
    
    ![deny location gif](https://github.com/SLRAM/RouteB/blob/master/Images/RoutesView.gif)
    
+Overview:
+   
    * The view will display the users saved routes. 
    * The cells are color coded according to service advisory notices present on that routes saved transportation methods. 
    * The cell will be red for delayed or no service, yellow for altered or other, and green for no notices. 
@@ -47,6 +49,8 @@ This view has:
    * Table View for route buses
       
    ![deny location gif](https://github.com/SLRAM/RouteB/blob/master/Images/CreateView.gif)
+   
+Overview:
 
    * The view will display the users temporary route information. 
    * The user can press the Starting Address Button which will segue to the Location Search View Controller. 
@@ -77,6 +81,8 @@ This view has:
       * Active Buses on Route
    
       ![deny location gif](https://github.com/SLRAM/RouteB/blob/master/Images/GoogleMapView.gif)
+      
+Overview:
 
    * The View will display the users saved route live feed. The user will be able to view their starting and ending coordinates and the polylines for their saved buses. 
    * Each bus route has clickable bus stops. 
@@ -102,6 +108,8 @@ This view has:
       * Return to Create Route
       
    ![deny location gif](https://github.com/SLRAM/RouteB/blob/master/Images/LocationSearchView.gif)
+   
+Overview:
 
    * The View will display the users temporarily selected location. When the user begins typing in the Search Bar a Table View will appear with suggested locations. 
    * When the user selects an address the Table View will be replaced by a Google Map View. When the user is satisfied with their location they can click the Add Button. 
@@ -121,6 +129,8 @@ This view has:
       
    ![deny location gif](https://github.com/SLRAM/RouteB/blob/master/Images/BusSearchView.gif)
    
+Overview:   
+
   * The View will display the user's temporarily selected buses. 
   * When the user begins typing in the Search Bar the Table View will only display related buses. 
   * When the user selects a bus on a check mark will appear on the cell. 
