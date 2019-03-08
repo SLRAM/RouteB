@@ -44,6 +44,7 @@ class LocationSearchViewController: UIViewController {
         homeView.delegate = self
         homeViewSetup()
         searchCompleter.delegate = self
+        designSetup()
         //        centerOnMap(location: initialLocation)
 //        homeView.mapView.delegate = self
 //        homeView.locationTextField.delegate = self
@@ -52,6 +53,16 @@ class LocationSearchViewController: UIViewController {
         
     
 
+    }
+    func designSetup() {
+        //        tableView.backgroundColor = .blue
+        homeView.myTableView.tableFooterView = UIView()
+        let backgroundImage = UIImage(named: "blueGreen")
+        let imageView = UIImageView(image: backgroundImage)
+        homeView.myTableView.backgroundView = imageView
+        
+        //        self.navigationController!.navigationBar.barTintColor = UIColor.black
+        
     }
     
     func mapListButton() {
@@ -91,6 +102,7 @@ extension LocationSearchViewController: UITableViewDataSource, UITableViewDelega
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
         cell.textLabel?.text = searchResult.title
         cell.detailTextLabel?.text = searchResult.subtitle
+        cell.backgroundColor = .clear
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

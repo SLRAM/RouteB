@@ -180,6 +180,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="LfY-hx-xwx"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                 <state key="normal" title="Add Starting Address">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -193,6 +194,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="e2a-Ue-QVl"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                 <state key="normal" title="Add Buses">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -236,6 +238,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="84C-yK-Th3"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                 <state key="normal" title="Add Ending Address">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
