@@ -10,7 +10,7 @@ import UIKit
 
 //additions: add train info
 
-class ViewController: UIViewController {
+class RouteViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var noRoutesView: UIView!
@@ -76,7 +76,7 @@ class ViewController: UIViewController {
         return characterString
     }
 }
-extension ViewController: UITableViewDataSource, UITableViewDelegate {
+extension RouteViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return myRoutes.count
@@ -107,6 +107,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MyTableViewCell", for: indexPath) as? MyTableViewCell else {return UITableViewCell()}
+        cell.tableLabel.font = UIFont.init(name: "Futura Medium", size: 17)
 
         let cellNumber = indexPath.section
         

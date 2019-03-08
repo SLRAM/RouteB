@@ -82,7 +82,7 @@ class CreateRouteViewController: UIViewController {
     
     @IBAction func transportationButtonClicked(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let searchVC = storyboard.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
+        let searchVC = storyboard.instantiateViewController(withIdentifier: "SearchViewController") as! BusSearchViewController
         searchVC.delegate = self
         navigationController?.pushViewController(searchVC, animated: true)
     }
@@ -215,7 +215,7 @@ extension CreateRouteViewController: LocationSearchViewControllerDelegate {
     }
 
 }
-extension CreateRouteViewController: SearchViewControllerDelegate {
+extension CreateRouteViewController: BusSearchViewControllerDelegate {
     func selectedBuses(buses: [String]) {
             transportationArray = buses
             createTableView.reloadData()

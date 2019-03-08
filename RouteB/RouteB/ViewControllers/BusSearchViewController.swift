@@ -8,12 +8,12 @@
 
 import UIKit
 import Foundation
-protocol SearchViewControllerDelegate: AnyObject {
+protocol BusSearchViewControllerDelegate: AnyObject {
     func selectedBuses(buses: [String])
 }
-class SearchViewController: UIViewController {
+class BusSearchViewController: UIViewController {
 
-    weak var delegate: SearchViewControllerDelegate?
+    weak var delegate: BusSearchViewControllerDelegate?
     
     @IBOutlet weak var busTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -76,7 +76,7 @@ class SearchViewController: UIViewController {
     }
 }
 
-extension SearchViewController: UISearchBarDelegate {
+extension BusSearchViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText == "" {
@@ -92,7 +92,7 @@ extension SearchViewController: UISearchBarDelegate {
     
 }
 
-extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
+extension BusSearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
