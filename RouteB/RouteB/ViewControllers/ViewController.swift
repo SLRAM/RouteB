@@ -27,9 +27,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         designSetup()
         myRoutes = RouteModel.getRoutes()
-        if !myRoutes.isEmpty {
-            noRoutesView.alpha = 0
-        }
+        
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -56,6 +54,9 @@ class ViewController: UIViewController {
         super.viewWillAppear(animated)
         myRoutes = RouteModel.getRoutes()
         tableView.reloadData()
+        if !myRoutes.isEmpty {
+            noRoutesView.alpha = 0
+        }
     }
     
     func designSetup() {
@@ -171,6 +172,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             RouteModel.deleteRoute(index: indexPath.section)
             if !myRoutes.isEmpty {
                 noRoutesView.alpha = 0
+            } else {
+                noRoutesView.alpha = 1
             }
         }
     }
