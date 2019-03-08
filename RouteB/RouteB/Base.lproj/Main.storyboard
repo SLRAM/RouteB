@@ -20,6 +20,7 @@
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yQd-GM-3EF">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <color key="backgroundColor" red="0.32332783939999998" green="0.70639747379999995" blue="0.66274523740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="kjO-xN-ANc"/>
                                     <barButtonItem systemItem="add" id="Y0k-sn-xcz">
@@ -29,6 +30,7 @@
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Lw2-VV-h6C"/>
                                 </items>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </toolbar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9pY-yL-ywh">
                                 <rect key="frame" x="0.0" y="64" width="375" height="559"/>
@@ -60,7 +62,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nbb-ed-D90">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nbb-ed-D90">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You currently have no routes. Click the + to create one." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R9K-7u-RHi">
@@ -128,10 +130,11 @@
                             </tableView>
                             <searchBar contentMode="redraw" text="" placeholder="Bus" translatesAutoresizingMaskIntoConstraints="NO" id="Z4k-Dl-xnk">
                                 <rect key="frame" x="0.0" y="20" width="375" height="56"/>
+                                <color key="barTintColor" red="0.59404528140000001" green="0.82044845820000001" blue="0.75685840849999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.59404528140000001" green="0.82044845820000001" blue="0.75685840849999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="Z4k-Dl-xnk" firstAttribute="trailing" secondItem="dBg-jg-qvl" secondAttribute="trailing" id="044-yC-M4b"/>
                             <constraint firstItem="qYm-OQ-Qmf" firstAttribute="trailing" secondItem="dBg-jg-qvl" secondAttribute="trailing" id="7u2-ly-4DH"/>
@@ -213,15 +216,8 @@
                                     <action selector="endingAddressClicked:" destination="3S3-Ed-BLO" eventType="touchUpInside" id="G4c-3Z-lmp"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gsQ-pB-2Jp" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="184" width="375" height="211"/>
-                                <color key="backgroundColor" red="0.99969620589999997" green="1" blue="0.47851909749999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="gsQ-pB-2Jp" secondAttribute="height" multiplier="16:9" id="H66-uf-89S"/>
-                                </constraints>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F4z-Ss-1Wl">
-                                <rect key="frame" x="0.0" y="395" width="375" height="36"/>
+                                <rect key="frame" x="0.0" y="401" width="375" height="30"/>
                                 <state key="normal" title="Add Buses and Trains"/>
                                 <connections>
                                     <action selector="transportationButtonClicked:" destination="3S3-Ed-BLO" eventType="touchUpInside" id="TWl-wN-6qt"/>
@@ -230,16 +226,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="gsQ-pB-2Jp" firstAttribute="leading" secondItem="Fw4-5P-caS" secondAttribute="leading" id="2CJ-Ax-Kvv"/>
                             <constraint firstItem="BPH-Ca-wo7" firstAttribute="leading" secondItem="Fw4-5P-caS" secondAttribute="leading" id="2rQ-Nq-acV"/>
                             <constraint firstItem="16i-FI-w7M" firstAttribute="trailing" secondItem="Fw4-5P-caS" secondAttribute="trailing" id="5DO-gZ-t4L"/>
                             <constraint firstItem="wYg-VV-Y33" firstAttribute="top" secondItem="Fw4-5P-caS" secondAttribute="top" id="9oJ-Xp-yYg"/>
-                            <constraint firstItem="Fw4-5P-caS" firstAttribute="trailing" secondItem="gsQ-pB-2Jp" secondAttribute="trailing" id="Hgh-L4-81v"/>
                             <constraint firstItem="Fw4-5P-caS" firstAttribute="trailing" secondItem="F4z-Ss-1Wl" secondAttribute="trailing" id="LjO-y6-6aw"/>
                             <constraint firstItem="16i-FI-w7M" firstAttribute="bottom" secondItem="Fw4-5P-caS" secondAttribute="bottom" id="Lkq-H8-nfW"/>
-                            <constraint firstItem="gsQ-pB-2Jp" firstAttribute="top" secondItem="BPH-Ca-wo7" secondAttribute="bottom" id="a5d-vx-gKm"/>
                             <constraint firstItem="BPH-Ca-wo7" firstAttribute="top" secondItem="wYg-VV-Y33" secondAttribute="bottom" id="bnN-7p-8vK"/>
-                            <constraint firstItem="F4z-Ss-1Wl" firstAttribute="top" secondItem="gsQ-pB-2Jp" secondAttribute="bottom" id="cOl-AM-bNE"/>
                             <constraint firstItem="wYg-VV-Y33" firstAttribute="leading" secondItem="Fw4-5P-caS" secondAttribute="leading" id="ccJ-dm-t0y"/>
                             <constraint firstItem="F4z-Ss-1Wl" firstAttribute="leading" secondItem="Fw4-5P-caS" secondAttribute="leading" id="d4r-EC-Zh7"/>
                             <constraint firstItem="Fw4-5P-caS" firstAttribute="trailing" secondItem="BPH-Ca-wo7" secondAttribute="trailing" id="mjb-la-Ttj"/>
@@ -266,7 +258,6 @@
                         <outlet property="createButton" destination="gCc-lX-UPM" id="ppm-Od-mHn"/>
                         <outlet property="createTableView" destination="16i-FI-w7M" id="iVg-Pv-960"/>
                         <outlet property="endingAddressButton" destination="BPH-Ca-wo7" id="gET-aX-xBc"/>
-                        <outlet property="mapView" destination="gsQ-pB-2Jp" id="PWO-CN-VaY"/>
                         <outlet property="startingAddressButton" destination="wYg-VV-Y33" id="ir0-3t-iBX"/>
                         <outlet property="transportationButton" destination="F4z-Ss-1Wl" id="qZv-dp-VpB"/>
                     </connections>
@@ -326,6 +317,8 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bTy-hS-4Vq">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.32332783939999998" green="0.70639747379999995" blue="0.66274523740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="barTintColor" red="0.59404528140000001" green="0.82044845820000001" blue="0.75685840849999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -344,6 +337,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ke8-SR-Ejy">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.59404528140000001" green="0.82044845820000001" blue="0.75685840849999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

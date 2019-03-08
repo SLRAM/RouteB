@@ -13,7 +13,6 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-//    var advisoryMessages = [String]()
     @IBOutlet weak var noRoutesView: UIView!
     
     var myRoutes = [UserRoute]() {
@@ -26,6 +25,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        designSetup()
         myRoutes = RouteModel.getRoutes()
         if !myRoutes.isEmpty {
             noRoutesView.alpha = 0
@@ -57,6 +57,20 @@ class ViewController: UIViewController {
         myRoutes = RouteModel.getRoutes()
         tableView.reloadData()
     }
+    
+    func designSetup() {
+        //        tableView.backgroundColor = .blue
+        tableView.tableFooterView = UIView()
+        let backgroundImage = UIImage(named: "blueGreen")
+        let imageView = UIImageView(image: backgroundImage)
+        tableView.backgroundView = imageView
+
+//        self.navigationController!.navigationBar.barTintColor = UIColor.black
+
+    }
+    
+    
+    
 }
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -76,11 +90,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
                 for message in advisoryMessage {
                     DispatchQueue.main.async {
                         guard let conditions = message.Consequences.Consequence.first?.Condition else {return}
-                        //fix so that if delayed comes up then it will always print out red maybe
-//                        var color = ""
                         print(conditions)
-                        
-                        
+                        //store conditions in an array and check if array contains delayed or noservice if yes then red else yellow. one run
                         if !conditions.isEmpty {
                             cell.backgroundColor = .yellow
                             for condition in conditions {
@@ -91,33 +102,6 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
                         }
                         let conditionDescription = message.Description
                         cell.warning = conditionDescription
-
-//                        for condition in conditions {
-//                            if color == "delayed" {
-//                                break
-//                            } else if color == "altered" {
-//                                switch condition {
-//                                case "altered":
-//                                    cell.backgroundColor = .yellow
-//                                case "delayed":
-//                                    cell.backgroundColor = .red
-//                                    color = "delayed"
-//                                default:
-//                                    print("unable to get background color")
-//                                }
-//                            } else {
-//                                switch condition {
-//                                case "altered":
-//                                    cell.backgroundColor = .yellow
-//                                    color = "altered"
-//                                case "delayed":
-//                                    cell.backgroundColor = .red
-//                                    color = "delayed"
-//                                default:
-//                                    print("unable to get background color")
-//                                }
-//                            }
-//                        }
                     }
                 }
             }
@@ -133,19 +117,23 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             tableView.deleteRows(at: [indexPath], with: .automatic)
             print(indexPath.row)
             RouteModel.deleteRoute(index: indexPath.row)
-            //add code to plist to delete at
         }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let selectedCell = tableView.cellForRow(at: indexPath) as? MyTableViewCell else {return}
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-//        let viewController = storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
         let viewController = storyboard.instantiateViewController(withIdentifier: "GoogleMapsViewController") as! GoogleMapsViewController
         let route = myRoutes[indexPath.row]
-//        let buses = route.transportation
         viewController.myRoute = route
         viewController.advisoryMessages = selectedCell.warning
         viewController.statusColor = selectedCell.backgroundColor
         navigationController?.pushViewController(viewController, animated: true)
+    }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let maskPathAll = UIBezierPath(roundedRect: cell.bounds, byRoundingCorners: [.topLeft, .topRight, .bottomRight, .bottomLeft], cornerRadii: CGSize(width: 5.0, height: 5.0))
+        let shapeLayerAll = CAShapeLayer()
+        shapeLayerAll.frame = cell.bounds
+        shapeLayerAll.path = maskPathAll.cgPath
+        cell.layer.mask = shapeLayerAll
     }
 }

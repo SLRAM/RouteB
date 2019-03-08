@@ -19,9 +19,6 @@ class CreateRouteViewController: UIViewController {
     @IBOutlet weak var createTableView: UITableView!
     @IBOutlet weak var startingAddressButton: UIButton!
     @IBOutlet weak var endingAddressButton: UIButton!
-    @IBOutlet var mapView: GMSMapView! //reacts diff if left as UIView
-    
-    var myMapView: GMSMapView?
 
     var startingCoordinate: CLLocationCoordinate2D!
     var startingAddressLat = Double()
@@ -48,32 +45,17 @@ class CreateRouteViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let camera = GMSCameraPosition.camera(withLatitude: 40.793840, longitude: 73.886012, zoom: 11)
-        myMapView = GMSMapView.init(frame: CGRect.zero, camera: camera)
-        //        mapView = GMSMapView.init(frame: CGRect.zero, camera: camera)
-        //mapView = myMapView
-        mapView.addSubview(myMapView!)
         searchCompleter.delegate = self
         createTableView.dataSource = self
         createTableView.delegate = self
     }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-//        let camera = GMSCameraPosition.camera(withLatitude: 40.793840, longitude: -73.886012, zoom: 11)
-//        myMapView = GMSMapView.init(frame: CGRect.zero, camera: camera)
-////        mapView = GMSMapView.init(frame: CGRect.zero, camera: camera)
-//        mapView = myMapView
-//        view.addSubview(mapView)
-    }
+
     
     @IBAction func startingAddressClicked(_ sender: UIButton) {
         let detailVC = HomeViewController()
         detailVC.delegate = self
         detailVC.tag = 0
         navigationController?.pushViewController(detailVC, animated: true)
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let searchVC = storyboard.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
-//        navigationController?.pushViewController(searchVC, animated: true)
     }
     
 
@@ -83,6 +65,26 @@ class CreateRouteViewController: UIViewController {
         detailVC.tag = 1
         navigationController?.pushViewController(detailVC, animated: true)
     }
+    
+    @IBAction func transportationButtonClicked(_ sender: UIButton) {
+        
+        //    old code
+        //    @IBAction func addTransportButtonPressed(_ sender: UIButton) {
+        //        print("added")
+        //        if let transportation = busSearchBar.text {
+        //            transportationArray.append(transportation)
+        //            createTableView.reloadData()
+        //            print(transportationArray.count)
+        //            print(transportationArray[transportationArray.count-1].description)
+        //        }
+        //    }
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let searchVC = storyboard.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
+        searchVC.delegate = self
+        navigationController?.pushViewController(searchVC, animated: true)
+    }
+    
     
     private func saveRoute()-> UserRoute? {
         let startingAddressLat = startingCoordinate.latitude
@@ -143,16 +145,9 @@ extension CreateRouteViewController: UITableViewDataSource, UITableViewDelegate 
         
         if let range = route.range(of: "_") {
             let busShortName = route[range.upperBound...]
-            //            print(busShortName)
             let newBusFormat = busShortName.replacingOccurrences(of: "+", with: "-SBS")
             cell.createdLabel.text = newBusFormat
         }
-        
-        
-//        cell.createdLabel.text = route
-        
-        
-        
         return cell
     }
 
@@ -193,8 +188,6 @@ extension CreateRouteViewController: HomeViewControllerDelegate {
             endingAddressButton.setTitle(locationTuple.0, for: .normal)
             endingAddressButton.titleLabel?.text = locationTuple.0
         }
-        
-        //if button text is changed then update map
     }
 
 }
@@ -203,6 +196,4 @@ extension CreateRouteViewController: SearchViewControllerDelegate {
             transportationArray = buses
             createTableView.reloadData()
     }
-    
-    
 }

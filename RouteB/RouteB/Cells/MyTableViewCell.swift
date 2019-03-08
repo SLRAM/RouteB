@@ -10,6 +10,5 @@ import UIKit
 
 class MyTableViewCell: UITableViewCell {
     @IBOutlet weak var tableLabel: UILabel!
-    
     var warning: [String]!
 }
