@@ -35,6 +35,18 @@ class SearchViewController: UIViewController {
         busTableView.dataSource = self
         addButton()
 
+        designSetup()
+    }
+    
+    func designSetup() {
+        //        tableView.backgroundColor = .blue
+        busTableView.tableFooterView = UIView()
+        let backgroundImage = UIImage(named: "blueGreen")
+        let imageView = UIImageView(image: backgroundImage)
+        busTableView.backgroundView = imageView
+        
+        //        self.navigationController!.navigationBar.barTintColor = UIColor.black
+        
     }
     
     
@@ -99,7 +111,8 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
         } else {
             bus = buses[indexPath.row]
         }
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        cell.backgroundColor = .clear
         if let range = bus.range(of: "_") {
             let busShortName = bus[range.upperBound...]
 //            print(busShortName)

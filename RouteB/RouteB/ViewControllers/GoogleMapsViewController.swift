@@ -71,6 +71,7 @@ class GoogleMapsViewController: UIViewController {
         customButton.layer.masksToBounds = true
         customButton.addTarget(self, action: #selector(statusButtonClicked), for: .touchUpInside)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: customButton)
+        navigationItem.backBarButtonItem?.tintColor = .black
     }
     
     @objc func statusButtonClicked() {

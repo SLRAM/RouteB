@@ -378,4 +378,5 @@
     <resources>
         <image name="blueGreen" width="809.89874267578125" height="1439.8199462890625"/>
     </resources>
+    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>
