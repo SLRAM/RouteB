@@ -159,6 +159,7 @@ extension CreateRouteViewController: UITableViewDataSource, UITableViewDelegate 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = createTableView.dequeueReusableCell(withIdentifier: "MyCreateTableViewCell", for: indexPath) as? MyCreateTableViewCell else {return UITableViewCell()}
+        cell.backgroundColor = .clear
         print(transportationArray[indexPath.row].description)
         let route = transportationArray[indexPath.row]
         

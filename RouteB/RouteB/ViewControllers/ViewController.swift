@@ -168,8 +168,10 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             myRoutes.remove(at: indexPath.section)
             tableView.deleteSections([indexPath.section], with: .automatic)
 //            tableView.deleteRows(at: [indexPath], with: .automatic)
-            print(indexPath.row)
             RouteModel.deleteRoute(index: indexPath.section)
+            if !myRoutes.isEmpty {
+                noRoutesView.alpha = 0
+            }
         }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

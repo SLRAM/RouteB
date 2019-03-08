@@ -11,4 +11,5 @@ import UIKit
 class MyCreateTableViewCell: UITableViewCell {
 
     @IBOutlet weak var createdLabel: UILabel!
+    
 }

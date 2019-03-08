@@ -172,7 +172,7 @@ class GoogleMapsViewController: UIViewController {
             let marker = GMSMarker(position: coordinate)
             marker.title = bus.MonitoredVehicleJourney.VehicleRef
             marker.snippet = "direction: \(bus.MonitoredVehicleJourney.DirectionRef)"
-            marker.icon = GMSMarker.markerImage(with: .purple)
+            marker.icon = GMSMarker.markerImage(with: #colorLiteral(red: 0.0208575353, green: 0.7171841264, blue: 0.6636909246, alpha: 1))
             allMarkers.append(marker)
             DispatchQueue.main.async {
                 marker.map = self.mapView
