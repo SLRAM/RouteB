@@ -247,7 +247,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.64470446109771729" green="0.83597713708877563" blue="0.78431051969528198" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="16i-FI-w7M" firstAttribute="bottom" secondItem="Fw4-5P-caS" secondAttribute="bottom" id="0hK-vy-kvj"/>
                             <constraint firstItem="16i-FI-w7M" firstAttribute="trailing" secondItem="Fw4-5P-caS" secondAttribute="trailing" id="2p9-Mc-86A"/>
@@ -331,7 +331,7 @@
                     <view key="view" contentMode="scaleToFill" id="d4s-uu-m9n">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.64470446109771729" green="0.83597713708877563" blue="0.78431051969528198" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <viewLayoutGuide key="safeArea" id="Vjc-vi-hhO"/>
                     </view>
                 </viewController>
