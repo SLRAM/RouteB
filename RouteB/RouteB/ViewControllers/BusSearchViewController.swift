@@ -147,9 +147,12 @@ extension BusSearchViewController: UITableViewDataSource, UITableViewDelegate {
             for savedBus in savedBuses {
                 if savedBus != bus {
                     counter += 1
+                } else {
+                    print(counter)
+                    savedBuses.remove(at: counter)
                 }
             }
-            savedBuses.remove(at: counter)
+
         } else {
             tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
             savedBuses.append(bus)
